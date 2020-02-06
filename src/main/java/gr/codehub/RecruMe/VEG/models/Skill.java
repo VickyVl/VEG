@@ -17,13 +17,9 @@ public class Skill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
-    @JoinColumn
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "applicant_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Applicant applicant;
-
-    @ManyToMany
-    private List<JobOffer> products;
-
 }

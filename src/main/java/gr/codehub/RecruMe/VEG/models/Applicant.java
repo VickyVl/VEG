@@ -25,7 +25,7 @@ public class Applicant {
     @Column(columnDefinition = "bit default 1")
     private boolean active;
 
-    @OneToMany(mappedBy = "skill", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "applicant", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Skill> skills;
 
