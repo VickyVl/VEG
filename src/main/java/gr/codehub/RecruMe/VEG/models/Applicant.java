@@ -10,7 +10,6 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
-
 public class Applicant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +24,8 @@ public class Applicant {
     @Column(columnDefinition = "bit default 1")
     private boolean active;
 
-    @OneToMany(mappedBy = "applicant", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+/*    @OneToMany(mappedBy = "applicant", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<Skill> skills;
+    private List<ApplicantSkill> applicantSkills;*/
 
 }

@@ -17,9 +17,15 @@ public class Skill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "applicant_id")
+/*    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "applicant_skill_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private Applicant applicant;
+    private ApplicantSkill applicantSkill;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "job_skill_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private JobSkill jobSkill;*/
 }
