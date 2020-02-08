@@ -1,4 +1,4 @@
-/*package gr.codehub.RecruMe.VEG.models;
+package gr.codehub.RecruMe.VEG.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
@@ -17,4 +17,4 @@ public class JobSkill {
     @OneToOne
     @JsonIgnore
     private Skill skill;
-}*/
+}

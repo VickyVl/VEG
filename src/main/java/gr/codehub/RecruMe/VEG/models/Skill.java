@@ -18,7 +18,7 @@ public class Skill {
     private int id;
     private String description;
 
-/*  @OneToOne(fetch = FetchType.LAZY)
+  @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "applicant_skill_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
@@ -28,5 +28,5 @@ public class Skill {
     @JoinColumn(name = "job_skill_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-    private JobSkill jobSkill;*/
+    private JobSkill jobSkill;
 }

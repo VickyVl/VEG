@@ -1,4 +1,3 @@
-/*
 package gr.codehub.RecruMe.VEG.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -19,4 +18,3 @@ public class ApplicantSkill {
     @JsonIgnore
     private Skill skill;
 }
-*/

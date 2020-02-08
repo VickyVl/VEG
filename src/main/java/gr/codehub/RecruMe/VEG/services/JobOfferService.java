@@ -11,6 +11,7 @@ import gr.codehub.RecruMe.VEG.repositories.JobOffers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -26,6 +27,9 @@ public class JobOfferService {
         jobOffer.setRegion(jobOfferDto.getRegion());
         jobOffer.setEducationLevel(jobOfferDto.getEducationLevel());
         // TO DO SET UP SKILLS
+
+        List<Skill> skills = jobOfferDto.getSkills();
+
         jobOffer.setActive(true);
 
         return jobOfferRepo.save(jobOffer);
