@@ -1,10 +1,8 @@
 package gr.codehub.RecruMe.VEG.controllers;
 
-import gr.codehub.RecruMe.VEG.dtos.ApplicantDto;
 import gr.codehub.RecruMe.VEG.dtos.JobOfferDto;
 import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
 import gr.codehub.RecruMe.VEG.exceptions.JobOfferNotFoundException;
-import gr.codehub.RecruMe.VEG.models.Applicant;
 import gr.codehub.RecruMe.VEG.models.JobOffer;
 import gr.codehub.RecruMe.VEG.services.JobOfferService;
 import org.springframework.beans.factory.annotation.Autowired;

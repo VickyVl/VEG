@@ -16,10 +16,9 @@ public class Skill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String description;
 
-/*    @OneToOne(fetch = FetchType.LAZY)
+/*  @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "applicant_skill_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore

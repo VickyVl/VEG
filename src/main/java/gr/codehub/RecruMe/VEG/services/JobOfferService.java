@@ -46,7 +46,6 @@ public class JobOfferService {
         } catch (Exception e) {
             throw new JobOfferNotFoundException("Job Offer id = " + id + " NOT FOUND");
         }
-
     }
 
     public List<JobOffer> readByPosition(String titleOfPosition) throws JobOfferNotFoundException {
