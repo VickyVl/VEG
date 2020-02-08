@@ -40,10 +40,4 @@ public class JobOfferController {
         return jobOfferService.readByPosition(titleOfPosition);
     }
 
-    @PutMapping("joboffer/{id}")
-    public JobOffer updateOne(@PathVariable int id,
-                               @RequestBody JobOfferDto jobOfferDto)
-            throws JobOfferNotFoundException {
-        return jobOfferService.updateOne(id, jobOfferDto);
-    }
 }
