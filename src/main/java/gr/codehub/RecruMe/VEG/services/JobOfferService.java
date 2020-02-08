@@ -60,15 +60,5 @@ public class JobOfferService {
             throw new JobOfferNotFoundException("Title Of Position = " + titleOfPosition + " NOT FOUNT");
         }
     }
-
-    public JobOffer updateOne(int id, JobOfferDto jobOfferDto) throws JobOfferNotFoundException {
-        JobOffer jobOffer = jobOfferRepo.findById(id).get();
-        if (jobOffer == null) {
-            throw new JobOfferNotFoundException("Title Of Position id = " + id);
-        }
-        jobOffer.setTitleOfPosition(jobOfferDto.getTitleOfPosition());
-
-        return jobOfferRepo.save(jobOffer);
-    }
 }
 

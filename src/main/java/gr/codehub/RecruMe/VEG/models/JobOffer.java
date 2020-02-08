@@ -23,7 +23,6 @@ public class JobOffer {
     @Column(columnDefinition = "bit default 1")
     private boolean active;
 
-
 /*    @OneToMany(mappedBy = "job_offer", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     @ManyToMany
