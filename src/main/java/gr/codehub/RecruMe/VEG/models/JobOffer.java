@@ -16,11 +16,12 @@ public class JobOffer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(columnDefinition = "bit default 1")
     private String titleOfPosition;
     private String region;
     private String educationLevel;
 
+    @Column(columnDefinition = "bit default 1")
+    private boolean active;
 
 
 /*    @OneToMany(mappedBy = "job_offer", fetch=FetchType.LAZY, cascade = CascadeType.ALL)

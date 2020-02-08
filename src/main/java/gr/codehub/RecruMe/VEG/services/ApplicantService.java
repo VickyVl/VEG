@@ -25,6 +25,7 @@ public class ApplicantService {
         applicant.setAddress(applicantDto.getAddress());
         applicant.setRegion(applicantDto.getRegion());
         applicant.setEducationLevel(applicantDto.getEducationLevel());
+        // TO DO SET UP SKILLS
         applicant.setActive(true);
 
         return applicantRepo.save(applicant);
@@ -41,10 +42,10 @@ public class ApplicantService {
     public Applicant getApplicant(int id) throws ApplicantNotFoundException {
 
         try {
-            Applicant customer = applicantRepo.findById(id).get();
-            return customer;
+            Applicant applicant = applicantRepo.findById(id).get();
+            return applicant;
         } catch (Exception e) {
-            throw new ApplicantNotFoundException("Applicant id = " + id + "not found");
+            throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
         }
 
     }
@@ -54,7 +55,7 @@ public class ApplicantService {
             return
                     StreamSupport
                             .stream(applicantRepo.findAll().spliterator(), false)
-                            .filter(applicant -> applicant.getFirstName().equals(firstName))
+                            .filter(applicant -> applicant.getFirstName().equalsIgnoreCase(firstName))
                             .collect(Collectors.toList());
         } catch (Exception e) {
             throw new ApplicantNotFoundException("First Name = " + firstName);
@@ -64,7 +65,7 @@ public class ApplicantService {
     public Applicant updateOne(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
         Applicant applicant = applicantRepo.findById(id).get();
         if (applicant == null) {
-            throw new ApplicantNotFoundException("Customer id = " + id);
+            throw new ApplicantNotFoundException("Applicant id = " + id);
         }
         applicant.setAddress(applicantDto.getAddress());
 //        if (applicantDto.getFirstName() != null)

@@ -31,7 +31,6 @@ public class ApplicantController {
         return applicantService.getApplicant(id);
     }
 
-    //applicant/{name}
     @GetMapping("applicants/name/{firstName}")
     public List<Applicant> getApplicantsByName( @PathVariable String firstName)
             throws ApplicantNotFoundException {
@@ -40,7 +39,7 @@ public class ApplicantController {
 
     @PutMapping("applicant/{id}")
     public Applicant updateOne(@PathVariable int id,
-                              @RequestBody ApplicantDto applicantDto)
+                               @RequestBody ApplicantDto applicantDto)
             throws ApplicantNotFoundException {
         return applicantService.updateOne(id, applicantDto);
     }
