@@ -7,7 +7,6 @@ import gr.codehub.RecruMe.VEG.repositories.Applicants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -62,15 +61,15 @@ public class ApplicantService {
         }
     }
 
-    public Applicant updateOne(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
+/*    public Applicant updateOne(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
         Applicant applicant = applicantRepo.findById(id).get();
         if (applicant == null) {
-            throw new ApplicantNotFoundException("Applicant id = " + id);
+            throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
         }
         applicant.setAddress(applicantDto.getAddress());
 //        if (applicantDto.getFirstName() != null)
 //            applicant.setFirstName(applicantDto.getFirstName());
 
         return applicantRepo.save(applicant);
-    }
+    }*/
 }

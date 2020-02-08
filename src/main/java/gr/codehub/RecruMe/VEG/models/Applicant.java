@@ -18,7 +18,7 @@ public class Applicant {
     private String firstName;
     private String lastName;
     private String address;
-    private String Region;
+    private String region;
     private String educationLevel;
 
     @Column(columnDefinition = "bit default 1")

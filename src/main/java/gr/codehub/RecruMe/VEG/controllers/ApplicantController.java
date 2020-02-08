@@ -11,11 +11,12 @@ import java.util.List;
 
 @RestController
 public class ApplicantController {
+
     @Autowired
     private ApplicantService applicantService;
 
     @GetMapping("applicants")
-    public List<Applicant> readAll( ) {
+    public List<Applicant> readAll() {
         return applicantService.getAll();
     }
 
@@ -32,16 +33,8 @@ public class ApplicantController {
     }
 
     @GetMapping("applicants/name/{firstName}")
-    public List<Applicant> getApplicantsByName( @PathVariable String firstName)
+    public List<Applicant> getApplicantsByName(@PathVariable String firstName)
             throws ApplicantNotFoundException {
         return applicantService.readByName(firstName);
     }
-
-    @PutMapping("applicant/{id}")
-    public Applicant updateOne(@PathVariable int id,
-                               @RequestBody ApplicantDto applicantDto)
-            throws ApplicantNotFoundException {
-        return applicantService.updateOne(id, applicantDto);
-    }
-
 }
