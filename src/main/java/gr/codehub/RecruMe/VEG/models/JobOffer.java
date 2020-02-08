@@ -25,6 +25,6 @@ public class JobOffer {
 
 //    @OneToMany(mappedBy = "job_offer", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 //    @JsonIgnore
-//    @ManyToMany
 //    private List<JobSkill> jobSkills;
+
 }
