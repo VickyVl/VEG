@@ -2,6 +2,7 @@ package gr.codehub.RecruMe.VEG.controllers;
 
 import gr.codehub.RecruMe.VEG.dtos.ApplicantDto;
 import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
+import gr.codehub.RecruMe.VEG.exceptions.ApplicantUpdateSkillException;
 import gr.codehub.RecruMe.VEG.models.Applicant;
 import gr.codehub.RecruMe.VEG.services.ApplicantUpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,10 +65,10 @@ public class ApplicantUpdateController {
             throws ApplicantNotFoundException {
         return applicantUpdateService.updateStatus(id, applicantDto);
     }
-//    @PutMapping("applicant/{id}/status")
-//    public Applicant updateApplicantSkill(@PathVariable int id,
-//                                  @RequestBody ApplicantDto applicantDto)
-//            throws ApplicantNotFoundException {
-//        return applicantUpdateService.updateApplicantSkill(id, applicantDto);
-//    }
+    @PutMapping("applicant/{id}/skill")
+    public Applicant updateApplicantSkill(@PathVariable int id,
+                                  @RequestBody ApplicantDto applicantDto)
+            throws ApplicantNotFoundException , ApplicantUpdateSkillException {
+        return applicantUpdateService.updateApplicantSkill(id, applicantDto);
+    }
 }

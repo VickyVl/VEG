@@ -2,6 +2,13 @@ insert into  applicant (first_name,  last_name, address, region , education_leve
 insert into  applicant (first_name,  last_name, address, region , education_level) values('Makis', 'Makidis', 'Avenue Street Alexandras' ,'Athens', 'noob')
 insert into  applicant (first_name,  last_name, address, region , education_level) values('Sakis', 'Sakidis', 'Avenue Street Alexandras' ,'Athens', 'noob')
 
+insert into  applicant (first_name,  last_name, address, region , education_level) values('Rakis', 'Rakidis', 'Avenue Street Alexandras' ,'Skg', 'expert')
+insert into  applicant (first_name,  last_name, address, region , education_level) values('Pakis', 'Pakidis', 'Avenue Street Alexandras' ,'Skg', 'high school')
+insert into  applicant (first_name,  last_name, address, region , education_level) values('Sakis', 'Sakiopoulos', 'Avenue Street Alexandras' ,'Athens', 'Bachelor degree')
+insert into  applicant (first_name,  last_name, address, region , education_level) values('Takis', 'Takiopoulos', 'Avenue Street Alexandras' ,'Skg', 'noob')
+insert into  applicant (first_name,  last_name, address, region , education_level) values('Makis', 'Makiopoulos', 'Avenue Street Alexandras' ,'Ioannina', 'noob')
+insert into  applicant (first_name,  last_name, address, region , education_level) values('Sakis', 'Sakidis', 'Avenue Street Alexandras' ,'Athens', 'noob')
+
 insert into  job_offer (education_level,  region, title_of_position) values('expert', 'Athens','Java Junior')
 insert into  job_offer (education_level,  region, title_of_position) values('noob', 'Athens','C++ Junior')
 insert into  job_offer (education_level,  region, title_of_position) values('senior', 'Athens','Java Senior')

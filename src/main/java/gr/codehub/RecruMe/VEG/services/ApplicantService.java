@@ -50,27 +50,27 @@ public class ApplicantService {
 
     }
 
-    public Applicant getApplicant(int id) throws ApplicantNotFoundException {
+//    public Applicant getApplicant(int id) throws ApplicantNotFoundException {
+//
+//        try {
+//            Applicant applicant = applicantRepo.findById(id).get();
+//            return applicant;
+//        } catch (Exception e) {
+//            throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
+//        }
+//
+//    }
 
-        try {
-            Applicant applicant = applicantRepo.findById(id).get();
-            return applicant;
-        } catch (Exception e) {
-            throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
-        }
-
-    }
-
-    public List<Applicant> readByName(String firstName) throws ApplicantNotFoundException {
-        try {
-            return
-                    StreamSupport
-                            .stream(applicantRepo.findAll().spliterator(), false)
-                            .filter(applicant -> applicant.getFirstName().equalsIgnoreCase(firstName))
-                            .collect(Collectors.toList());
-        } catch (Exception e) {
-            throw new ApplicantNotFoundException("First Name = " + firstName);
-        }
-    }
+//    public List<Applicant> readByName(String firstName) throws ApplicantNotFoundException {
+//        try {
+//            return
+//                    StreamSupport
+//                            .stream(applicantRepo.findAll().spliterator(), false)
+//                            .filter(applicant -> applicant.getFirstName().equalsIgnoreCase(firstName))
+//                            .collect(Collectors.toList());
+//        } catch (Exception e) {
+//            throw new ApplicantNotFoundException("First Name = " + firstName);
+//        }
+//    }
 
 }
