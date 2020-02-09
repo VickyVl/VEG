@@ -1,5 +1,6 @@
 package gr.codehub.RecruMe.VEG.dtos;
 
+import gr.codehub.RecruMe.VEG.models.Applicant;
 import gr.codehub.RecruMe.VEG.models.ApplicantSkill;
 import gr.codehub.RecruMe.VEG.models.JobSkill;
 import lombok.AllArgsConstructor;
@@ -13,6 +14,9 @@ import java.util.List;
 @Data
 public class SkillDto {
     private String description;
+
+    private int applicantId;
+    private int jobOfferId;
 
     private List<ApplicantSkill> applicantSkills;
     private List<JobSkill> jobSkills;

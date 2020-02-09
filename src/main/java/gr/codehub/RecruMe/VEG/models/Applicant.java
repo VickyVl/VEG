@@ -26,4 +26,12 @@ public class Applicant {
     @OneToMany(mappedBy = "applicant", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<ApplicantSkill> applicantSkills;
+
+    public Applicant(String firstName, String lastName, String address, String region, String educationLevel) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.region = region;
+        this.educationLevel = educationLevel;
+    }
 }
