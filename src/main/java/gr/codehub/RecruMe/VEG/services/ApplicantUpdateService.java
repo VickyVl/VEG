@@ -3,9 +3,12 @@ package gr.codehub.RecruMe.VEG.services;
 import gr.codehub.RecruMe.VEG.dtos.ApplicantDto;
 import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
 import gr.codehub.RecruMe.VEG.models.Applicant;
+import gr.codehub.RecruMe.VEG.models.ApplicantSkill;
 import gr.codehub.RecruMe.VEG.repositories.Applicants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ApplicantUpdateService {
@@ -69,6 +72,17 @@ public class ApplicantUpdateService {
             throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
         }
         applicant.setActive(false);
+
+        return applicantUpdateRepo.save(applicant);
+    }
+
+    public Applicant updateApplicantSkill(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
+            Applicant applicant = applicantUpdateRepo.findById(id).get();
+        if (applicant == null) {
+            throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
+        }
+        List<ApplicantSkill> applicantSkills = applicantDto.getApplicantSkills();
+        applicant.setApplicantSkills(applicantSkills);
 
         return applicantUpdateRepo.save(applicant);
     }

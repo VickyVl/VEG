@@ -1,5 +1,6 @@
 package gr.codehub.RecruMe.VEG.dtos;
 
+import gr.codehub.RecruMe.VEG.models.ApplicantSkill;
 import gr.codehub.RecruMe.VEG.models.Skill;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,5 +17,5 @@ public class ApplicantDto {
     private String address;
     private String Region;
     private String educationLevel;
-    private List<Skill> skills;
+    private List<ApplicantSkill> applicantSkills;
 }

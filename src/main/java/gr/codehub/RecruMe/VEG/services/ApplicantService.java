@@ -3,11 +3,15 @@ package gr.codehub.RecruMe.VEG.services;
 import gr.codehub.RecruMe.VEG.dtos.ApplicantDto;
 import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
 import gr.codehub.RecruMe.VEG.models.Applicant;
+import gr.codehub.RecruMe.VEG.models.ApplicantSkill;
+import gr.codehub.RecruMe.VEG.models.Skill;
 import gr.codehub.RecruMe.VEG.repositories.ApplicantSkills;
 import gr.codehub.RecruMe.VEG.repositories.Applicants;
+import gr.codehub.RecruMe.VEG.repositories.Skills;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -18,11 +22,6 @@ public class ApplicantService {
     @Autowired
     private Applicants applicantRepo;
 
-    //*******************************************************************
-    @Autowired
-    private ApplicantSkills applicantSkillsRepo;
-    //*******************************************************************
-
     public Applicant save(ApplicantDto applicantDto) {
         Applicant applicant = new Applicant();
         applicant.setFirstName(applicantDto.getFirstName());
@@ -30,10 +29,17 @@ public class ApplicantService {
         applicant.setAddress(applicantDto.getAddress());
         applicant.setRegion(applicantDto.getRegion());
         applicant.setEducationLevel(applicantDto.getEducationLevel());
-//        applicant.setSkills(applicantDto.getSkills());
-        // TO DO SET UP SKILLS
+
+        List<ApplicantSkill> applicantSkills = applicantDto.getApplicantSkills();
+
+        applicant.setApplicantSkills(applicantSkills);
         applicant.setActive(true);
-        return applicantRepo.save(applicant);
+        applicant = applicantRepo.save(applicant);
+
+        for (int i=0; i<applicantSkills.size(); i++){
+            applicantSkills.get(i).setApplicant(applicant);
+        }
+        return  applicantRepo.save(applicant);
     }
 
     public List<Applicant> getAll() {

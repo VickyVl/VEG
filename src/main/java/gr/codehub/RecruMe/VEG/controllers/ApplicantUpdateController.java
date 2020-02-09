@@ -16,6 +16,13 @@ public class ApplicantUpdateController {
     @Autowired
     private ApplicantUpdateService applicantUpdateService;
 
+    /**
+     * updates applicant's firstname
+     * @param id
+     * @param applicantDto
+     * @return updated applicant
+     * @throws ApplicantNotFoundException
+     */
     @PutMapping("applicant/{id}/firstname")
     public Applicant updateFirstName(@PathVariable int id,
                                      @RequestBody ApplicantDto applicantDto)
@@ -57,4 +64,10 @@ public class ApplicantUpdateController {
             throws ApplicantNotFoundException {
         return applicantUpdateService.updateStatus(id, applicantDto);
     }
+//    @PutMapping("applicant/{id}/status")
+//    public Applicant updateApplicantSkill(@PathVariable int id,
+//                                  @RequestBody ApplicantDto applicantDto)
+//            throws ApplicantNotFoundException {
+//        return applicantUpdateService.updateApplicantSkill(id, applicantDto);
+//    }
 }

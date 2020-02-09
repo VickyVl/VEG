@@ -4,9 +4,7 @@ import gr.codehub.RecruMe.VEG.dtos.ApplicantDto;
 import gr.codehub.RecruMe.VEG.dtos.JobOfferDto;
 import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
 import gr.codehub.RecruMe.VEG.exceptions.JobOfferNotFoundException;
-import gr.codehub.RecruMe.VEG.models.Applicant;
-import gr.codehub.RecruMe.VEG.models.JobOffer;
-import gr.codehub.RecruMe.VEG.models.Skill;
+import gr.codehub.RecruMe.VEG.models.*;
 import gr.codehub.RecruMe.VEG.repositories.JobOffers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,10 +26,13 @@ public class JobOfferService {
         jobOffer.setEducationLevel(jobOfferDto.getEducationLevel());
         // TO DO SET UP SKILLS
 
-        List<Skill> skills = jobOfferDto.getSkills();
-
+        List<JobSkill> jobSkills = jobOfferDto.getJobSkills();
         jobOffer.setActive(true);
+        jobOffer = jobOfferRepo.save(jobOffer);;
 
+        for (int i=0; i<jobSkills.size(); i++){
+            jobSkills.get(i).setJobOffer(jobOffer);
+        }
         return jobOfferRepo.save(jobOffer);
     }
 
