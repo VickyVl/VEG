@@ -47,7 +47,7 @@ public class SkillService {
                             .filter(jobOffer -> jobOffer.getDescription().equalsIgnoreCase(description))
                             .collect(Collectors.toList());
         } catch (Exception e) {
-            throw new SkillNotFoundException("Description = " + description + " NOT FOUNT");
+            throw new SkillNotFoundException("Description = " + description + " NOT FOUND");
         }
     }
 

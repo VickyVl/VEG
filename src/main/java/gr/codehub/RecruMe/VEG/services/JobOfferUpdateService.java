@@ -54,7 +54,6 @@ public class JobOfferUpdateService {
         return jobOfferRepo.save(jobOffer);
     }
 
-    //educationLevel
     public JobOffer educationLevel(int id, JobOfferDto jobOfferDto) throws JobOfferNotFoundException {
         JobOffer jobOffer = jobOfferRepo.findById(id).get();
         if (jobOffer == null) {

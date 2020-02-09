@@ -14,26 +14,26 @@ import java.util.List;
 public class ApplicantUpdateService {
 
     @Autowired
-    private Applicants applicantUpdateRepo;
+    private Applicants applicantRepo;
 
     public Applicant updateFirstName(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
-        Applicant applicant = applicantUpdateRepo.findById(id).get();
+        Applicant applicant = applicantRepo.findById(id).get();
         if (applicant == null) {
             throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
         }
         applicant.setFirstName(applicantDto.getFirstName());
 
-        return applicantUpdateRepo.save(applicant);
+        return applicantRepo.save(applicant);
     }
 
     public Applicant updateLastName(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
-        Applicant applicant = applicantUpdateRepo.findById(id).get();
+        Applicant applicant = applicantRepo.findById(id).get();
         if (applicant == null) {
             throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
         }
         applicant.setLastName(applicantDto.getLastName());
 
-        return applicantUpdateRepo.save(applicant);
+        return applicantRepo.save(applicant);
     }
 
     public Applicant updateAddress(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {

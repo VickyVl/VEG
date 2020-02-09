@@ -14,9 +14,9 @@ public class JobSkill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
-    @JsonIgnore
-    private JobOffer jobOffer;
+//    @ManyToOne
+//    @JsonIgnore
+//    private JobOffer jobOffer;
 
     @OneToOne
     @JsonIgnore
