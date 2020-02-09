@@ -2,10 +2,8 @@ package gr.codehub.RecruMe.VEG.services;
 
 import gr.codehub.RecruMe.VEG.dtos.ApplicantDto;
 import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
-import gr.codehub.RecruMe.VEG.exceptions.ApplicantUpdateSkillException;
 import gr.codehub.RecruMe.VEG.models.Applicant;
 import gr.codehub.RecruMe.VEG.models.ApplicantSkill;
-import gr.codehub.RecruMe.VEG.repositories.ApplicantSkills;
 import gr.codehub.RecruMe.VEG.repositories.Applicants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,84 +14,86 @@ import java.util.List;
 public class ApplicantUpdateService {
 
     @Autowired
-    private Applicants applicantRepo;
-    @Autowired
-    private ApplicantSkills applicantSkillsRepo;
+    private Applicants applicantUpdateRepo;
 
     public Applicant updateFirstName(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
-        Applicant applicant = applicantRepo.findById(id).get();
+        Applicant applicant = applicantUpdateRepo.findById(id).get();
         if (applicant == null) {
             throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
         }
         applicant.setFirstName(applicantDto.getFirstName());
 
-        return applicantRepo.save(applicant);
+        return applicantUpdateRepo.save(applicant);
     }
 
     public Applicant updateLastName(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
-        Applicant applicant = applicantRepo.findById(id).get();
+        Applicant applicant = applicantUpdateRepo.findById(id).get();
         if (applicant == null) {
             throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
         }
         applicant.setLastName(applicantDto.getLastName());
 
-        return applicantRepo.save(applicant);
+        return applicantUpdateRepo.save(applicant);
     }
 
     public Applicant updateAddress(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
-        Applicant applicant = applicantRepo.findById(id).get();
+        Applicant applicant = applicantUpdateRepo.findById(id).get();
         if (applicant == null) {
             throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
         }
         applicant.setAddress(applicantDto.getAddress());
 
-        return applicantRepo.save(applicant);
+        return applicantUpdateRepo.save(applicant);
     }
 
     public Applicant updateRegion(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
-        Applicant applicant = applicantRepo.findById(id).get();
+        Applicant applicant = applicantUpdateRepo.findById(id).get();
         if (applicant == null) {
             throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
         }
         applicant.setRegion(applicantDto.getRegion());
 
-        return applicantRepo.save(applicant);
+        return applicantUpdateRepo.save(applicant);
     }
 
     public Applicant updateEducationLevel(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
-        Applicant applicant = applicantRepo.findById(id).get();
+        Applicant applicant = applicantUpdateRepo.findById(id).get();
         if (applicant == null) {
             throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
         }
         applicant.setEducationLevel(applicantDto.getEducationLevel());
 
-        return applicantRepo.save(applicant);
+        return applicantUpdateRepo.save(applicant);
     }
 
-    public Applicant updateStatus(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
-        Applicant applicant = applicantRepo.findById(id).get();
+    public Applicant activateStatus(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
+        Applicant applicant = applicantUpdateRepo.findById(id).get();
+        if (applicant == null) {
+            throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
+        }
+        applicant.setActive(true);
+
+        return applicantUpdateRepo.save(applicant);
+    }
+
+    public Applicant inactivateStatus(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
+        Applicant applicant = applicantUpdateRepo.findById(id).get();
         if (applicant == null) {
             throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
         }
         applicant.setActive(false);
 
-        return applicantRepo.save(applicant);
+        return applicantUpdateRepo.save(applicant);
     }
 
-    public Applicant updateApplicantSkill(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException , ApplicantUpdateSkillException {
-
-        Applicant applicant = applicantRepo.findById(id).get();
-
-//        applicantSkillsRepo.findById(applicant.getId()).get();
+    public Applicant updateApplicantSkill(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
+            Applicant applicant = applicantUpdateRepo.findById(id).get();
         if (applicant == null) {
             throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
         }
         List<ApplicantSkill> applicantSkills = applicantDto.getApplicantSkills();
+        applicant.setApplicantSkills(applicantSkills);
 
-        for (int i = 0 ; i< applicantSkills.size();i++){
-            applicantSkills.get(i).setApplicant(applicant);
-            applicantRepo.save(applicant);
-        }
-        return applicantRepo.save(applicant);
+        return applicantUpdateRepo.save(applicant);
     }
 }

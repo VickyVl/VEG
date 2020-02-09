@@ -27,4 +27,9 @@ public class JobOffer {
     @JsonIgnore
     private List<JobSkill> jobSkills;
 
+    public JobOffer(String titleOfPosition, String region, String educationLevel) {
+        this.titleOfPosition = titleOfPosition;
+        this.region = region;
+        this.educationLevel = educationLevel;
+    }
 }

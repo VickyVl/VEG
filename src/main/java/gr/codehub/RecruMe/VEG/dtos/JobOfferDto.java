@@ -13,5 +13,6 @@ public class JobOfferDto {
     private String titleOfPosition;
     private String region;
     private String educationLevel;
+
     private List<JobSkill> jobSkills;
 }
