@@ -1,6 +1,7 @@
 package gr.codehub.RecruMe.VEG.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -24,8 +25,15 @@ public class Applicant {
     @Column(columnDefinition = "bit default 1")
     private boolean active;
 
-       @OneToMany(mappedBy = "applicant", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "applicant", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<ApplicantSkill> applicantSkills;
 
+    public Applicant(String firstName, String lastName, String address, String region, String educationLevel) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.region = region;
+        this.educationLevel = educationLevel;
+    }
 }

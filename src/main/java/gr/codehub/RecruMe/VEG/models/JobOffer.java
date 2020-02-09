@@ -23,8 +23,13 @@ public class JobOffer {
     @Column(columnDefinition = "bit default 1")
     private boolean active;
 
-//    @OneToMany(mappedBy = "job_offer", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JsonIgnore
-//    private List<JobSkill> jobSkills;
+    @OneToMany(mappedBy = "jobOffer", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<JobSkill> jobSkills;
 
+    public JobOffer(String titleOfPosition, String region, String educationLevel) {
+        this.titleOfPosition = titleOfPosition;
+        this.region = region;
+        this.educationLevel = educationLevel;
+    }
 }

@@ -58,16 +58,17 @@ public class ApplicantUpdateController {
         return applicantUpdateService.updateEducationLevel(id, applicantDto);
     }
 
-    @PutMapping("applicant/{id}/status")
-    public Applicant updateStatus(@PathVariable int id,
+    @PutMapping("applicant/{id}/activateStatus")
+    public Applicant activateStatus(@PathVariable int id,
                                   @RequestBody ApplicantDto applicantDto)
             throws ApplicantNotFoundException {
-        return applicantUpdateService.updateStatus(id, applicantDto);
+        return applicantUpdateService.activateStatus(id, applicantDto);
     }
-//    @PutMapping("applicant/{id}/status")
-//    public Applicant updateApplicantSkill(@PathVariable int id,
-//                                  @RequestBody ApplicantDto applicantDto)
-//            throws ApplicantNotFoundException {
-//        return applicantUpdateService.updateApplicantSkill(id, applicantDto);
-//    }
+
+    @PutMapping("applicant/{id}/inactivateStatus")
+    public Applicant inactivateStatus(@PathVariable int id,
+                                  @RequestBody ApplicantDto applicantDto)
+            throws ApplicantNotFoundException {
+        return applicantUpdateService.inactivateStatus(id, applicantDto);
+    }
 }

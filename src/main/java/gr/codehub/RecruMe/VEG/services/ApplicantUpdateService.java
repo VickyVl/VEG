@@ -14,26 +14,26 @@ import java.util.List;
 public class ApplicantUpdateService {
 
     @Autowired
-    private Applicants applicantRepo;
+    private Applicants applicantUpdateRepo;
 
     public Applicant updateFirstName(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
-        Applicant applicant = applicantRepo.findById(id).get();
+        Applicant applicant = applicantUpdateRepo.findById(id).get();
         if (applicant == null) {
             throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
         }
         applicant.setFirstName(applicantDto.getFirstName());
 
-        return applicantRepo.save(applicant);
+        return applicantUpdateRepo.save(applicant);
     }
 
     public Applicant updateLastName(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
-        Applicant applicant = applicantRepo.findById(id).get();
+        Applicant applicant = applicantUpdateRepo.findById(id).get();
         if (applicant == null) {
             throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
         }
         applicant.setLastName(applicantDto.getLastName());
 
-        return applicantRepo.save(applicant);
+        return applicantUpdateRepo.save(applicant);
     }
 
     public Applicant updateAddress(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
@@ -66,7 +66,17 @@ public class ApplicantUpdateService {
         return applicantUpdateRepo.save(applicant);
     }
 
-    public Applicant updateStatus(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
+    public Applicant activateStatus(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
+        Applicant applicant = applicantUpdateRepo.findById(id).get();
+        if (applicant == null) {
+            throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
+        }
+        applicant.setActive(true);
+
+        return applicantUpdateRepo.save(applicant);
+    }
+
+    public Applicant inactivateStatus(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
         Applicant applicant = applicantUpdateRepo.findById(id).get();
         if (applicant == null) {
             throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
