@@ -42,27 +42,5 @@ public class JobOfferService {
                         .stream(jobOfferRepo.findAll().spliterator(), false)
                         .collect(Collectors.toList());
     }
-
-    public JobOffer getJobOffer(int id) throws JobOfferNotFoundException {
-
-        try {
-            JobOffer jobOffer = jobOfferRepo.findById(id).get();
-            return jobOffer;
-        } catch (Exception e) {
-            throw new JobOfferNotFoundException("Job Offer id = " + id + " NOT FOUND");
-        }
-    }
-
-    public List<JobOffer> readByPosition(String titleOfPosition) throws JobOfferNotFoundException {
-        try {
-            return
-                    StreamSupport
-                            .stream(jobOfferRepo.findAll().spliterator(), false)
-                            .filter(jobOffer -> jobOffer.getTitleOfPosition().equalsIgnoreCase(titleOfPosition))
-                            .collect(Collectors.toList());
-        } catch (Exception e) {
-            throw new JobOfferNotFoundException("Title Of Position = " + titleOfPosition + " NOT FOUNT");
-        }
-    }
 }
 

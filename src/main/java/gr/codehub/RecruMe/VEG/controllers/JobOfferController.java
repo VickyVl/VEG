@@ -33,29 +33,4 @@ public class JobOfferController {
         return jobOfferService.save(jobOfferDto);
     }
 
-    /**
-     * endpoint http://localhost:8080/joboffer/{id}
-     * @param id
-     * @return get job offer bby id
-     * @throws JobOfferNotFoundException
-     */
-    @GetMapping("joboffer/{id}")
-    public JobOffer getJobOffer(@PathVariable int id)
-            throws JobOfferNotFoundException {
-
-        return jobOfferService.getJobOffer(id);
-    }
-
-    /**
-     * endpoint http://localhost:8080/joboffer/title/{titleOfPosition}
-     * @param titleOfPosition
-     * @return all joboffers with the same title of position
-     * @throws JobOfferNotFoundException
-     */
-    @GetMapping("joboffer/title/{titleOfPosition}")
-    public List<JobOffer> getJobOffersByPosition(@PathVariable String titleOfPosition)
-            throws JobOfferNotFoundException {
-        return jobOfferService.readByPosition(titleOfPosition);
-    }
-
 }

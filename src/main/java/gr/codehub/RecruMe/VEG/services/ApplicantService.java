@@ -37,6 +37,13 @@ public class ApplicantService {
     }
 
     public List<Applicant> getAll() {
+        Applicant applicant = new Applicant();
+        List<ApplicantSkill> applicantSkills = applicant.getApplicantSkills();
+
+        applicant.getApplicantSkills();
+        for (int i=0; i<applicantSkills.size(); i++){
+            applicantSkills.get(i).getApplicant();
+        }
         return
                 StreamSupport
                         .stream(applicantRepo.findAll().spliterator(), false)
