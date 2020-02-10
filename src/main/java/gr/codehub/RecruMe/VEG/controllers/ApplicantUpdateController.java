@@ -30,7 +30,7 @@ public class ApplicantUpdateController {
             throws ApplicantNotFoundException {
         return applicantUpdateService.updateFirstName(id, applicantDto);
     }
-
+    
     @PutMapping("applicant/{id}/lastname")
     public Applicant updateLastName(@PathVariable int id,
                                     @RequestBody ApplicantDto applicantDto)

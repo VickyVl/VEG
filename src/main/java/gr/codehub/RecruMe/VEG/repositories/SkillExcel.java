@@ -7,6 +7,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,6 +21,8 @@ public class SkillExcel {
 
 
     private List<Skill> skills;
+    @Autowired
+    private Skills skillRepo;
 
     public SkillExcel() {
         skills = new ArrayList<>();
@@ -42,6 +45,7 @@ public class SkillExcel {
             Skill skill = new Skill(descriptionCell.getStringCellValue());
 
             skills.add(skill);
+            skillRepo.save(skill);
         }
     }
 

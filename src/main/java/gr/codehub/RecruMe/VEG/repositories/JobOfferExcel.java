@@ -7,6 +7,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,6 +21,8 @@ public class JobOfferExcel {
 
 
     private List<JobOffer> jobOffers;
+    @Autowired
+    private JobOffers jobOfferRepo;
 
     public JobOfferExcel() {
         jobOffers = new ArrayList<>();
@@ -49,6 +52,8 @@ public class JobOfferExcel {
                     educationLevelCell.getStringCellValue());
 
             jobOffers.add(jobOffer);
+            jobOfferRepo.save(jobOffer);
+
         }
     }
 
