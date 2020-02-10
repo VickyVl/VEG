@@ -12,8 +12,12 @@ import java.util.stream.StreamSupport;
 
 @Service
 public class ApplicantSearchService {
-    @Autowired
     private Applicants applicantRepo;
+
+    @Autowired
+    public ApplicantSearchService(Applicants applicantRepo) {
+        this.applicantRepo = applicantRepo;
+    }
 
     public Applicant getApplicant(int id) throws ApplicantNotFoundException {
 

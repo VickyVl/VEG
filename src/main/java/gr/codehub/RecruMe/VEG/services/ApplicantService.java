@@ -16,8 +16,12 @@ import java.util.stream.StreamSupport;
 @Service
 public class ApplicantService {
 
-    @Autowired
     private Applicants applicantRepo;
+
+    @Autowired
+    public ApplicantService(Applicants applicantRepo) {
+        this.applicantRepo = applicantRepo;
+    }
 
     public Applicant save(ApplicantDto applicantDto) {
         Applicant applicant = new Applicant();

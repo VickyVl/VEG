@@ -9,6 +9,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * ApplicantController used here:
+ * - to provide the data of all applicants
+ * - to create a new applicant
+ * displaying the above via the corresponding HTTP responses as json files on the web.
+ */
+
 @RestController
 public class ApplicantController {
 
@@ -17,18 +24,21 @@ public class ApplicantController {
 
     /**
      * endpoint http://localhost:8080/applicants
-     * @return gets all applicants
+     * @return all applicants
      */
+
     @GetMapping("applicants")
     public List<Applicant> readAll() {
         return applicantService.getAll();
     }
 
     /**
+     * endpoint http://localhost:8080/applicant
      * create a new applicant
      * @param applicantDto
      * @return new applicant
      */
+
     @PostMapping("applicant")
     public Applicant newApplicant(@RequestBody ApplicantDto applicantDto) {
         return applicantService.save(applicantDto);

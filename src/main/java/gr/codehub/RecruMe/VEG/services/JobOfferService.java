@@ -16,8 +16,12 @@ import java.util.stream.StreamSupport;
 
 @Service
 public class JobOfferService {
-    @Autowired
     private JobOffers jobOfferRepo;
+
+    @Autowired
+    public JobOfferService(JobOffers jobOfferRepo) {
+        this.jobOfferRepo = jobOfferRepo;
+    }
 
     public JobOffer save(JobOfferDto jobOfferDto) {
         JobOffer jobOffer = new JobOffer();

@@ -13,8 +13,12 @@ import java.util.List;
 @Service
 public class ApplicantUpdateService {
 
-    @Autowired
     private Applicants applicantUpdateRepo;
+
+    @Autowired
+    public ApplicantUpdateService(Applicants applicantUpdateRepo) {
+        this.applicantUpdateRepo = applicantUpdateRepo;
+    }
 
     public Applicant updateFirstName(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
         Applicant applicant = applicantUpdateRepo.findById(id).get();

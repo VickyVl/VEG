@@ -12,13 +12,13 @@ import java.util.List;
 
 @Service
 public class MatchService {
-    @Autowired
     private Matches matchRepo;
     private Applicants applicantRepo;
     private JobOffers jobOfferRepo;
     private ApplicantSkills applicantSkillRepo;
     private JobSkills jobSkilllRepo;
 
+    @Autowired
     public MatchService(Matches matchRepo, Applicants applicantRepo, JobOffers jobOfferRepo, ApplicantSkills applicantSkillRepo, JobSkills jobSkilllRepo) {
         this.matchRepo = matchRepo;
         this.applicantRepo = applicantRepo;
