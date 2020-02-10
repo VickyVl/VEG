@@ -14,20 +14,20 @@ import java.util.List;
 public class MatchService {
     @Autowired
     private Matches matchRepo;
-
-    @Autowired
     private Applicants applicantRepo;
-
-    @Autowired
     private JobOffers jobOfferRepo;
-
-    @Autowired
     private ApplicantSkills applicantSkillRepo;
-
-    @Autowired
     private JobSkills jobSkilllRepo;
 
-/*
+    public MatchService(Matches matchRepo, Applicants applicantRepo, JobOffers jobOfferRepo, ApplicantSkills applicantSkillRepo, JobSkills jobSkilllRepo) {
+        this.matchRepo = matchRepo;
+        this.applicantRepo = applicantRepo;
+        this.jobOfferRepo = jobOfferRepo;
+        this.applicantSkillRepo = applicantSkillRepo;
+        this.jobSkilllRepo = jobSkilllRepo;
+    }
+
+    /*
 
     public Match doeMatch(SkillDto skillDto) throws Exception {
 

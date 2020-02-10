@@ -37,11 +37,13 @@ public class JobOfferExcel {
             Row currentRow = row.next();
             Iterator<Cell> cellIterator = currentRow.iterator();
 
+            Cell companyCell = cellIterator.next();
             Cell titleOfPositionCell = cellIterator.next();
             Cell regionCell = cellIterator.next();
             Cell educationLevelCell = cellIterator.next();
 
             JobOffer jobOffer = new JobOffer(
+                    companyCell.getStringCellValue(),
                     titleOfPositionCell.getStringCellValue(),
                     regionCell.getStringCellValue(),
                     educationLevelCell.getStringCellValue());

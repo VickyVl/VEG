@@ -49,4 +49,16 @@ public class JobOfferSearchService {
             throw new JobOfferNotFoundException("Region = " + region + " NOT FOUNT");
         }
     }
+
+    public List<JobOffer> readByCompany(String company) throws JobOfferNotFoundException {
+        try {
+            return
+                    StreamSupport
+                            .stream(jobOfferRepo.findAll().spliterator(), false)
+                            .filter(jobOffer -> jobOffer.getCompany().equalsIgnoreCase(company))
+                            .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new JobOfferNotFoundException("Company = " + company + " NOT FOUNT");
+        }
+    }
 }

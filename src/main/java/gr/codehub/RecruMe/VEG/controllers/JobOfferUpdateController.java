@@ -18,10 +18,10 @@ public class JobOfferUpdateController {
 
     //TITLE OF POSITION
     @PutMapping("joboffer/{id}/title")
-    public JobOffer updateOne(@PathVariable int id,
+    public JobOffer updateTitleOfPosition(@PathVariable int id,
                               @RequestBody JobOfferDto jobOfferDto)
             throws JobOfferNotFoundException {
-        return jobOfferUpdateService.updateOne(id, jobOfferDto);
+        return jobOfferUpdateService.updateTitleOfPosition(id, jobOfferDto);
     }
 
     @PutMapping("joboffer/{id}/activatestatus")
@@ -48,9 +48,17 @@ public class JobOfferUpdateController {
 
     //EDUCATION LEVEL
     @PutMapping("joboffer/{id}/educationLevel")
-    public JobOffer educationLevel(@PathVariable int id,
+    public JobOffer updateEducationLevel(@PathVariable int id,
                                  @RequestBody JobOfferDto jobOfferDto)
             throws JobOfferNotFoundException {
         return jobOfferUpdateService.educationLevel(id, jobOfferDto);
+    }
+
+    //COMPANY
+    @PutMapping("joboffer/{id}/company")
+    public JobOffer updateCompany(@PathVariable int id,
+                                   @RequestBody JobOfferDto jobOfferDto)
+            throws JobOfferNotFoundException {
+        return jobOfferUpdateService.company(id, jobOfferDto);
     }
 }

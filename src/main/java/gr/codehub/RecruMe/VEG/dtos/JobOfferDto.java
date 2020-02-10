@@ -10,6 +10,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class JobOfferDto {
+    private String company;
     private String titleOfPosition;
     private String region;
     private String educationLevel;

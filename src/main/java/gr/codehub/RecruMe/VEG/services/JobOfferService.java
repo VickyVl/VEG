@@ -21,6 +21,7 @@ public class JobOfferService {
 
     public JobOffer save(JobOfferDto jobOfferDto) {
         JobOffer jobOffer = new JobOffer();
+        jobOffer.setCompany(jobOfferDto.getCompany());
         jobOffer.setTitleOfPosition(jobOfferDto.getTitleOfPosition());
         jobOffer.setRegion(jobOfferDto.getRegion());
         jobOffer.setEducationLevel(jobOfferDto.getEducationLevel());

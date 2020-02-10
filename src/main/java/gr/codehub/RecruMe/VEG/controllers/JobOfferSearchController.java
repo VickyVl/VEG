@@ -52,4 +52,10 @@ public class JobOfferSearchController {
             throws JobOfferNotFoundException {
         return jobOfferSearchService.readByRegion(region);
     }
+
+    @GetMapping("joboffer/region/{company}")
+    public List<JobOffer> getJobOffersByCompany(@PathVariable String region)
+            throws JobOfferNotFoundException {
+        return jobOfferSearchService.readByCompany(region);
+    }
 }

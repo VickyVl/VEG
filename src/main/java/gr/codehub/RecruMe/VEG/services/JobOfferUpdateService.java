@@ -12,7 +12,7 @@ public class JobOfferUpdateService {
     @Autowired
     private JobOffers jobOfferRepo;
 
-    public JobOffer updateOne(int id, JobOfferDto jobOfferDto) throws JobOfferNotFoundException {
+    public JobOffer updateTitleOfPosition(int id, JobOfferDto jobOfferDto) throws JobOfferNotFoundException {
         JobOffer jobOffer = jobOfferRepo.findById(id).get();
         if (jobOffer == null) {
             throw new JobOfferNotFoundException("Title Of Position id = " + id);
@@ -64,5 +64,13 @@ public class JobOfferUpdateService {
         return jobOfferRepo.save(jobOffer);
     }
 
+    public JobOffer company(int id, JobOfferDto jobOfferDto) throws JobOfferNotFoundException {
+        JobOffer jobOffer = jobOfferRepo.findById(id).get();
+        if (jobOffer == null) {
+            throw new JobOfferNotFoundException("Job Offer id = " + id + " NOT FOUND");
+        }
 
+        jobOffer.setCompany(jobOfferDto.getCompany());
+        return jobOfferRepo.save(jobOffer);
+    }
 }

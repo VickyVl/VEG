@@ -16,6 +16,7 @@ public class JobOffer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String company;
     private String titleOfPosition;
     private String region;
     private String educationLevel;
@@ -27,9 +28,11 @@ public class JobOffer {
     @JsonIgnore
     private List<JobSkill> jobSkills;
 
-    public JobOffer(String titleOfPosition, String region, String educationLevel) {
+    public JobOffer(String company, String titleOfPosition, String region, String educationLevel) {
+        this.company = company;
         this.titleOfPosition = titleOfPosition;
         this.region = region;
         this.educationLevel = educationLevel;
     }
+
 }
