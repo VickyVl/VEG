@@ -118,4 +118,20 @@ public class JobOfferUpdateController {
             throws JobOfferNotFoundException {
         return jobOfferUpdateService.company(id, jobOfferDto);
     }
+
+    /**
+     * endpoint http://localhost:8080/joboffer/{id}/updateskills
+     * updates job offer by id with new job skills
+     * @param id of the job offer
+     * @param jobOfferDto
+     * @return a JobOffer updated by skills
+     * @throws JobOfferNotFoundException
+     */
+    @PutMapping("joboffer/{id}/updateskills")
+    public JobOffer updateJobOfferSkill(@PathVariable int id,
+                                  @RequestBody JobOfferDto jobOfferDto)
+            throws JobOfferNotFoundException {
+        return jobOfferUpdateService.updateJobOfferSkill(id, jobOfferDto);
+    }
+
 }

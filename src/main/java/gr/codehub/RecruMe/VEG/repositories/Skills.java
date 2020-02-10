@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface Skills extends JpaRepository<Skill, Integer> {
+    Skill findFirstByDescription(String skillName); //already qyery by spring
 }

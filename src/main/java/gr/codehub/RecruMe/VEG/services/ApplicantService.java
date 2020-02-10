@@ -4,11 +4,14 @@ import gr.codehub.RecruMe.VEG.dtos.ApplicantDto;
 import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
 import gr.codehub.RecruMe.VEG.models.Applicant;
 import gr.codehub.RecruMe.VEG.models.ApplicantSkill;
+import gr.codehub.RecruMe.VEG.models.Skill;
 import gr.codehub.RecruMe.VEG.repositories.ApplicantSkills;
 import gr.codehub.RecruMe.VEG.repositories.Applicants;
+import gr.codehub.RecruMe.VEG.repositories.Skills;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -23,6 +26,13 @@ public class ApplicantService {
         this.applicantRepo = applicantRepo;
     }
 
+    @Autowired
+    private Skills skillRepo;
+
+    @Autowired
+    private ApplicantSkills applicantSkillRepo;
+
+
     public Applicant save(ApplicantDto applicantDto) {
         Applicant applicant = new Applicant();
         applicant.setFirstName(applicantDto.getFirstName());
@@ -32,26 +42,26 @@ public class ApplicantService {
         applicant.setEducationLevel(applicantDto.getEducationLevel());
         applicant.setActive(true);
 
-        List<ApplicantSkill> applicantSkills = applicantDto.getApplicantSkills();
+        List<String> skillsDescriptions = applicantDto.getApplicantSkillsDescriptions();
+        List<ApplicantSkill> applicantSkills = new ArrayList<>();
 
-        applicant.setApplicantSkills(applicantSkills);
-        applicant.setActive(true);
         applicant = applicantRepo.save(applicant);
 
-        for (int i=0; i<applicantSkills.size(); i++){
-            applicantSkills.get(i).setApplicant(applicant);
+
+        for (String d : skillsDescriptions){
+            Skill foundSkill = skillRepo.findFirstByDescription(d);
+            ApplicantSkill as = new ApplicantSkill();
+            as.setApplicant(applicant);
+            as.setSkill(foundSkill);
+            as = applicantSkillRepo.save(as);
+            applicantSkills.add(as);
         }
+        applicant.setApplicantSkills(applicantSkills);
         return  applicantRepo.save(applicant);
     }
 
     public List<Applicant> getAll() {
         Applicant applicant = new Applicant();
-//        List<ApplicantSkill> applicantSkills = applicant.getApplicantSkills();
-//
-//        applicant.getApplicantSkills();
-//        for (int i=0; i<applicantSkills.size(); i++){
-//            applicantSkills.get(i).setApplicant(applicant);
-//        }
         return
                 StreamSupport
                         .stream(applicantRepo.findAll().spliterator(), false)

@@ -21,5 +21,5 @@ public class JobSkill {
     @ManyToOne
     @JsonIgnore
     private Skill skill;
-    
+
 }
