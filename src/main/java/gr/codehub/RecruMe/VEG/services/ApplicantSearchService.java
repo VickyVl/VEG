@@ -15,6 +15,7 @@ public class ApplicantSearchService {
     @Autowired
     private Applicants applicantRepo;
 
+
     public Applicant getApplicant(int id) throws ApplicantNotFoundException {
 
         try {

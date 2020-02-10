@@ -8,6 +8,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -18,17 +19,13 @@ public class Skill {
     private int id;
     private String description;
 
-  @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "applicant_skill_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OneToMany(mappedBy="skill")
     @JsonIgnore
-    private ApplicantSkill applicantSkill;
+    private List<ApplicantSkill> applicantSkills;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "job_skill_id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OneToMany(mappedBy="skill")
     @JsonIgnore
-    private JobSkill jobSkill;
+    private List<JobSkill> jobSkills;
 
     public Skill(String description) {
         this.description = description;

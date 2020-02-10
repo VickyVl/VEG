@@ -7,6 +7,7 @@ import gr.codehub.RecruMe.VEG.services.SkillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -42,5 +43,11 @@ public class SkillController {
                               @RequestBody SkillDto skillDto)
             throws SkillNotFoundException {
         return skillService.updateOne(id, skillDto);
+    }
+
+    @GetMapping("skill/excel")
+    public List<Skill> getSkillExcel()
+            throws SkillNotFoundException, IOException {
+        return skillService.getSkillExcel();
     }
 }

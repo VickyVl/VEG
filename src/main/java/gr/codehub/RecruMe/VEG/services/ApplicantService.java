@@ -26,48 +26,33 @@ public class ApplicantService {
         applicant.setAddress(applicantDto.getAddress());
         applicant.setRegion(applicantDto.getRegion());
         applicant.setEducationLevel(applicantDto.getEducationLevel());
-//        applicant.setSkills(applicantDto.getSkills());
-        // TO DO SET UP SKILLS
         applicant.setActive(true);
-        return applicantRepo.save(applicant);
+
+        List<ApplicantSkill> applicantSkills = applicantDto.getApplicantSkills();
+
+        applicant.setApplicantSkills(applicantSkills);
+        applicant.setActive(true);
+        applicant = applicantRepo.save(applicant);
+
+        for (int i=0; i<applicantSkills.size(); i++){
+            applicantSkills.get(i).setApplicant(applicant);
+        }
+        return  applicantRepo.save(applicant);
     }
 
     public List<Applicant> getAll() {
         Applicant applicant = new Applicant();
-        List<ApplicantSkill> applicantSkills = applicant.getApplicantSkills();
-
-        applicant.getApplicantSkills();
-        for (int i=0; i<applicantSkills.size(); i++){
-            applicantSkills.get(i).getApplicant();
-        }
+//        List<ApplicantSkill> applicantSkills = applicant.getApplicantSkills();
+//
+//        applicant.getApplicantSkills();
+//        for (int i=0; i<applicantSkills.size(); i++){
+//            applicantSkills.get(i).setApplicant(applicant);
+//        }
         return
                 StreamSupport
                         .stream(applicantRepo.findAll().spliterator(), false)
                         .collect(Collectors.toList());
-
     }
 
-//    public Applicant getApplicant(int id) throws ApplicantNotFoundException {
-//
-//        try {
-//            Applicant applicant = applicantRepo.findById(id).get();
-//            return applicant;
-//        } catch (Exception e) {
-//            throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
-//        }
-//
-//    }
-
-//    public List<Applicant> readByName(String firstName) throws ApplicantNotFoundException {
-//        try {
-//            return
-//                    StreamSupport
-//                            .stream(applicantRepo.findAll().spliterator(), false)
-//                            .filter(applicant -> applicant.getFirstName().equalsIgnoreCase(firstName))
-//                            .collect(Collectors.toList());
-//        } catch (Exception e) {
-//            throw new ApplicantNotFoundException("First Name = " + firstName);
-//        }
-//    }
 
 }

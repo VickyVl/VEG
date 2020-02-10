@@ -32,7 +32,7 @@ public class JobOfferExcel {
         this();
         FileInputStream excelFile = new FileInputStream(new File(excelFileName));
         Workbook workbook = new XSSFWorkbook(excelFile);
-        Sheet datatypeSheet = workbook.getSheetAt(0);
+        Sheet datatypeSheet = workbook.getSheetAt(2);
         Iterator<Row> row = datatypeSheet.iterator();
 
         row.next(); //reads the headers
@@ -55,13 +55,5 @@ public class JobOfferExcel {
             jobOfferRepo.save(jobOffer);
 
         }
-    }
-
-    public JobOffer getJobOfferByCode(int code) {
-        return jobOffers
-                .stream()
-                .filter(jobOffer -> jobOffer.getId() == code)
-                .findFirst()
-                .get();
     }
 }

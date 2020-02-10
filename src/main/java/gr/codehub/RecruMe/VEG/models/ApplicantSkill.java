@@ -14,13 +14,11 @@ public class ApplicantSkill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String description;
-
     @ManyToOne
     @JsonIgnore
     private Applicant applicant;
 
-    @OneToOne
+    @ManyToOne
     @JsonIgnore
     private Skill skill;
 }

@@ -1,11 +1,7 @@
 package gr.codehub.RecruMe.VEG.services;
 
-import gr.codehub.RecruMe.VEG.models.Applicant;
-import gr.codehub.RecruMe.VEG.models.JobOffer;
-import gr.codehub.RecruMe.VEG.models.Skill;
 import gr.codehub.RecruMe.VEG.repositories.ApplicantExcel;
 import gr.codehub.RecruMe.VEG.repositories.JobOfferExcel;
-import gr.codehub.RecruMe.VEG.repositories.SkillExcel;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -16,47 +12,32 @@ import java.io.IOException;
 public class ExcelService {
 
     public ApplicantExcel getApplicant() {
+        String excelFileName = "resources/dataforrecrume.xlsx";
         try {
-            return new ApplicantExcel("applicant.xlsx");
+            return new ApplicantExcel(excelFileName);
         } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
-    }
-
-    public Applicant getApplicantByCode(int code) throws IOException {
-        ApplicantExcel applicants = new ApplicantExcel("applicant.xlsx");
-
-        return applicants.getApplicantByCode(code);
     }
 
     public JobOfferExcel getJobOffer() {
+        String excelFileName = "resources/dataforrecrume.xlsx";
         try {
-            return new JobOfferExcel("joboffer.xlsx");
+            return new JobOfferExcel(excelFileName);
         } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public JobOffer getJobOfferByCode(int code) throws IOException {
-        JobOfferExcel jobOffers = new JobOfferExcel("joboffer.xlsx");
-
-        return jobOffers.getJobOfferByCode(code);
-    }
-
-    public SkillExcel getSkill() {
-        try {
-            return new SkillExcel("skill.xlsx");
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public Skill getSkillByCode(int code) throws IOException {
-        SkillExcel skills = new SkillExcel("skill.xlsx");
-
-        return skills.getSkillByCode(code);
-    }
+//    public SkillExcel getSkill() {
+//        String excelFileName = "resources/dataforrecrume.xlsx";
+//        try {
+//            return new SkillExcel(excelFileName);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
 }

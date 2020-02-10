@@ -24,7 +24,7 @@ public class JobOffer {
     @Column(columnDefinition = "bit default 1")
     private boolean active;
 
-    @OneToMany(mappedBy = "jobOffer", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "jobOffer" )
     @JsonIgnore
     private List<JobSkill> jobSkills;
 

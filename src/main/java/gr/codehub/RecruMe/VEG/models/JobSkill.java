@@ -18,7 +18,7 @@ public class JobSkill {
     @JsonIgnore
     private JobOffer jobOffer;
 
-    @OneToOne
+    @ManyToOne
     @JsonIgnore
     private Skill skill;
 }
