@@ -9,8 +9,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class JobOfferUpdateService {
-    @Autowired
     private JobOffers jobOfferRepo;
+
+    @Autowired
+    public JobOfferUpdateService(JobOffers jobOfferRepo) {
+        this.jobOfferRepo = jobOfferRepo;
+    }
 
     public JobOffer updateTitleOfPosition(int id, JobOfferDto jobOfferDto) throws JobOfferNotFoundException {
         JobOffer jobOffer = jobOfferRepo.findById(id).get();

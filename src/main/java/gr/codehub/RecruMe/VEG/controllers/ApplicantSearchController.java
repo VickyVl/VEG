@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * ApplicantSearchController used here to provide the data of all applicant search services
+ * (by id, first name, region) displaying them as json files on the web via HTTP responses.
+ */
+
 @RestController
 public class ApplicantSearchController {
     @Autowired
@@ -21,6 +26,7 @@ public class ApplicantSearchController {
      * @return applicant by id
      * @throws ApplicantNotFoundException
      */
+
     @GetMapping("applicant/{id}")
     public Applicant getApplicant(@PathVariable int id)
             throws ApplicantNotFoundException {
@@ -29,11 +35,12 @@ public class ApplicantSearchController {
     }
 
     /**
-     * endpoint http://localhost:8080/applicants/name/{firstname}
+     * endpoint http://localhost:8080/applicants/name/{firstName}
      * @param firstName
      * @return list of applicants by first name
      * @throws ApplicantNotFoundException
      */
+
     @GetMapping("applicants/name/{firstName}")
     public List<Applicant> getApplicantsByName(@PathVariable String firstName)
             throws ApplicantNotFoundException {
@@ -41,11 +48,12 @@ public class ApplicantSearchController {
     }
 
     /**
-     * endpoint http://localhost:8080/applicants/name/{firstname}
+     * endpoint http://localhost:8080/applicants/region/{region}
      * @param region
-     * @return list of applicants by first name
+     * @return list of applicants by region
      * @throws ApplicantNotFoundException
      */
+
     @GetMapping("applicants/region/{region}")
     public List<Applicant> searchApplicantsByRegion(@PathVariable String region)
             throws ApplicantNotFoundException {

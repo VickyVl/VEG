@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 @Service
 
 public class JobSkillService {
-    @Autowired
     private JobSkills jobSkillsRepo;
+
+    @Autowired
+    public JobSkillService(JobSkills jobSkillsRepo) {
+        this.jobSkillsRepo = jobSkillsRepo;
+    }
 }

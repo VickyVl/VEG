@@ -13,8 +13,12 @@ import java.util.stream.StreamSupport;
 @Service
 public class JobOfferSearchService {
 
-    @Autowired
     private JobOffers jobOfferRepo;
+
+    @Autowired
+    public JobOfferSearchService(JobOffers jobOfferRepo) {
+        this.jobOfferRepo = jobOfferRepo;
+    }
 
     public JobOffer getJobOffer(int id) throws JobOfferNotFoundException {
 

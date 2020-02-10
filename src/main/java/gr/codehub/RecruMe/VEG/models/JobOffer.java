@@ -34,5 +34,4 @@ public class JobOffer {
         this.region = region;
         this.educationLevel = educationLevel;
     }
-
 }
