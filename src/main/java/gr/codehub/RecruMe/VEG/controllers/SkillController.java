@@ -91,6 +91,13 @@ public class SkillController {
         return skillService.updateOne(id, skillDto);
     }
 
+    /**
+     * endpoint http://localhost:8080/skill/excel
+     * get all skills from excel file
+     * @return skill from excel
+     * @throws SkillNotFoundException
+     * @throws IOException
+     */
     @GetMapping("skill/excel")
     public List<Skill> getSkillExcel()
             throws SkillNotFoundException, IOException {

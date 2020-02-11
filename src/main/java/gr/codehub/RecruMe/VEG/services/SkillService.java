@@ -23,6 +23,8 @@ import java.util.stream.StreamSupport;
 
 @Service
 public class SkillService {
+
+    @Autowired
     private Skills skillRepo;
 
     @Autowired
@@ -81,7 +83,7 @@ public class SkillService {
     }
 
 
-    public void SkillExcel(String excelFileName ) throws IOException {
+    public void SkillExcel(String excelFileName) throws IOException {
 
         File file = ResourceUtils.getFile("classpath:"+excelFileName);
         FileInputStream excelFile = new FileInputStream(file);
@@ -97,10 +99,6 @@ public class SkillService {
             Cell description =  cellIterator.next();
             Skill skill = new Skill(description.getStringCellValue());
             skillRepo.save(skill);
-
         }
     }
-
-
-
 }
