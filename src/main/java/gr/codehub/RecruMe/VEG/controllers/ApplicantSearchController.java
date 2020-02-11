@@ -59,4 +59,10 @@ public class ApplicantSearchController {
             throws ApplicantNotFoundException {
         return applicantSearchService.searchByRegion(region);
     }
+
+    @GetMapping("applicants/skill/{description}")
+    public List<Applicant> searchApplicantsBySkill(@PathVariable String description)
+            throws ApplicantNotFoundException {
+        return applicantSearchService.searchBySkill(description);
+    }
 }
