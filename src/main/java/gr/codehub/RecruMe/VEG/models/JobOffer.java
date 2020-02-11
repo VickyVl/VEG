@@ -1,8 +1,8 @@
 package gr.codehub.RecruMe.VEG.models;//package gr.codehub.RecruMe.VEG.models;
 //
 //import lombok.Data;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import gr.codehub.RecruMe.VEG.models.Skill;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
