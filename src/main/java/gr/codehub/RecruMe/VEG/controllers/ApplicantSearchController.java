@@ -6,6 +6,7 @@ import gr.codehub.RecruMe.VEG.services.ApplicantSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -16,12 +17,13 @@ import java.util.List;
  */
 
 @RestController
+@RequestMapping("/recrumeVEG/")
 public class ApplicantSearchController {
     @Autowired
     private ApplicantSearchService applicantSearchService;
 
     /**
-     * endpoint http://localhost:8080/applicant/{id}
+     * endpoint http://localhost:8080/recrumeVEG/applicant/{id}
      * @param id
      * @return applicant by id
      * @throws ApplicantNotFoundException
@@ -35,7 +37,7 @@ public class ApplicantSearchController {
     }
 
     /**
-     * endpoint http://localhost:8080/applicants/name/{firstName}
+     * endpoint http://localhost:8080/recrumeVEG/applicants/name/{firstName}
      * @param firstName
      * @return list of applicants by first name
      * @throws ApplicantNotFoundException
@@ -48,7 +50,7 @@ public class ApplicantSearchController {
     }
 
     /**
-     * endpoint http://localhost:8080/applicants/region/{region}
+     * endpoint http://localhost:8080/recrumeVEG/applicants/region/{region}
      * @param region
      * @return list of applicants by region
      * @throws ApplicantNotFoundException
@@ -61,9 +63,9 @@ public class ApplicantSearchController {
     }
 
     /**
-     * endpoint http://localhost:8080/applicants/skill/{description}
-     * @param description of the skill
-     * @return all applicants that has the skill by description skill
+     * endpoint http://localhost:8080/recrumeVEG/applicants/skill/{description}
+     * @param description
+     * @return list of applicant searched by skill
      * @throws ApplicantNotFoundException
      */
     @GetMapping("applicants/skill/{description}")

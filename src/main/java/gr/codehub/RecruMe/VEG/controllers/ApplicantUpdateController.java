@@ -6,10 +6,7 @@ import gr.codehub.RecruMe.VEG.exceptions.ApplicantUpdateSkillException;
 import gr.codehub.RecruMe.VEG.models.Applicant;
 import gr.codehub.RecruMe.VEG.services.ApplicantUpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * ApplicantUpdateController used here to provide the data of all applicant update services
@@ -18,13 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 */
 
 @RestController
+@RequestMapping("/recrumeVEG/")
 public class ApplicantUpdateController {
 
     @Autowired
     private ApplicantUpdateService applicantUpdateService;
 
     /**
-     * endpoint http://localhost:8080/applicant/{id}/firstname
+     * endpoint http://localhost:8080/recrumeVEG/applicant/{id}/firstname
      * updates applicant's firstname
      * @param id
      * @param applicantDto
@@ -40,7 +38,7 @@ public class ApplicantUpdateController {
     }
 
     /**
-     * endpoint http://localhost:8080/applicant/{id}/lastname
+     * endpoint http://localhost:8080/recrumeVEG/applicant/{id}/lastname
      * updates applicant's lastname
      * @param id
      * @param applicantDto
@@ -56,7 +54,7 @@ public class ApplicantUpdateController {
     }
 
     /**
-     * endpoint http://localhost:8080/applicant/{id}/address
+     * endpoint http://localhost:8080/recrumeVEG/applicant/{id}/address
      * updates applicant's address
      * @param id
      * @param applicantDto
@@ -72,7 +70,7 @@ public class ApplicantUpdateController {
     }
 
     /**
-     * endpoint http://localhost:8080/applicant/{id}/region
+     * endpoint http://localhost:8080/recrumeVEG/applicant/{id}/region
      * updates applicant's region
      * @param id
      * @param applicantDto
@@ -88,7 +86,7 @@ public class ApplicantUpdateController {
     }
 
     /**
-     * endpoint http://localhost:8080/applicant/{id}/educationlevel
+     * endpoint http://localhost:8080/recrumeVEG/applicant/{id}/educationlevel
      * updates applicant's educationlevel
      * @param id
      * @param applicantDto
@@ -104,7 +102,7 @@ public class ApplicantUpdateController {
     }
 
     /**
-     * endpoint http://localhost:8080/applicant/{id}/activateStatus
+     * endpoint http://localhost:8080/recrumeVEG/applicant/{id}/activateStatus
      * updates applicant's activateStatus
      * @param id
      * @param applicantDto
@@ -120,7 +118,7 @@ public class ApplicantUpdateController {
     }
 
     /**
-     * endpoint http://localhost:8080/applicant/{id}/inactivateStatus
+     * endpoint http://localhost:8080/recrumeVEG/applicant/{id}/inactivateStatus
      * updates applicant's inactivateStatus
      * @param id
      * @param applicantDto
@@ -136,7 +134,7 @@ public class ApplicantUpdateController {
     }
 
     /**
-     * endpoint http://localhost:8080/applicant/{id}/skill
+     * endpoint http://localhost:8080/recrumeVEG/applicant/{id}/skill
      * updates applicant's skill
      * @param id
      * @param applicantDto

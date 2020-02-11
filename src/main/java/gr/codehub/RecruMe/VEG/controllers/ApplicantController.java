@@ -20,13 +20,14 @@ import java.util.List;
  */
 
 @RestController
+@RequestMapping("/recrumeVEG/")
 public class ApplicantController {
 
     @Autowired
     private ApplicantService applicantService;
 
     /**
-     * endpoint http://localhost:8080/applicants
+     * endpoint http://localhost:8080/recrumeVEG/applicants
      * @return all applicants
      */
 
@@ -36,7 +37,7 @@ public class ApplicantController {
     }
 
     /**
-     * endpoint http://localhost:8080/applicant
+     * endpoint http://localhost:8080/recrumeVEG/applicant
      * create a new applicant
      * @param applicantDto
      * @return new applicant
@@ -48,7 +49,7 @@ public class ApplicantController {
     }
 
     /**
-     *endpoint http://localhost:8080/applicant/excel
+     *endpoint http://localhost:8080/recrumeVEG/applicant/excel
      * get all applicants from excel file
      * @return applicant from excel
      * @throws JobOfferNotFoundException
@@ -59,5 +60,4 @@ public class ApplicantController {
             throws JobOfferNotFoundException, IOException {
         return applicantService.getApplicantExcel();
     }
-
 }
