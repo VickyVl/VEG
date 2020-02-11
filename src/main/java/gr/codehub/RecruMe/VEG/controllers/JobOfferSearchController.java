@@ -73,4 +73,10 @@ public class JobOfferSearchController {
             throws JobOfferNotFoundException {
         return jobOfferSearchService.readByCompany(company);
     }
+
+    @GetMapping("joboffer/skill/{description}")
+    public List<JobOffer> getJobOffersBySkill(@PathVariable String description)
+            throws JobOfferNotFoundException {
+        return jobOfferSearchService.searchJobOffersBySkill(description);
+    }
 }

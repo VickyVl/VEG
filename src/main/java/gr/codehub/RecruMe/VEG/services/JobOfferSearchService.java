@@ -1,12 +1,18 @@
 package gr.codehub.RecruMe.VEG.services;
 
+import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
 import gr.codehub.RecruMe.VEG.exceptions.JobOfferNotFoundException;
-import gr.codehub.RecruMe.VEG.models.JobOffer;
+import gr.codehub.RecruMe.VEG.models.*;
+import gr.codehub.RecruMe.VEG.repositories.ApplicantSkills;
 import gr.codehub.RecruMe.VEG.repositories.JobOffers;
+import gr.codehub.RecruMe.VEG.repositories.JobSkills;
+import gr.codehub.RecruMe.VEG.repositories.Skills;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -14,10 +20,15 @@ import java.util.stream.StreamSupport;
 public class JobOfferSearchService {
 
     private JobOffers jobOfferRepo;
+    private Skills skillRepo;
+    private JobSkills jobSkillRepo;
+
 
     @Autowired
-    public JobOfferSearchService(JobOffers jobOfferRepo) {
+    public JobOfferSearchService(JobOffers jobOfferRepo,Skills skillRepo,JobSkills jobSkillRepo) {
         this.jobOfferRepo = jobOfferRepo;
+        this.skillRepo = skillRepo;
+        this.jobSkillRepo = jobSkillRepo;
     }
 
     public JobOffer getJobOffer(int id) throws JobOfferNotFoundException {
@@ -63,6 +74,24 @@ public class JobOfferSearchService {
                             .collect(Collectors.toList());
         } catch (Exception e) {
             throw new JobOfferNotFoundException("Company = " + company + " NOT FOUNT");
+        }
+    }
+
+
+    public List<JobOffer> searchJobOffersBySkill(String description) throws JobOfferNotFoundException {
+        try {
+            Skill skill = skillRepo.findByDescription(description);
+            List<JobSkill> jobSkillsBySkillIdList = jobSkillRepo.findBySkillId(skill.getId());
+
+            List<JobOffer> responseJobOffersList = new ArrayList<>();
+
+            for(JobSkill jobSkill: jobSkillsBySkillIdList){
+                Optional<JobOffer> jobOfferOptional = jobOfferRepo.findById(jobSkill.getJobOffer().getId());
+                responseJobOffersList.add(jobOfferOptional.get());
+            }
+            return responseJobOffersList;
+        } catch (Exception e) {
+            throw new JobOfferNotFoundException("SKILL " + description + " NOT FOUND" + e);
         }
     }
 }
