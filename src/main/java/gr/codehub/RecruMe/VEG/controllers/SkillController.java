@@ -22,12 +22,13 @@ import java.util.List;
  */
 
 @RestController
+@RequestMapping("/recrumeVEG/")
 public class SkillController {
     @Autowired
     private SkillService skillService;
 
     /**
-     * endpoint http://localhost:8080/applicant
+     * endpoint http://localhost:8080/recrumeVEG/applicant
      * create a new skill
      * @param skillDto
      * @return new skill
@@ -39,7 +40,7 @@ public class SkillController {
     }
 
     /**
-     * endpoint http://localhost:8080/applicants
+     * endpoint http://localhost:8080/recrumeVEG/applicants
      * @return all skills
      */
 
@@ -49,7 +50,7 @@ public class SkillController {
     }
 
     /**
-     * endpoint http://localhost:8080/skill/{id}
+     * endpoint http://localhost:8080/recrumeVEG/skill/{id}
      * @param id
      * @return skill by id
      * @throws SkillNotFoundException
@@ -63,7 +64,7 @@ public class SkillController {
     }
 
     /**
-     * endpoint http://localhost:8080/skill/description/{description}
+     * endpoint http://localhost:8080/recrumeVEG/skill/description/{description}
      * @param description
      * @return skill by description
      * @throws SkillNotFoundException
@@ -76,7 +77,7 @@ public class SkillController {
     }
 
     /**
-     * endpoint http://localhost:8080/skill/{id}/description
+     * endpoint http://localhost:8080/recrumeVEG/skill/{id}/description
      * updates description of skill
      * @param id
      * @param skillDto
@@ -92,7 +93,7 @@ public class SkillController {
     }
 
     /**
-     * endpoint http://localhost:8080/skill/excel
+     * endpoint http://localhost:8080/recrumeVEG/skill/excel
      * get all skills from excel file
      * @return skill from excel
      * @throws SkillNotFoundException

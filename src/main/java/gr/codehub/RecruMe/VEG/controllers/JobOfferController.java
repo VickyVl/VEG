@@ -20,12 +20,13 @@ import java.util.List;
  */
 
 @RestController
+@RequestMapping("/recrumeVEG/")
 public class JobOfferController {
     @Autowired
     private JobOfferService jobOfferService;
 
     /**
-     * endpoint http://localhost:8080/joboffers
+     * endpoint http://localhost:8080/recrumeVEG/joboffers
      * @return all job offers
      */
 
@@ -35,7 +36,7 @@ public class JobOfferController {
     }
 
     /**
-     * endpoint http://localhost:8080/joboffer
+     * endpoint http://localhost:8080/recrumeVEG/joboffer
      * create / insert new job offer
      * @param jobOfferDto
      * @return the new job offer
@@ -47,7 +48,7 @@ public class JobOfferController {
     }
 
     /**
-     * endpoint http://localhost:8080/joboffer/excel
+     * endpoint http://localhost:8080/recrumeVEG/joboffer/excel
      * get all job offers from excel file
      * @return job offer from excel
      * @throws JobOfferNotFoundException

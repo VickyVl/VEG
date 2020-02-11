@@ -6,6 +6,7 @@ import gr.codehub.RecruMe.VEG.services.JobOfferSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -16,13 +17,14 @@ import java.util.List;
  */
 
 @RestController
+@RequestMapping("/recrumeVEG/")
 public class JobOfferSearchController {
 
     @Autowired
     private JobOfferSearchService jobOfferSearchService;
 
     /**
-     * endpoint http://localhost:8080/joboffer/{id}
+     * endpoint http://localhost:8080/recrumeVEG/joboffer/{id}
      * @param id
      * @return job offer by id
      * @throws JobOfferNotFoundException
@@ -36,7 +38,7 @@ public class JobOfferSearchController {
     }
 
     /**
-     * endpoint http://localhost:8080/joboffer/title/{titleOfPosition}
+     * endpoint http://localhost:8080/recrumeVEG/joboffer/title/{titleOfPosition}
      * @param titleOfPosition
      * @return all job offers with the same title of position
      * @throws JobOfferNotFoundException
@@ -49,7 +51,7 @@ public class JobOfferSearchController {
     }
 
     /**
-     * endpoint http://localhost:8080/joboffer/region/{region}
+     * endpoint http://localhost:8080/recrumeVEG/joboffer/region/{region}
      * @param region
      * @return all job offers in the same region
      * @throws JobOfferNotFoundException
@@ -62,7 +64,7 @@ public class JobOfferSearchController {
     }
 
     /**
-     * endpoint http://localhost:8080/joboffer/region/{company}
+     * endpoint http://localhost:8080/recrumeVEG/joboffer/region/{company}
      * @param company
      * @return all job offers of the particular company
      * @throws JobOfferNotFoundException
@@ -74,6 +76,12 @@ public class JobOfferSearchController {
         return jobOfferSearchService.readByCompany(company);
     }
 
+    /**
+     * endpoint http://localhost:8080/recrumeVEG/joboffer/skill/{description}
+     * @param description
+     * @return list of job offers of the particular company
+     * @throws JobOfferNotFoundException
+     */
     @GetMapping("joboffer/skill/{description}")
     public List<JobOffer> getJobOffersBySkill(@PathVariable String description)
             throws JobOfferNotFoundException {

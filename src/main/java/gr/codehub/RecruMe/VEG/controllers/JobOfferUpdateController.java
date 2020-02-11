@@ -7,10 +7,7 @@ import gr.codehub.RecruMe.VEG.models.JobOffer;
 import gr.codehub.RecruMe.VEG.services.JobOfferService;
 import gr.codehub.RecruMe.VEG.services.JobOfferUpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * JobOfferUpdateController used here to provide the data of all job offer update services
@@ -19,12 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
+@RequestMapping("/recrumeVEG/")
 public class JobOfferUpdateController {
     @Autowired
     private JobOfferUpdateService jobOfferUpdateService;
 
     /**
-     * endpoint http://localhost:8080/joboffer/{id}/title
+     * endpoint http://localhost:8080/recrumeVEG/joboffer/{id}/title
      * updates title of position of job offer
      * @param id
      * @param jobOfferDto
@@ -40,7 +38,7 @@ public class JobOfferUpdateController {
     }
 
     /**
-     * endpoint http://localhost:8080/joboffer/{id}/activatestatus
+     * endpoint http://localhost:8080/recrumeVEG/joboffer/{id}/activatestatus
      * updates activatestatus of job offer
      * @param id
      * @param jobOfferDto
@@ -56,7 +54,7 @@ public class JobOfferUpdateController {
     }
 
     /**
-     * endpoint http://localhost:8080/joboffer/{id}/inactivatestatus
+     * endpoint http://localhost:8080/recrumeVEG/joboffer/{id}/inactivatestatus
      * updates inactivatestatus of job offer
      * @param id
      * @param jobOfferDto
@@ -72,7 +70,7 @@ public class JobOfferUpdateController {
     }
 
     /**
-     * endpoint http://localhost:8080/joboffer/{id}/region
+     * endpoint http://localhost:8080/recrumeVEG/joboffer/{id}/region
      * updates region of job offer
      * @param id
      * @param jobOfferDto
@@ -88,7 +86,7 @@ public class JobOfferUpdateController {
     }
 
     /**
-     * endpoint http://localhost:8080/joboffer/{id}/educationLevel
+     * endpoint http://localhost:8080/recrumeVEG/joboffer/{id}/educationLevel
      * updates educationLevel of job offer
      * @param id
      * @param jobOfferDto
@@ -104,7 +102,7 @@ public class JobOfferUpdateController {
     }
 
     /**
-     * endpoint http://localhost:8080/joboffer/{id}/company
+     * endpoint http://localhost:8080/recrumeVEG/joboffer/{id}/company
      * updates the company offering the job
      * @param id
      * @param jobOfferDto
@@ -120,7 +118,7 @@ public class JobOfferUpdateController {
     }
 
     /**
-     * endpoint http://localhost:8080/joboffer/{id}/updateskills
+     * endpoint http://localhost:8080/recrumeVEG/joboffer/{id}/updateskills
      * updates job offer by id with new job skills
      * @param id of the job offer
      * @param jobOfferDto

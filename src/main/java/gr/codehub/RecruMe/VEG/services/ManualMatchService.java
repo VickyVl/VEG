@@ -1,16 +1,16 @@
 package gr.codehub.RecruMe.VEG.services;
 
-import gr.codehub.RecruMe.VEG.dtos.SkillDto;
 import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
 import gr.codehub.RecruMe.VEG.exceptions.JobOfferNotFoundException;
 import gr.codehub.RecruMe.VEG.exceptions.MatchedAlreadyException;
-import gr.codehub.RecruMe.VEG.exceptions.MatchedAlreadyException;
-import gr.codehub.RecruMe.VEG.models.*;
+import gr.codehub.RecruMe.VEG.models.Applicant;
+import gr.codehub.RecruMe.VEG.models.JobOffer;
+import gr.codehub.RecruMe.VEG.models.Match;
+import gr.codehub.RecruMe.VEG.models.MatchType;
 import gr.codehub.RecruMe.VEG.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
