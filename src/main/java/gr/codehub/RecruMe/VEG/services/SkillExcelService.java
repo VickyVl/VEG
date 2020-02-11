@@ -44,6 +44,14 @@ public class SkillExcelService {
             Iterator<Cell> cellIterator = currentRow.iterator();
             Cell description =  cellIterator.next();
             Skill skill = new Skill(description.getStringCellValue());
+            Skill skillFromRepo =skillRepo.findByDescription(skill.getDescription());
+            if (skillFromRepo == null){
+                skillRepo.save(skill);
+            }
+
+            if (skill.getDescription().equals(skillFromRepo.getDescription())){
+                skill.setId(skillFromRepo.getId());
+            }
             skillRepo.save(skill);
         }
     }
