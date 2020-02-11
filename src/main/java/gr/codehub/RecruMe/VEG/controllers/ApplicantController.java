@@ -5,6 +5,7 @@ import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
 import gr.codehub.RecruMe.VEG.exceptions.JobOfferNotFoundException;
 import gr.codehub.RecruMe.VEG.models.Applicant;
 import gr.codehub.RecruMe.VEG.models.JobOffer;
+import gr.codehub.RecruMe.VEG.services.ApplicantExcelService;
 import gr.codehub.RecruMe.VEG.services.ApplicantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,9 @@ public class ApplicantController {
 
     @Autowired
     private ApplicantService applicantService;
+
+    @Autowired
+    private ApplicantExcelService applicantExcelService;
 
     /**
      * endpoint http://localhost:8080/recrumeVEG/applicants
@@ -58,6 +62,6 @@ public class ApplicantController {
     @GetMapping("applicant/excel")
     public List<Applicant> getApplicantExcel()
             throws JobOfferNotFoundException, IOException {
-        return applicantService.getApplicantExcel();
+        return applicantExcelService.getApplicantExcel();
     }
 }

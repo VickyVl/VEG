@@ -5,6 +5,7 @@ import gr.codehub.RecruMe.VEG.exceptions.JobOfferNotFoundException;
 import gr.codehub.RecruMe.VEG.exceptions.SkillNotFoundException;
 import gr.codehub.RecruMe.VEG.models.JobOffer;
 import gr.codehub.RecruMe.VEG.models.Skill;
+import gr.codehub.RecruMe.VEG.services.JobOfferExcelService;
 import gr.codehub.RecruMe.VEG.services.JobOfferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,8 @@ import java.util.List;
 public class JobOfferController {
     @Autowired
     private JobOfferService jobOfferService;
+    @Autowired
+    private JobOfferExcelService jobOfferExcelService;
 
     /**
      * endpoint http://localhost:8080/recrumeVEG/joboffers
@@ -57,6 +60,6 @@ public class JobOfferController {
     @GetMapping("joboffer/excel")
     public List<JobOffer> getJobOfferExcel()
             throws JobOfferNotFoundException, IOException {
-        return jobOfferService.getJobOfferExcel();
+        return jobOfferExcelService.getJobOfferExcel();
     }
 }
