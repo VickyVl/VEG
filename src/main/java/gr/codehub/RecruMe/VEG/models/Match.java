@@ -14,11 +14,11 @@ public class Match {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private int type;
+    private MatchType type;
 
     @OneToOne
     @JsonIgnore
-    private Applicant  applicant;
+    private Applicant applicant;
 
     @OneToOne
     @JsonIgnore

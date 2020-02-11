@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * JobOfferSearchController used here to provide the data of all job offer search services
- * (by id, first name, region) displaying them as json files on the web via HTTP responses.
+ * (by id, title of position, region, company) displaying them as json files on the web via HTTP responses.
  */
 
 @RestController
