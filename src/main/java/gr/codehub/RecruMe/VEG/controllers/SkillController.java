@@ -4,6 +4,7 @@ import gr.codehub.RecruMe.VEG.dtos.SkillDto;
 import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
 import gr.codehub.RecruMe.VEG.exceptions.SkillNotFoundException;
 import gr.codehub.RecruMe.VEG.models.Skill;
+import gr.codehub.RecruMe.VEG.services.SkillExcelService;
 import gr.codehub.RecruMe.VEG.services.SkillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,8 @@ import java.util.List;
 public class SkillController {
     @Autowired
     private SkillService skillService;
+    @Autowired
+    private SkillExcelService skillExcelService;
 
     /**
      * endpoint http://localhost:8080/recrumeVEG/applicant
@@ -102,6 +105,6 @@ public class SkillController {
     @GetMapping("skill/excel")
     public List<Skill> getSkillExcel()
             throws SkillNotFoundException, IOException {
-        return skillService.getSkillExcel();
+        return skillExcelService.getSkillExcel();
     }
 }

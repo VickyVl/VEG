@@ -87,75 +87,75 @@ public class ApplicantService {
                         .collect(Collectors.toList());
     }
 
-    /**
-     * Show all applicants from excel
-     * @return applicant
-     * @throws IOException
-     */
-    public List<Applicant> getApplicantExcel() throws IOException {
-        ApplicantExcel("dataforrecrume.xlsx");
-        return applicantRepo.findAll();
-    }
-
-    /**
-     * Read all applicants from excel file
-     * @param excelFileName
-     * @throws IOException
-     */
-    public void ApplicantExcel(String excelFileName) throws IOException {
-
-        File file = ResourceUtils.getFile("classpath:"+excelFileName);
-        FileInputStream excelFile = new FileInputStream(file);
-        Workbook workbook = new XSSFWorkbook(excelFile);
-        Sheet datatypeSheet = workbook.getSheetAt(0);
-        Iterator<Row> row = datatypeSheet.iterator();
-
-        row.next();
-
-        while (row.hasNext()) {
-            Row currentRow = row.next();
-            Iterator<Cell> cellIterator = currentRow.iterator();
-
-            Cell firstNameCell = cellIterator.next();
-            Cell lastNameCell = cellIterator.next();
-            Cell addressCell = cellIterator.next();
-            Cell regionCell = cellIterator.next();
-            Cell educationLevelCell = cellIterator.next();
-
-
-            List<Skill> applicantSkills = new ArrayList<>();
-
-            String description = "";
-            while(cellIterator.hasNext()) {
-                Cell descr =  cellIterator.next();
-                String value = descr.getStringCellValue();
-//                if (!value.trim().isEmpty()){
-//                        if (!description.isEmpty()){
-//                            description += ", ";
-//                        }
-//                    description += value;
-                Skill foundSkill = skillRepo.findFirstByDescription(value);
-                applicantSkills.add(foundSkill);
-                }
-
-
-            Applicant applicant = new Applicant(
-                    firstNameCell.getStringCellValue(),
-                    lastNameCell.getStringCellValue(),
-                    addressCell.getStringCellValue(),
-                    regionCell.getStringCellValue(),
-                    educationLevelCell.getStringCellValue());
-            applicant = applicantRepo.save(applicant);
-
-            for (int i=0; i<applicantSkills.size(); i++){
-                ApplicantSkill applicantSkill = new ApplicantSkill();
-                applicantSkill.setApplicant(applicant);
-                applicantSkill.setSkill(applicantSkills.get(i));
-                applicantSkillRepo.save(applicantSkill);
-            }
-            applicantRepo.save(applicant);
-        }
-    }
+//    /**
+//     * Show all applicants from excel
+//     * @return applicant
+//     * @throws IOException
+//     */
+//    public List<Applicant> getApplicantExcel() throws IOException {
+//        ApplicantExcel("dataforrecrume.xlsx");
+//        return applicantRepo.findAll();
+//    }
+//
+//    /**
+//     * Read all applicants from excel file
+//     * @param excelFileName
+//     * @throws IOException
+//     */
+//    public void ApplicantExcel(String excelFileName) throws IOException {
+//
+//        File file = ResourceUtils.getFile("classpath:"+excelFileName);
+//        FileInputStream excelFile = new FileInputStream(file);
+//        Workbook workbook = new XSSFWorkbook(excelFile);
+//        Sheet datatypeSheet = workbook.getSheetAt(0);
+//        Iterator<Row> row = datatypeSheet.iterator();
+//
+//        row.next();
+//
+//        while (row.hasNext()) {
+//            Row currentRow = row.next();
+//            Iterator<Cell> cellIterator = currentRow.iterator();
+//
+//            Cell firstNameCell = cellIterator.next();
+//            Cell lastNameCell = cellIterator.next();
+//            Cell addressCell = cellIterator.next();
+//            Cell regionCell = cellIterator.next();
+//            Cell educationLevelCell = cellIterator.next();
+//
+//
+//            List<Skill> applicantSkills = new ArrayList<>();
+//
+//            String description = "";
+//            while(cellIterator.hasNext()) {
+//                Cell descr =  cellIterator.next();
+//                String value = descr.getStringCellValue();
+////                if (!value.trim().isEmpty()){
+////                        if (!description.isEmpty()){
+////                            description += ", ";
+////                        }
+////                    description += value;
+//                Skill foundSkill = skillRepo.findFirstByDescription(value);
+//                applicantSkills.add(foundSkill);
+//                }
+//
+//
+//            Applicant applicant = new Applicant(
+//                    firstNameCell.getStringCellValue(),
+//                    lastNameCell.getStringCellValue(),
+//                    addressCell.getStringCellValue(),
+//                    regionCell.getStringCellValue(),
+//                    educationLevelCell.getStringCellValue());
+//            applicant = applicantRepo.save(applicant);
+//
+//            for (int i=0; i<applicantSkills.size(); i++){
+//                ApplicantSkill applicantSkill = new ApplicantSkill();
+//                applicantSkill.setApplicant(applicant);
+//                applicantSkill.setSkill(applicantSkills.get(i));
+//                applicantSkillRepo.save(applicantSkill);
+//            }
+//            applicantRepo.save(applicant);
+//        }
+//    }
 }
 
 
