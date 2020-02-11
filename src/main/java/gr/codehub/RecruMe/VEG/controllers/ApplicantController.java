@@ -2,11 +2,14 @@ package gr.codehub.RecruMe.VEG.controllers;
 
 import gr.codehub.RecruMe.VEG.dtos.ApplicantDto;
 import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
+import gr.codehub.RecruMe.VEG.exceptions.JobOfferNotFoundException;
 import gr.codehub.RecruMe.VEG.models.Applicant;
+import gr.codehub.RecruMe.VEG.models.JobOffer;
 import gr.codehub.RecruMe.VEG.services.ApplicantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -42,6 +45,19 @@ public class ApplicantController {
     @PostMapping("applicant")
     public Applicant newApplicant(@RequestBody ApplicantDto applicantDto) {
         return applicantService.save(applicantDto);
+    }
+
+    /**
+     *endpoint http://localhost:8080/applicant/excel
+     * get all applicants from excel file
+     * @return applicant from excel
+     * @throws JobOfferNotFoundException
+     * @throws IOException
+     */
+    @GetMapping("applicant/excel")
+    public List<Applicant> getApplicantExcel()
+            throws JobOfferNotFoundException, IOException {
+        return applicantService.getApplicantExcel();
     }
 
 }
