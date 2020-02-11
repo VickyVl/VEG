@@ -22,7 +22,7 @@ public class AutomaticMatchController {
     /**
      *
      * @param jobofferId
-     * @return a list of match applicants with 
+     * @return a list of match applicants with
      * @throws MatchedAlreadyException
      * @throws JobOfferNotFoundException
      * @throws ApplicantNotFoundException
