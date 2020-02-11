@@ -43,6 +43,11 @@ public class ApplicantService {
     private ApplicantSkills applicantSkillRepo;
 
 
+    /**
+     * Make and save a new applicant
+     * @param applicantDto
+     * @return applicant
+     */
     public Applicant save(ApplicantDto applicantDto) {
         Applicant applicant = new Applicant();
         applicant.setFirstName(applicantDto.getFirstName());
@@ -70,6 +75,10 @@ public class ApplicantService {
         return  applicantRepo.save(applicant);
     }
 
+    /**
+     * Show all applicants
+     * @return all applicant
+     */
     public List<Applicant> getAll() {
         Applicant applicant = new Applicant();
         return
@@ -78,11 +87,21 @@ public class ApplicantService {
                         .collect(Collectors.toList());
     }
 
+    /**
+     * Show all applicants from excel
+     * @return applicant
+     * @throws IOException
+     */
     public List<Applicant> getApplicantExcel() throws IOException {
         ApplicantExcel("dataforrecrume.xlsx");
         return applicantRepo.findAll();
     }
 
+    /**
+     * Read all applicants from excel file
+     * @param excelFileName
+     * @throws IOException
+     */
     public void ApplicantExcel(String excelFileName) throws IOException {
 
         File file = ResourceUtils.getFile("classpath:"+excelFileName);

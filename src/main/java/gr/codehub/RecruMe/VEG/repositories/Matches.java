@@ -11,8 +11,8 @@ import java.util.List;
 @Repository
 public interface Matches extends JpaRepository<Applicant, Integer> {
 
-    @Query(value = "SELECT applicant_skill.applicant_skill_id, job_skill.job_skill_id " +
-            "FROM applicant_skill INNER JOIN job_skill ON applicant_skill.id = job_skill.id", nativeQuery = true)
-    List<Match[]> getMatch();
+//    @Query(value = "SELECT applicant_skill.applicant_skill_id, job_skill.job_skill_id " +
+//            "FROM applicant_skill INNER JOIN job_skill ON applicant_skill.id = job_skill.id", nativeQuery = true)
+//    List<Match[]> getMatch();
 
 }

@@ -19,6 +19,12 @@ public class ApplicantSearchService {
         this.applicantRepo = applicantRepo;
     }
 
+    /**
+     * Get applicant from Applicant Repository
+     * @param id
+     * @return applicant
+     * @throws ApplicantNotFoundException
+     */
     public Applicant getApplicant(int id) throws ApplicantNotFoundException {
 
         try {
@@ -30,6 +36,12 @@ public class ApplicantSearchService {
 
     }
 
+    /**
+     * Search applicant by the first name
+     * @param firstName
+     * @return applicant
+     * @throws ApplicantNotFoundException
+     */
     public List<Applicant> searchByName(String firstName) throws ApplicantNotFoundException {
         try {
             return
@@ -42,6 +54,12 @@ public class ApplicantSearchService {
         }
     }
 
+    /**
+     * Search applicant by region
+     * @param region
+     * @return applicant
+     * @throws ApplicantNotFoundException
+     */
     public List<Applicant> searchByRegion(String region) throws ApplicantNotFoundException {
         try {
             return
