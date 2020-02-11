@@ -74,6 +74,12 @@ public class JobOfferSearchController {
         return jobOfferSearchService.readByCompany(company);
     }
 
+    /**
+     * endpoint http://localhost:8080/joboffer/skill/{description}
+     * @param description of the skill
+     * @return all jobOffers that require the skill be description skill
+     * @throws JobOfferNotFoundException
+     */
     @GetMapping("joboffer/skill/{description}")
     public List<JobOffer> getJobOffersBySkill(@PathVariable String description)
             throws JobOfferNotFoundException {

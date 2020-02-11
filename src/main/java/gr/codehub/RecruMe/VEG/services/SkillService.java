@@ -77,28 +77,28 @@ public class SkillService {
         return skillRepo.save(skill);
     }
 
-    public List<Skill> getSkillExcel() throws IOException {
-         SkillExcel("dataforrecrume.xlsx");
-        return skillRepo.findAll();
-    }
-
-
-    public void SkillExcel(String excelFileName) throws IOException {
-
-        File file = ResourceUtils.getFile("classpath:"+excelFileName);
-        FileInputStream excelFile = new FileInputStream(file);
-        Workbook workbook = new XSSFWorkbook(excelFile);
-        Sheet datatypeSheet = workbook.getSheetAt(2);
-        Iterator<Row> row = datatypeSheet.iterator();
-
-        row.next();
-
-        while (row.hasNext()) {
-            Row currentRow = row.next();
-            Iterator<Cell> cellIterator = currentRow.iterator();
-            Cell description =  cellIterator.next();
-            Skill skill = new Skill(description.getStringCellValue());
-            skillRepo.save(skill);
-        }
-    }
+//    public List<Skill> getSkillExcel() throws IOException {
+//         SkillExcel("dataforrecrume.xlsx");
+//        return skillRepo.findAll();
+//    }
+//
+//
+//    public void SkillExcel(String excelFileName) throws IOException {
+//
+//        File file = ResourceUtils.getFile("classpath:"+excelFileName);
+//        FileInputStream excelFile = new FileInputStream(file);
+//        Workbook workbook = new XSSFWorkbook(excelFile);
+//        Sheet datatypeSheet = workbook.getSheetAt(2);
+//        Iterator<Row> row = datatypeSheet.iterator();
+//
+//        row.next();
+//
+//        while (row.hasNext()) {
+//            Row currentRow = row.next();
+//            Iterator<Cell> cellIterator = currentRow.iterator();
+//            Cell description =  cellIterator.next();
+//            Skill skill = new Skill(description.getStringCellValue());
+//            skillRepo.save(skill);
+//        }
+//    }
 }

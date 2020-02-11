@@ -60,6 +60,12 @@ public class ApplicantSearchController {
         return applicantSearchService.searchByRegion(region);
     }
 
+    /**
+     * endpoint http://localhost:8080/applicants/skill/{description}
+     * @param description of the skill
+     * @return all applicants that has the skill by description skill
+     * @throws ApplicantNotFoundException
+     */
     @GetMapping("applicants/skill/{description}")
     public List<Applicant> searchApplicantsBySkill(@PathVariable String description)
             throws ApplicantNotFoundException {
