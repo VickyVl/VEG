@@ -85,6 +85,7 @@ public class JobOfferExcelService {
                 jobSkill.setSkill(jobSkills.get(i));
                 jobSkillRepo.save(jobSkill);
             }
+            jobOffer.setActive(true);
             jobOfferRepo.save(jobOffer);
         }
     }

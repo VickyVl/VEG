@@ -98,6 +98,7 @@ public class ApplicantExcelService {
                 applicantSkill.setSkill(applicantSkills.get(i));
                 applicantSkillRepo.save(applicantSkill);
             }
+            applicant.setActive(true);
             applicantRepo.save(applicant);
         }
     }

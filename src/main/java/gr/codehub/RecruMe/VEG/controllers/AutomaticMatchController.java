@@ -22,14 +22,22 @@ public class AutomaticMatchController {
     /**
      *
      * @param jobofferId
-     * @return a list of match applicants with
+     * @return a list of match applicants with a job offer
      * @throws MatchedAlreadyException
      * @throws JobOfferNotFoundException
      * @throws ApplicantNotFoundException
      */
-    @GetMapping("auto/applicant/{jobofferId}")
+    @GetMapping("auto/applicants/{jobofferId}")
     public List<Match> getMatch(@PathVariable int jobofferId)
             throws MatchedAlreadyException, JobOfferNotFoundException, ApplicantNotFoundException {
         return automaticMatchService.automaticMatch(jobofferId);
     }
+
+    @GetMapping("auto/applicant/{jobofferId}")
+    public Match getMatchForOne(@PathVariable int jobofferId)
+            throws MatchedAlreadyException, JobOfferNotFoundException, ApplicantNotFoundException {
+        return automaticMatchService.automaticMatchForOne(jobofferId);
+    }
+
+
 }
