@@ -33,11 +33,17 @@ public class AutomaticMatchController {
         return automaticMatchService.automaticMatch(jobofferId);
     }
 
-    @GetMapping("auto/applicant/{jobofferId}")
-    public Match getMatchForOne(@PathVariable int jobofferId)
-            throws MatchedAlreadyException, JobOfferNotFoundException, ApplicantNotFoundException {
-        return automaticMatchService.automaticMatchForOne(jobofferId);
-    }
-
-
+//    /**
+//     *
+//     * @param jobofferId
+//     * @return a list of match applicants with a job offer
+//     * @throws MatchedAlreadyException
+//     * @throws JobOfferNotFoundException
+//     * @throws ApplicantNotFoundException
+//     */
+//    @GetMapping("auto/applicants/{jobofferId}")
+//    public Match getOneMatch(@PathVariable int jobofferId)
+//            throws MatchedAlreadyException, JobOfferNotFoundException, ApplicantNotFoundException {
+//        return automaticMatchService.automaticMatchForOne(jobofferId);
+//    }
 }

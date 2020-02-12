@@ -1,6 +1,7 @@
 package gr.codehub.RecruMe.VEG.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import gr.codehub.RecruMe.VEG.EnumTypes.LevelType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,6 +22,8 @@ public class Applicant {
     private String region;
     private String educationLevel;
     private String level;
+
+    private LevelType levelType;
 
     @Column(columnDefinition = "bit default 1")
     private boolean active;

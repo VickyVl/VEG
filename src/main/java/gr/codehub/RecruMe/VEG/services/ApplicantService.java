@@ -1,5 +1,6 @@
 package gr.codehub.RecruMe.VEG.services;
 
+import gr.codehub.RecruMe.VEG.EnumTypes.LevelType;
 import gr.codehub.RecruMe.VEG.dtos.ApplicantDto;
 import gr.codehub.RecruMe.VEG.models.Applicant;
 import gr.codehub.RecruMe.VEG.models.ApplicantSkill;
@@ -48,9 +49,22 @@ public class ApplicantService {
         applicant.setLevel(applicantDto.getLevel());
         applicant.setActive(true);
 
+        LevelType levelType = null;
+
+        if (applicant.getLevel().equalsIgnoreCase("Junior")){
+            levelType = LevelType.JUNIOR;
+        }
+        if (applicant.getLevel().equalsIgnoreCase("Mid")){
+            levelType = LevelType.MID;
+        }
+        if (applicant.getLevel().equalsIgnoreCase("Senior")){
+            levelType = LevelType.SENIOR;
+        }
+
         List<String> skillsDescriptions = applicantDto.getApplicantSkillsDescriptions();
         List<ApplicantSkill> applicantSkills = new ArrayList<>();
 
+        applicant.setLevelType(levelType);
         applicant = applicantRepo.save(applicant);
 
 

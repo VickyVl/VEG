@@ -1,4 +1,4 @@
-package gr.codehub.RecruMe.VEG.models;
+package gr.codehub.RecruMe.VEG.EnumTypes;
 
 public enum MatchType {
     MANUAL(0),
