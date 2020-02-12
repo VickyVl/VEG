@@ -30,6 +30,7 @@ public class ApplicantUpdateService {
 
     /**
      * Update the first name of an applicant
+     *
      * @param id
      * @param applicantDto
      * @return applicant with updated first name
@@ -47,6 +48,7 @@ public class ApplicantUpdateService {
 
     /**
      * Update the last name of an applicant
+     *
      * @param id
      * @param applicantDto
      * @return applicant with updated last name
@@ -64,6 +66,7 @@ public class ApplicantUpdateService {
 
     /**
      * Update the address of an applicant
+     *
      * @param id
      * @param applicantDto
      * @return applicant with updated address
@@ -81,6 +84,7 @@ public class ApplicantUpdateService {
 
     /**
      * Update the region of an applicant
+     *
      * @param id
      * @param applicantDto
      * @return applicant with updated region
@@ -98,6 +102,7 @@ public class ApplicantUpdateService {
 
     /**
      * Update the education level of an applicant
+     *
      * @param id
      * @param applicantDto
      * @return applicant with updated education level
@@ -115,6 +120,7 @@ public class ApplicantUpdateService {
 
     /**
      * Change the status of an applicant from inactive to active
+     *
      * @param id
      * @param applicantDto
      * @return applicant with active status
@@ -132,6 +138,7 @@ public class ApplicantUpdateService {
 
     /**
      * Change the status of an applicant from active to inactive
+     *
      * @param id
      * @param applicantDto
      * @return applicant with inactive status
@@ -149,19 +156,20 @@ public class ApplicantUpdateService {
 
     /**
      * Update the skill of an applicant
+     *
      * @param id
      * @param applicantDto
      * @return applicant with updated skill
      * @throws ApplicantNotFoundException
      */
     public Applicant updateApplicantSkill(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
-            Applicant applicant = applicantRepo.findById(id).get();
+        Applicant applicant = applicantRepo.findById(id).get();
         if (applicant == null) {
             throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
         }
         List<String> skillsDescriptions = applicantDto.getApplicantSkillsDescriptions();
         List<ApplicantSkill> applicantSkills = new ArrayList<>();
-        for (String d : skillsDescriptions){
+        for (String d : skillsDescriptions) {
             Skill foundSkill = skillRepo.findFirstByDescription(d);
             ApplicantSkill as = new ApplicantSkill();
             as.setApplicant(applicant);
@@ -170,6 +178,23 @@ public class ApplicantUpdateService {
             applicantSkills.add(as);
         }
         applicant.setApplicantSkills(applicantSkills);
+        return applicantRepo.save(applicant);
+    }
+
+    /**
+     * Update the level of an applicant
+     *
+     * @param id
+     * @param applicantDto
+     * @return applicant with updated level
+     * @throws ApplicantNotFoundException
+     */
+    public Applicant updateLevel(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
+        Applicant applicant = applicantRepo.findById(id).get();
+        if (applicant == null) {
+            throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
+        }
+        applicant.setLevel(applicantDto.getLevel());
         return applicantRepo.save(applicant);
     }
 }

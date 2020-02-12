@@ -148,4 +148,19 @@ public class ApplicantUpdateController {
             throws ApplicantNotFoundException , ApplicantUpdateSkillException {
         return applicantUpdateService.updateApplicantSkill(id, applicantDto);
     }
+    /**
+     * endpoint http://localhost:8080/recrumeVEG/applicant/{id}/level
+     * updates applicant's level
+     * @param id
+     * @param applicantDto
+     * @return
+     * @throws ApplicantNotFoundException
+     * @throws ApplicantUpdateSkillException
+     */
+    @PutMapping("applicant/{id}/level")
+    public Applicant updateLevel(@PathVariable int id,
+                                 @RequestBody ApplicantDto applicantDto)
+            throws ApplicantNotFoundException , ApplicantUpdateSkillException {
+        return applicantUpdateService.updateLevel(id, applicantDto);
+    }
 }

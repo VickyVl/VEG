@@ -101,4 +101,21 @@ public class ApplicantSearchService {
             throw new ApplicantNotFoundException("SKILL " + description + " NOT FOUND" + e);
         }
     }
+    /**
+     * Search applicant by level
+     * @param level
+     * @return applicant
+     * @throws ApplicantNotFoundException
+     */
+    public List<Applicant> searchByLevel(String level) throws ApplicantNotFoundException {
+        try {
+            return
+                    StreamSupport
+                            .stream(applicantRepo.findAll().spliterator(), false)
+                            .filter(applicant -> applicant.getLevel().equalsIgnoreCase(level))
+                            .collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new ApplicantNotFoundException(level + " NOT FOUND");
+        }
+    }
 }

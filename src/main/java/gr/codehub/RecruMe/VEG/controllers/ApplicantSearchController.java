@@ -73,4 +73,15 @@ public class ApplicantSearchController {
             throws ApplicantNotFoundException {
         return applicantSearchService.searchBySkill(description);
     }
+    /**
+     * endpoint http://localhost:8080/recrumeVEG/applicants/level/{level}
+     * @param level
+     * @return
+     * @throws ApplicantNotFoundException
+     */
+    @GetMapping("applicants/level/{level}")
+    public List<Applicant> searchApplicantsByLevel(@PathVariable String level)
+            throws ApplicantNotFoundException {
+        return applicantSearchService.searchByLevel(level);
+    }
 }
