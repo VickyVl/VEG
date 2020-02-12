@@ -23,7 +23,7 @@ public class ApplicantSearchService {
     private ApplicantSkills applicantSkillRepo;
 
     @Autowired
-    public ApplicantSearchService(Applicants applicantRepo , Skills skillRepo , ApplicantSkills applicantSkillRepo) {
+    public ApplicantSearchService(Applicants applicantRepo, Skills skillRepo, ApplicantSkills applicantSkillRepo) {
         this.applicantRepo = applicantRepo;
         this.skillRepo = skillRepo;
         this.applicantSkillRepo = applicantSkillRepo;
@@ -31,6 +31,7 @@ public class ApplicantSearchService {
 
     /**
      * Get applicant from Applicant Repository
+     *
      * @param id
      * @return applicant
      * @throws ApplicantNotFoundException
@@ -48,6 +49,7 @@ public class ApplicantSearchService {
 
     /**
      * Search applicant by the first name
+     *
      * @param firstName
      * @return applicant
      * @throws ApplicantNotFoundException
@@ -66,6 +68,7 @@ public class ApplicantSearchService {
 
     /**
      * Search applicant by region
+     *
      * @param region
      * @return applicant
      * @throws ApplicantNotFoundException
@@ -82,17 +85,18 @@ public class ApplicantSearchService {
         }
     }
 
+
     public List<Applicant> searchBySkill(String description) throws ApplicantNotFoundException {
         try {
             Skill skill = skillRepo.findByDescription(description);
+            System.out.println("---------------------------------------------------------SKILL ID--------------------" + skill.getId());
             List<ApplicantSkill> applicantSkillsBySkillIdList = applicantSkillRepo.findBySkillId(skill.getId());
 
             List<Applicant> responseApplicantsList = new ArrayList<>();
-            for(ApplicantSkill applicantSkill: applicantSkillsBySkillIdList){
-                Optional<Applicant> applicantOptional = applicantRepo.findById(applicantSkill.getApplicant().getId());
-                responseApplicantsList.add(applicantOptional.get());
+            for (ApplicantSkill a : applicantSkillsBySkillIdList) {
+                responseApplicantsList.add(a.getApplicant());
             }
-           return responseApplicantsList;
+            return responseApplicantsList;
         } catch (Exception e) {
             throw new ApplicantNotFoundException("SKILL " + description + " NOT FOUND" + e);
         }

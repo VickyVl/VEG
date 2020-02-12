@@ -45,6 +45,7 @@ public class ApplicantService {
         applicant.setAddress(applicantDto.getAddress());
         applicant.setRegion(applicantDto.getRegion());
         applicant.setEducationLevel(applicantDto.getEducationLevel());
+        applicant.setLevel(applicantDto.getLevel());
         applicant.setActive(true);
 
         List<String> skillsDescriptions = applicantDto.getApplicantSkillsDescriptions();

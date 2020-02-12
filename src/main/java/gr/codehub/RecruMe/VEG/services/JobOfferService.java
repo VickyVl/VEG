@@ -36,6 +36,7 @@ public class JobOfferService {
         jobOffer.setTitleOfPosition(jobOfferDto.getTitleOfPosition());
         jobOffer.setRegion(jobOfferDto.getRegion());
         jobOffer.setEducationLevel(jobOfferDto.getEducationLevel());
+        jobOffer.setActive(true);
 
         List<String> skillsDescriptions = jobOfferDto.getJobOfferSkillsDescriptions();
         List<JobSkill> jobOfferSkills = new ArrayList<>();

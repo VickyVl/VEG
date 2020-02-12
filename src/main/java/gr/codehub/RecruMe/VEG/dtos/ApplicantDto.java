@@ -17,6 +17,7 @@ public class ApplicantDto {
     private String address;
     private String Region;
     private String educationLevel;
+    private String level;
 
     private List<String> applicantSkillsDescriptions;
 }

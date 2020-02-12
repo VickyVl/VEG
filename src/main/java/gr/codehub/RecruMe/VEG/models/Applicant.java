@@ -20,6 +20,7 @@ public class Applicant {
     private String address;
     private String region;
     private String educationLevel;
+    private String level;
 
     @Column(columnDefinition = "bit default 1")
     private boolean active;
@@ -28,11 +29,12 @@ public class Applicant {
     @JsonIgnore
     private List<ApplicantSkill> applicantSkills;
 
-    public Applicant(String firstName, String lastName, String address, String region, String educationLevel) {
+    public Applicant(String firstName, String lastName, String address, String region, String educationLevel,String level) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.region = region;
         this.educationLevel = educationLevel;
+        this.level = level;
     }
 }

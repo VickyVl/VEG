@@ -66,6 +66,7 @@ public class ApplicantExcelService {
             Cell addressCell = cellIterator.next();
             Cell regionCell = cellIterator.next();
             Cell educationLevelCell = cellIterator.next();
+            Cell levelCell = cellIterator.next();
 
 
             List<Skill> applicantSkills = new ArrayList<>();
@@ -89,7 +90,8 @@ public class ApplicantExcelService {
                     lastNameCell.getStringCellValue(),
                     addressCell.getStringCellValue(),
                     regionCell.getStringCellValue(),
-                    educationLevelCell.getStringCellValue());
+                    educationLevelCell.getStringCellValue(),
+                    levelCell.getStringCellValue());
             applicant = applicantRepo.save(applicant);
 
             for (int i=0; i<applicantSkills.size(); i++){

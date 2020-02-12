@@ -81,13 +81,13 @@ public class JobOfferSearchService {
     public List<JobOffer> searchJobOffersBySkill(String description) throws JobOfferNotFoundException {
         try {
             Skill skill = skillRepo.findByDescription(description);
+
             List<JobSkill> jobSkillsBySkillIdList = jobSkillRepo.findBySkillId(skill.getId());
 
             List<JobOffer> responseJobOffersList = new ArrayList<>();
 
             for(JobSkill jobSkill: jobSkillsBySkillIdList){
-                Optional<JobOffer> jobOfferOptional = jobOfferRepo.findById(jobSkill.getJobOffer().getId());
-                responseJobOffersList.add(jobOfferOptional.get());
+                responseJobOffersList.add(jobSkill.getJobOffer());
             }
             return responseJobOffersList;
         } catch (Exception e) {
