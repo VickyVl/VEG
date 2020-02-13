@@ -12,9 +12,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
+
+/**
+ * ApplicantSearchService provides search functionalities for all applicants.
+ */
 
 @Service
 public class ApplicantSearchService {
@@ -85,6 +88,13 @@ public class ApplicantSearchService {
         }
     }
 
+    /**
+     * Search applicant by skill
+     *
+     * @param description
+     * @return applicant
+     * @throws ApplicantNotFoundException
+     */
 
     public List<Applicant> searchBySkill(String description) throws ApplicantNotFoundException {
         try {

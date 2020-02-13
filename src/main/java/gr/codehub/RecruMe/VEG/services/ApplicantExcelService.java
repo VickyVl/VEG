@@ -23,6 +23,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * ApplicantExcelService registers all applicants from the file into the database.
+ */
+
 @Service
 public class ApplicantExcelService {
     @Autowired
@@ -33,11 +37,13 @@ public class ApplicantExcelService {
 
     @Autowired
     private ApplicantSkills applicantSkillRepo;
+
     /**
      * Show all applicants from excel
      * @return applicant
      * @throws IOException
      */
+
     public List<Applicant> getApplicantExcel() throws IOException {
         ApplicantExcel("dataforrecrume.xlsx");
         return applicantRepo.findAll();
@@ -48,6 +54,7 @@ public class ApplicantExcelService {
      * @param excelFileName
      * @throws IOException
      */
+
     public void ApplicantExcel(String excelFileName) throws IOException {
 
         File file = ResourceUtils.getFile("classpath:"+excelFileName);
