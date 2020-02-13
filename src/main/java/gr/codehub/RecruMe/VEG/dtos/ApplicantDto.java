@@ -1,12 +1,16 @@
 package gr.codehub.RecruMe.VEG.dtos;
 
-import gr.codehub.RecruMe.VEG.models.ApplicantSkill;
-import gr.codehub.RecruMe.VEG.models.Skill;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+
+/**
+ * Entity ApplicantDto aggregates the data of the object to be transferred and served by the Post call,
+ * when a new applicant is registered in the system.
+ * Fundamental methods/tools imported from Lombok Library.
+ */
 
 @Data
 @NoArgsConstructor

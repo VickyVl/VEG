@@ -16,6 +16,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+/**
+ * ApplicantSearchService provides search functionalities for all applicants.
+ */
+
 @Service
 public class ApplicantSearchService {
     private Applicants applicantRepo;
