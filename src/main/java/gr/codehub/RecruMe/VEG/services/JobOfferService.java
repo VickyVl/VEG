@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -44,12 +45,20 @@ public class JobOfferService {
         jobOffer = jobOfferRepo.save(jobOffer);
 
         for (String d : skillsDescriptions){
-            Skill foundSkill = skillRepo.findFirstByDescription(d);
+            Optional<Skill> foundSkill = skillRepo.findByDescription(d);
             JobSkill js = new JobSkill();
             js.setJobOffer(jobOffer);
-            js.setSkill(foundSkill);
-            js = jobSkillRepo.save(js);
+            if (!foundSkill.isPresent()){
+                Skill jobSkill = new Skill();
+                jobSkill.setDescription(d);
+                jobSkill = skillRepo.save(jobSkill);
+                js.setSkill(jobSkill);
+            }
+            else {
+                js.setSkill(foundSkill.get());
+            }
             jobOfferSkills.add(js);
+            js = jobSkillRepo.save(js);
         }
 
         jobOffer.setJobSkills(jobOfferSkills);

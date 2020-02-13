@@ -9,9 +9,11 @@ import org.springframework.stereotype.Repository;
  * exposing a complete set of methods to manipulate the corresponding entity, i.e. skill.
  */
 
+import java.util.Optional;
+
 @Repository
 public interface Skills extends JpaRepository<Skill, Integer> {
-    Skill findFirstByDescription(String skillName);  //already given by Spring
+    Skill findFirstByDescription(String skillName); //already qyery by spring
 
-    Skill findByDescription(String skillName);
+    Optional<Skill> findByDescription(String skillName);
 }

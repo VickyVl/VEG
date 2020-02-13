@@ -31,6 +31,12 @@ public class JobOfferSearchService {
         this.jobSkillRepo = jobSkillRepo;
     }
 
+    /**
+     * show jobOffer by id
+     * @param id
+     * @return joboffer by id
+     * @throws JobOfferNotFoundException
+     */
     public JobOffer getJobOffer(int id) throws JobOfferNotFoundException {
 
         try {
@@ -41,6 +47,12 @@ public class JobOfferSearchService {
         }
     }
 
+    /**
+     * show jobOffer by titleOfPosition
+     * @param titleOfPosition
+     * @return jobOffer by titleOfPosition
+     * @throws JobOfferNotFoundException
+     */
     public List<JobOffer> readByPosition(String titleOfPosition) throws JobOfferNotFoundException {
         try {
             return
@@ -53,6 +65,12 @@ public class JobOfferSearchService {
         }
     }
 
+    /**
+     * show jobOffer by region
+     * @param region
+     * @return show jobOffer by region
+     * @throws JobOfferNotFoundException
+     */
     public List<JobOffer> readByRegion(String region) throws JobOfferNotFoundException {
         try {
             return
@@ -65,6 +83,12 @@ public class JobOfferSearchService {
         }
     }
 
+    /**
+     * show jobOffer by company
+     * @param company
+     * @return show jobOffer by company
+     * @throws JobOfferNotFoundException
+     */
     public List<JobOffer> readByCompany(String company) throws JobOfferNotFoundException {
         try {
             return
@@ -77,12 +101,17 @@ public class JobOfferSearchService {
         }
     }
 
-
+    /**
+     * show jobOffers by skill(description)
+     * @param description
+     * @return show jobOffers by skill(description)
+     * @throws JobOfferNotFoundException
+     */
     public List<JobOffer> searchJobOffersBySkill(String description) throws JobOfferNotFoundException {
         try {
-            Skill skill = skillRepo.findByDescription(description);
+            Optional<Skill> skill = skillRepo.findByDescription(description);
 
-            List<JobSkill> jobSkillsBySkillIdList = jobSkillRepo.findBySkillId(skill.getId());
+            List<JobSkill> jobSkillsBySkillIdList = jobSkillRepo.findBySkillId(skill.get().getId());
 
             List<JobOffer> responseJobOffersList = new ArrayList<>();
 

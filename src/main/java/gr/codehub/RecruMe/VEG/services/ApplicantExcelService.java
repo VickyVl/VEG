@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * ApplicantExcelService registers all applicants from the file into the database.
@@ -40,6 +41,7 @@ public class ApplicantExcelService {
 
     /**
      * Show all applicants from excel
+     *
      * @return applicant
      * @throws IOException
      */
@@ -51,13 +53,14 @@ public class ApplicantExcelService {
 
     /**
      * Read all applicants from excel file
+     *
      * @param excelFileName
      * @throws IOException
      */
 
     public void ApplicantExcel(String excelFileName) throws IOException {
 
-        File file = ResourceUtils.getFile("classpath:"+excelFileName);
+        File file = ResourceUtils.getFile("classpath:" + excelFileName);
         FileInputStream excelFile = new FileInputStream(file);
         Workbook workbook = new XSSFWorkbook(excelFile);
         Sheet datatypeSheet = workbook.getSheetAt(0);
@@ -80,51 +83,82 @@ public class ApplicantExcelService {
             List<Skill> applicantSkills = new ArrayList<>();
 
             String description = "";
-            while(cellIterator.hasNext()) {
-                Cell descr =  cellIterator.next();
+            while (cellIterator.hasNext()) {
+                Cell descr = cellIterator.next();
                 String value = descr.getStringCellValue();
-//                if (!value.trim().isEmpty()){
-//                        if (!description.isEmpty()){
-//                            description += ", ";
-//                        }
-//                    description += value;
-                Skill foundSkill = skillRepo.findFirstByDescription(value);
-                applicantSkills.add(foundSkill);
-            }
-            
-            LevelType levelType = null;
+                description = value;
+                Optional<Skill> foundSkill = skillRepo.findByDescription(value);
+                if (!foundSkill.isPresent()){
+                    Skill newSkill = new Skill();
+                    newSkill.setDescription(value);
+                    skillRepo.save(newSkill);
+                    applicantSkills.add(newSkill);
+                }
+                else {
 
-            if (levelCell.getStringCellValue().equalsIgnoreCase("Junior")){
-                levelType = LevelType.JUNIOR;
+                    applicantSkills.add(foundSkill.get());
+                }
             }
-            if (levelCell.getStringCellValue().equalsIgnoreCase("Mid")){
-                levelType = LevelType.MID;
-            }
-            if (levelCell.getStringCellValue().equalsIgnoreCase("Senior")){
-                levelType = LevelType.SENIOR;
-            }
-            
+            Applicant applicant = setApplicantFromExcel(firstNameCell.getStringCellValue(), lastNameCell.getStringCellValue(), addressCell.getStringCellValue(), regionCell.getStringCellValue(), educationLevelCell.getStringCellValue(), levelCell.getStringCellValue(), applicantSkills);
 
-            Applicant applicant = new Applicant(
-                    firstNameCell.getStringCellValue(),
-                    lastNameCell.getStringCellValue(),
-                    addressCell.getStringCellValue(),
-                    regionCell.getStringCellValue(),
-                    educationLevelCell.getStringCellValue(),
-                    levelCell.getStringCellValue());
-
-            applicant.setLevelType(levelType);
-            applicant = applicantRepo.save(applicant);
-
-
-            for (int i=0; i<applicantSkills.size(); i++){
-                ApplicantSkill applicantSkill = new ApplicantSkill();
-                applicantSkill.setApplicant(applicant);
-                applicantSkill.setSkill(applicantSkills.get(i));
-                applicantSkillRepo.save(applicantSkill);
-            }
-            applicant.setActive(true);
-            applicantRepo.save(applicant);
         }
+    }
+
+    /**
+     * sets applicant's level type (JUNIOR, MID, SENIOR)
+     *
+     * @param description of the level
+     * @return a LevelType
+     */
+    public LevelType findLevelType(String description) {
+        LevelType levelType = null;
+
+        if (description.equalsIgnoreCase("Junior")) {
+            levelType = LevelType.JUNIOR;
+        }
+        if (description.equalsIgnoreCase("Mid")) {
+            levelType = LevelType.MID;
+        }
+        if (description.equalsIgnoreCase("Senior")) {
+            levelType = LevelType.SENIOR;
+        }
+        return levelType;
+    }
+
+    /**
+     * sets an applicant that reads from an excel file
+     *
+     * @param firstName
+     * @param lastName
+     * @param address
+     * @param region
+     * @param educationLevel
+     * @param level
+     * @param applicantSkills
+     * @return
+     */
+
+    public Applicant setApplicantFromExcel(String firstName, String lastName, String address, String region, String educationLevel, String level, List<Skill> applicantSkills) {
+        Applicant applicant = new Applicant(
+                firstName,
+                lastName,
+                address,
+                region,
+                educationLevel,
+                level);
+
+        LevelType levelType = findLevelType(level);
+
+        applicant.setLevelType(levelType);
+        applicant = applicantRepo.save(applicant);
+
+        for (int i = 0; i < applicantSkills.size(); i++) {
+            ApplicantSkill applicantSkill = new ApplicantSkill();
+            applicantSkill.setApplicant(applicant);
+            applicantSkill.setSkill(applicantSkills.get(i));
+            applicantSkillRepo.save(applicantSkill);
+        }
+        applicant.setActive(true);
+        return applicantRepo.save(applicant);
     }
 }

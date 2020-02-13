@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -89,18 +90,17 @@ public class ApplicantSearchService {
     }
 
     /**
-     * Search applicant by skill
-     *
-     * @param description
-     * @return applicant
+     * searching all applicants by a skill
+     * @param description of the skill to look for
+     * @return a list of applicants that have the same skill as description skill
      * @throws ApplicantNotFoundException
      */
 
     public List<Applicant> searchBySkill(String description) throws ApplicantNotFoundException {
         try {
-            Skill skill = skillRepo.findByDescription(description);
-            System.out.println("---------------------------------------------------------SKILL ID--------------------" + skill.getId());
-            List<ApplicantSkill> applicantSkillsBySkillIdList = applicantSkillRepo.findBySkillId(skill.getId());
+            Optional<Skill> skill = skillRepo.findByDescription(description);
+            System.out.println("---------------------------------------------------------SKILL ID--------------------" + skill.get().getId());
+            List<ApplicantSkill> applicantSkillsBySkillIdList = applicantSkillRepo.findBySkillId(skill.get().getId());
 
             List<Applicant> responseApplicantsList = new ArrayList<>();
             for (ApplicantSkill a : applicantSkillsBySkillIdList) {
