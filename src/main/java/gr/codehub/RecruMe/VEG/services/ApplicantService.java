@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -36,16 +37,18 @@ public class ApplicantService {
 
     /**
      * Make and save a new applicant
+     *
      * @param applicantDto
      * @return applicant
      */
     public Applicant save(ApplicantDto applicantDto) {
         Applicant applicant = settingApplicantData(applicantDto);
-        return  applicantRepo.save(applicant);
+        return applicantRepo.save(applicant);
     }
 
     /**
      * Show all applicants
+     *
      * @return all applicant
      */
     public List<Applicant> getAll() {
@@ -58,10 +61,11 @@ public class ApplicantService {
 
     /**
      * setting/saving applicant's data from applicantDto
+     *
      * @param applicantDto
      * @return an applicant
      */
-    public Applicant settingApplicantData(ApplicantDto applicantDto){
+    public Applicant settingApplicantData(ApplicantDto applicantDto) {
         Applicant applicant = new Applicant();
         applicant.setFirstName(applicantDto.getFirstName());
         applicant.setLastName(applicantDto.getLastName());
@@ -78,35 +82,44 @@ public class ApplicantService {
         List<String> skillsDescriptions = applicantDto.getApplicantSkillsDescriptions();
         List<ApplicantSkill> applicantSkills = new ArrayList<>();
 
-        for (String d : skillsDescriptions){
-            Skill foundSkill = skillRepo.findFirstByDescription(d);
+        for (String d : skillsDescriptions) {
+
             ApplicantSkill as = new ApplicantSkill();
             as.setApplicant(applicant);
-            as.setSkill(foundSkill);
+            Optional<Skill> foundSkill = skillRepo.findByDescription(d);
+            if (!foundSkill.isPresent()){
+                Skill newSkill = new Skill();
+                newSkill.setDescription(d);
+                skillRepo.save(newSkill);
+                as.setSkill(newSkill);
+            }
+            else{
+                as.setSkill(foundSkill.get());
+            }
             as = applicantSkillRepo.save(as);
             applicantSkills.add(as);
         }
         applicant.setApplicantSkills(applicantSkills);
-        return  applicantRepo.save(applicant);
+        return applicantRepo.save(applicant);
     }
-
 
 
     /**
      * sets applicant's level type (JUNIOR, MID, SENIOR)
+     *
      * @param description of the level
      * @return a LevelType
      */
-    public LevelType findLevelType(String description){
+    public LevelType findLevelType(String description) {
         LevelType levelType = null;
 
-        if (description.equalsIgnoreCase("Junior")){
+        if (description.equalsIgnoreCase("Junior")) {
             levelType = LevelType.JUNIOR;
         }
-        if (description.equalsIgnoreCase("Mid")){
+        if (description.equalsIgnoreCase("Mid")) {
             levelType = LevelType.MID;
         }
-        if (description.equalsIgnoreCase("Senior")){
+        if (description.equalsIgnoreCase("Senior")) {
             levelType = LevelType.SENIOR;
         }
         return levelType;

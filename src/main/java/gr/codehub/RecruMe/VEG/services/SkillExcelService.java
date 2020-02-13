@@ -16,6 +16,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 
@@ -43,7 +44,11 @@ public class SkillExcelService {
             Iterator<Cell> cellIterator = currentRow.iterator();
             Cell description =  cellIterator.next();
             Skill skill = new Skill(description.getStringCellValue());
-            skillRepo.save(skill);
+            Optional<Skill> foundSkill = skillRepo.findByDescription(skill.getDescription());
+            if (!foundSkill.isPresent()){
+                skillRepo.save(skill);
+            }
+
         }
     }
 }

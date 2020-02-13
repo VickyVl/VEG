@@ -109,9 +109,9 @@ public class JobOfferSearchService {
      */
     public List<JobOffer> searchJobOffersBySkill(String description) throws JobOfferNotFoundException {
         try {
-            Skill skill = skillRepo.findByDescription(description);
+            Optional<Skill> skill = skillRepo.findByDescription(description);
 
-            List<JobSkill> jobSkillsBySkillIdList = jobSkillRepo.findBySkillId(skill.getId());
+            List<JobSkill> jobSkillsBySkillIdList = jobSkillRepo.findBySkillId(skill.get().getId());
 
             List<JobOffer> responseJobOffersList = new ArrayList<>();
 

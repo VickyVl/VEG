@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ApplicantExcelService {
@@ -33,8 +34,10 @@ public class ApplicantExcelService {
 
     @Autowired
     private ApplicantSkills applicantSkillRepo;
+
     /**
      * Show all applicants from excel
+     *
      * @return applicant
      * @throws IOException
      */
@@ -45,12 +48,13 @@ public class ApplicantExcelService {
 
     /**
      * Read all applicants from excel file
+     *
      * @param excelFileName
      * @throws IOException
      */
     public void ApplicantExcel(String excelFileName) throws IOException {
 
-        File file = ResourceUtils.getFile("classpath:"+excelFileName);
+        File file = ResourceUtils.getFile("classpath:" + excelFileName);
         FileInputStream excelFile = new FileInputStream(file);
         Workbook workbook = new XSSFWorkbook(excelFile);
         Sheet datatypeSheet = workbook.getSheetAt(0);
@@ -73,40 +77,51 @@ public class ApplicantExcelService {
             List<Skill> applicantSkills = new ArrayList<>();
 
             String description = "";
-            while(cellIterator.hasNext()) {
-                Cell descr =  cellIterator.next();
+            while (cellIterator.hasNext()) {
+                Cell descr = cellIterator.next();
                 String value = descr.getStringCellValue();
-                 description += value;
-                Skill foundSkill = skillRepo.findFirstByDescription(value);
-                applicantSkills.add(foundSkill);
+                description = value;
+                Optional<Skill> foundSkill = skillRepo.findByDescription(value);
+                if (!foundSkill.isPresent()){
+                    Skill newSkill = new Skill();
+                    newSkill.setDescription(value);
+                    skillRepo.save(newSkill);
+                    applicantSkills.add(newSkill);
+                }
+                else {
+
+                    applicantSkills.add(foundSkill.get());
+                }
             }
-            Applicant applicant = setApplicantFromExcel(firstNameCell.getStringCellValue(), lastNameCell.getStringCellValue(), addressCell.getStringCellValue(), regionCell.getStringCellValue(), educationLevelCell.getStringCellValue(), levelCell.getStringCellValue() ,applicantSkills );
+            Applicant applicant = setApplicantFromExcel(firstNameCell.getStringCellValue(), lastNameCell.getStringCellValue(), addressCell.getStringCellValue(), regionCell.getStringCellValue(), educationLevelCell.getStringCellValue(), levelCell.getStringCellValue(), applicantSkills);
 
         }
     }
 
     /**
      * sets applicant's level type (JUNIOR, MID, SENIOR)
+     *
      * @param description of the level
      * @return a LevelType
      */
-    public LevelType findLevelType(String description){
+    public LevelType findLevelType(String description) {
         LevelType levelType = null;
 
-        if (description.equalsIgnoreCase("Junior")){
+        if (description.equalsIgnoreCase("Junior")) {
             levelType = LevelType.JUNIOR;
         }
-        if (description.equalsIgnoreCase("Mid")){
+        if (description.equalsIgnoreCase("Mid")) {
             levelType = LevelType.MID;
         }
-        if (description.equalsIgnoreCase("Senior")){
+        if (description.equalsIgnoreCase("Senior")) {
             levelType = LevelType.SENIOR;
         }
-    return levelType;
+        return levelType;
     }
 
     /**
      * sets an applicant that reads from an excel file
+     *
      * @param firstName
      * @param lastName
      * @param address
@@ -117,7 +132,7 @@ public class ApplicantExcelService {
      * @return
      */
 
-    public Applicant setApplicantFromExcel(String firstName, String lastName, String address, String region ,String educationLevel ,String level, List<Skill> applicantSkills){
+    public Applicant setApplicantFromExcel(String firstName, String lastName, String address, String region, String educationLevel, String level, List<Skill> applicantSkills) {
         Applicant applicant = new Applicant(
                 firstName,
                 lastName,
@@ -131,7 +146,7 @@ public class ApplicantExcelService {
         applicant.setLevelType(levelType);
         applicant = applicantRepo.save(applicant);
 
-        for (int i=0; i<applicantSkills.size(); i++){
+        for (int i = 0; i < applicantSkills.size(); i++) {
             ApplicantSkill applicantSkill = new ApplicantSkill();
             applicantSkill.setApplicant(applicant);
             applicantSkill.setSkill(applicantSkills.get(i));

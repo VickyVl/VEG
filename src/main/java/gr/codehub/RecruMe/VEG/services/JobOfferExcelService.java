@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class JobOfferExcelService {
@@ -68,8 +69,16 @@ public class JobOfferExcelService {
 //                        description += ", ";
 //                    }
 //                    description += value;
-                Skill foundSkill = skillRepo.findFirstByDescription(value);
-                jobSkills.add(foundSkill);
+                Optional<Skill> foundSkill = skillRepo.findByDescription(value);
+                if (!foundSkill.isPresent()){
+                    Skill newSkill = new Skill();
+                    newSkill.setDescription(value);
+                    skillRepo.save(newSkill);
+                    jobSkills.add(newSkill);
+                }else {
+
+                    jobSkills.add(foundSkill.get());
+                }
             }
 
             JobOffer jobOffer = new JobOffer(

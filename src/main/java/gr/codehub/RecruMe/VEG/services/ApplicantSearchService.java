@@ -94,9 +94,9 @@ public class ApplicantSearchService {
 
     public List<Applicant> searchBySkill(String description) throws ApplicantNotFoundException {
         try {
-            Skill skill = skillRepo.findByDescription(description);
-            System.out.println("---------------------------------------------------------SKILL ID--------------------" + skill.getId());
-            List<ApplicantSkill> applicantSkillsBySkillIdList = applicantSkillRepo.findBySkillId(skill.getId());
+            Optional<Skill> skill = skillRepo.findByDescription(description);
+            System.out.println("---------------------------------------------------------SKILL ID--------------------" + skill.get().getId());
+            List<ApplicantSkill> applicantSkillsBySkillIdList = applicantSkillRepo.findBySkillId(skill.get().getId());
 
             List<Applicant> responseApplicantsList = new ArrayList<>();
             for (ApplicantSkill a : applicantSkillsBySkillIdList) {
