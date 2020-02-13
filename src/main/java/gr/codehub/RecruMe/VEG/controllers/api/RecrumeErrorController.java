@@ -1,4 +1,4 @@
-package gr.codehub.RecruMe.VEG.controllers;
+package gr.codehub.RecruMe.VEG.controllers.api;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.web.bind.annotation.RequestMapping;

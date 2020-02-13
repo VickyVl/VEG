@@ -1,4 +1,4 @@
-package gr.codehub.RecruMe.VEG.controllers;
+package gr.codehub.RecruMe.VEG.controllers.api;
 
 import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
 import gr.codehub.RecruMe.VEG.models.Applicant;
