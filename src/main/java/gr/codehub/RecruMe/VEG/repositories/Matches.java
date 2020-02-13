@@ -16,8 +16,11 @@ import java.util.List;
 @Repository
 public interface Matches extends JpaRepository<Match, Integer> {
 
-        @Query(value = "SELECT * FROM MATCH\n" +
-                "WHERE type = '0' OR type = '1' ;", nativeQuery = true)
-        List<Object[]> getListOfProposedMatches();
+    @Query(value = "SELECT * FROM MATCH\n" +
+            "WHERE type = '0' OR type = '1' ;", nativeQuery = true)
+    List<Object[]> getListOfProposedMatches();
+
+    @Query(value = "SELECT * FROM MATCH WHERE type = '2' ;", nativeQuery = true)
+    List<Match> getListOfFinalizedMatches();
 
 }

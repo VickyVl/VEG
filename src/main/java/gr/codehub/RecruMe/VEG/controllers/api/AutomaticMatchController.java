@@ -2,6 +2,7 @@ package gr.codehub.RecruMe.VEG.controllers.api;
 
 import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
 import gr.codehub.RecruMe.VEG.exceptions.JobOfferNotFoundException;
+import gr.codehub.RecruMe.VEG.exceptions.MatchNotFoundException;
 import gr.codehub.RecruMe.VEG.exceptions.MatchedAlreadyException;
 import gr.codehub.RecruMe.VEG.models.Match;
 import gr.codehub.RecruMe.VEG.services.AutomaticMatchService;
@@ -38,5 +39,11 @@ public class AutomaticMatchController {
     public List<Match> getMatch(@PathVariable int jobofferId)
             throws MatchedAlreadyException, JobOfferNotFoundException, ApplicantNotFoundException {
         return automaticMatchService.automaticMatch(jobofferId);
+    }
+
+    @GetMapping("auto/applicant/{jobofferId}")
+    public Match getOneMatch(@PathVariable int jobofferId)
+            throws MatchedAlreadyException, JobOfferNotFoundException, ApplicantNotFoundException, MatchNotFoundException {
+        return automaticMatchService.automaticMatchForOne(jobofferId);
     }
 }
