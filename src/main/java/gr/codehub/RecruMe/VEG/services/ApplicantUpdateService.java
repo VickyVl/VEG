@@ -1,5 +1,6 @@
 package gr.codehub.RecruMe.VEG.services;
 
+import gr.codehub.RecruMe.VEG.EnumTypes.LevelType;
 import gr.codehub.RecruMe.VEG.dtos.ApplicantDto;
 import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
 import gr.codehub.RecruMe.VEG.models.Applicant;
@@ -195,6 +196,27 @@ public class ApplicantUpdateService {
             throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
         }
         applicant.setLevel(applicantDto.getLevel());
+        applicant.setLevelType(findLevelType(applicantDto.getLevel()));
         return applicantRepo.save(applicant);
+    }
+
+    /**
+     * sets applicant's level type (JUNIOR, MID, SENIOR)
+     * @param description of the level
+     * @return a LevelType
+     */
+    public LevelType findLevelType(String description){
+        LevelType levelType = null;
+
+        if (description.equalsIgnoreCase("Junior")){
+            levelType = LevelType.JUNIOR;
+        }
+        if (description.equalsIgnoreCase("Mid")){
+            levelType = LevelType.MID;
+        }
+        if (description.equalsIgnoreCase("Senior")){
+            levelType = LevelType.SENIOR;
+        }
+        return levelType;
     }
 }

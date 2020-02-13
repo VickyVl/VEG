@@ -40,43 +40,7 @@ public class ApplicantService {
      * @return applicant
      */
     public Applicant save(ApplicantDto applicantDto) {
-        Applicant applicant = new Applicant();
-        applicant.setFirstName(applicantDto.getFirstName());
-        applicant.setLastName(applicantDto.getLastName());
-        applicant.setAddress(applicantDto.getAddress());
-        applicant.setRegion(applicantDto.getRegion());
-        applicant.setEducationLevel(applicantDto.getEducationLevel());
-        applicant.setLevel(applicantDto.getLevel());
-        applicant.setActive(true);
-
-        LevelType levelType = null;
-
-        if (applicant.getLevel().equalsIgnoreCase("Junior")){
-            levelType = LevelType.JUNIOR;
-        }
-        if (applicant.getLevel().equalsIgnoreCase("Mid")){
-            levelType = LevelType.MID;
-        }
-        if (applicant.getLevel().equalsIgnoreCase("Senior")){
-            levelType = LevelType.SENIOR;
-        }
-
-        List<String> skillsDescriptions = applicantDto.getApplicantSkillsDescriptions();
-        List<ApplicantSkill> applicantSkills = new ArrayList<>();
-
-        applicant.setLevelType(levelType);
-        applicant = applicantRepo.save(applicant);
-
-
-        for (String d : skillsDescriptions){
-            Skill foundSkill = skillRepo.findFirstByDescription(d);
-            ApplicantSkill as = new ApplicantSkill();
-            as.setApplicant(applicant);
-            as.setSkill(foundSkill);
-            as = applicantSkillRepo.save(as);
-            applicantSkills.add(as);
-        }
-        applicant.setApplicantSkills(applicantSkills);
+        Applicant applicant = settingApplicantData(applicantDto);
         return  applicantRepo.save(applicant);
     }
 
@@ -91,6 +55,63 @@ public class ApplicantService {
                         .stream(applicantRepo.findAll().spliterator(), false)
                         .collect(Collectors.toList());
     }
+
+    /**
+     * setting/saving applicant's data from applicantDto
+     * @param applicantDto
+     * @return an applicant
+     */
+    public Applicant settingApplicantData(ApplicantDto applicantDto){
+        Applicant applicant = new Applicant();
+        applicant.setFirstName(applicantDto.getFirstName());
+        applicant.setLastName(applicantDto.getLastName());
+        applicant.setAddress(applicantDto.getAddress());
+        applicant.setRegion(applicantDto.getRegion());
+        applicant.setEducationLevel(applicantDto.getEducationLevel());
+        applicant.setLevel(applicantDto.getLevel());
+        applicant.setActive(true);
+
+        LevelType levelType = findLevelType(applicantDto.getLevel());
+        applicant.setLevelType(levelType);
+        applicant.setActive(true);
+        applicantRepo.save(applicant);
+        List<String> skillsDescriptions = applicantDto.getApplicantSkillsDescriptions();
+        List<ApplicantSkill> applicantSkills = new ArrayList<>();
+
+        for (String d : skillsDescriptions){
+            Skill foundSkill = skillRepo.findFirstByDescription(d);
+            ApplicantSkill as = new ApplicantSkill();
+            as.setApplicant(applicant);
+            as.setSkill(foundSkill);
+            as = applicantSkillRepo.save(as);
+            applicantSkills.add(as);
+        }
+        applicant.setApplicantSkills(applicantSkills);
+        return  applicantRepo.save(applicant);
+    }
+
+
+
+    /**
+     * sets applicant's level type (JUNIOR, MID, SENIOR)
+     * @param description of the level
+     * @return a LevelType
+     */
+    public LevelType findLevelType(String description){
+        LevelType levelType = null;
+
+        if (description.equalsIgnoreCase("Junior")){
+            levelType = LevelType.JUNIOR;
+        }
+        if (description.equalsIgnoreCase("Mid")){
+            levelType = LevelType.MID;
+        }
+        if (description.equalsIgnoreCase("Senior")){
+            levelType = LevelType.SENIOR;
+        }
+        return levelType;
+    }
+
 }
 
 

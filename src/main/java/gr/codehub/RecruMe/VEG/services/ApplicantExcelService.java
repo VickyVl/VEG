@@ -76,48 +76,68 @@ public class ApplicantExcelService {
             while(cellIterator.hasNext()) {
                 Cell descr =  cellIterator.next();
                 String value = descr.getStringCellValue();
-//                if (!value.trim().isEmpty()){
-//                        if (!description.isEmpty()){
-//                            description += ", ";
-//                        }
-//                    description += value;
+                 description += value;
                 Skill foundSkill = skillRepo.findFirstByDescription(value);
                 applicantSkills.add(foundSkill);
             }
-            
-            LevelType levelType = null;
+            Applicant applicant = setApplicantFromExcel(firstNameCell.getStringCellValue(), lastNameCell.getStringCellValue(), addressCell.getStringCellValue(), regionCell.getStringCellValue(), educationLevelCell.getStringCellValue(), levelCell.getStringCellValue() ,applicantSkills );
 
-            if (levelCell.getStringCellValue().equalsIgnoreCase("Junior")){
-                levelType = LevelType.JUNIOR;
-            }
-            if (levelCell.getStringCellValue().equalsIgnoreCase("Mid")){
-                levelType = LevelType.MID;
-            }
-            if (levelCell.getStringCellValue().equalsIgnoreCase("Senior")){
-                levelType = LevelType.SENIOR;
-            }
-            
-
-            Applicant applicant = new Applicant(
-                    firstNameCell.getStringCellValue(),
-                    lastNameCell.getStringCellValue(),
-                    addressCell.getStringCellValue(),
-                    regionCell.getStringCellValue(),
-                    educationLevelCell.getStringCellValue(),
-                    levelCell.getStringCellValue());
-
-            applicant.setLevelType(levelType);
-            applicant = applicantRepo.save(applicant);
-
-
-            for (int i=0; i<applicantSkills.size(); i++){
-                ApplicantSkill applicantSkill = new ApplicantSkill();
-                applicantSkill.setApplicant(applicant);
-                applicantSkill.setSkill(applicantSkills.get(i));
-                applicantSkillRepo.save(applicantSkill);
-            }
-            applicant.setActive(true);
-            applicantRepo.save(applicant);
         }
+    }
+
+    /**
+     * sets applicant's level type (JUNIOR, MID, SENIOR)
+     * @param description of the level
+     * @return a LevelType
+     */
+    public LevelType findLevelType(String description){
+        LevelType levelType = null;
+
+        if (description.equalsIgnoreCase("Junior")){
+            levelType = LevelType.JUNIOR;
+        }
+        if (description.equalsIgnoreCase("Mid")){
+            levelType = LevelType.MID;
+        }
+        if (description.equalsIgnoreCase("Senior")){
+            levelType = LevelType.SENIOR;
+        }
+    return levelType;
+    }
+
+    /**
+     * sets an applicant that reads from an excel file
+     * @param firstName
+     * @param lastName
+     * @param address
+     * @param region
+     * @param educationLevel
+     * @param level
+     * @param applicantSkills
+     * @return
+     */
+
+    public Applicant setApplicantFromExcel(String firstName, String lastName, String address, String region ,String educationLevel ,String level, List<Skill> applicantSkills){
+        Applicant applicant = new Applicant(
+                firstName,
+                lastName,
+                address,
+                region,
+                educationLevel,
+                level);
+
+        LevelType levelType = findLevelType(level);
+
+        applicant.setLevelType(levelType);
+        applicant = applicantRepo.save(applicant);
+
+        for (int i=0; i<applicantSkills.size(); i++){
+            ApplicantSkill applicantSkill = new ApplicantSkill();
+            applicantSkill.setApplicant(applicant);
+            applicantSkill.setSkill(applicantSkills.get(i));
+            applicantSkillRepo.save(applicantSkill);
+        }
+        applicant.setActive(true);
+        return applicantRepo.save(applicant);
     }
 }

@@ -85,6 +85,12 @@ public class ApplicantSearchService {
         }
     }
 
+    /**
+     * searching all applicants by a skill
+     * @param description of the skill to look for
+     * @return a list of applicants that have the same skill as description skill
+     * @throws ApplicantNotFoundException
+     */
 
     public List<Applicant> searchBySkill(String description) throws ApplicantNotFoundException {
         try {
