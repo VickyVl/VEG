@@ -10,7 +10,8 @@ import java.util.List;
 /**
  * Match Interface extends JpaRepository, is typed to the domain class and the ID type/primary key,
  * exposing a complete set of methods to manipulate the corresponding entity.
- * Provides reporting services by retrieving data of the proposed matches of applicants - job offers.
+ * Provides reporting services by retrieving data of the proposed matches (manual or automatic)
+ * of applicants - job offers, as well as data of the finalized matches.
  */
 
 @Repository

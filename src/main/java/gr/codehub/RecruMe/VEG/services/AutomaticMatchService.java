@@ -1,6 +1,5 @@
 package gr.codehub.RecruMe.VEG.services;
 
-import gr.codehub.RecruMe.VEG.EnumTypes.LevelType;
 import gr.codehub.RecruMe.VEG.EnumTypes.MatchType;
 import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
 import gr.codehub.RecruMe.VEG.exceptions.JobOfferNotFoundException;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * AutomaticMatchService implements methods for Matching Services.
@@ -40,9 +38,9 @@ public class AutomaticMatchService {
     }
 
     /**
-     * Display an automatic match
+     * Display automatic matches for a job offer
      * @param jobOfferId
-     * @return match if all requested job offer skills are fulfilled by the applicant's skills
+     * @return matches of applicants if all requested job offer skills are fulfilled by the applicants' skills
      * @throws MatchedAlreadyException
      * @throws JobOfferNotFoundException
      * @throws ApplicantNotFoundException
@@ -91,7 +89,15 @@ public class AutomaticMatchService {
         return foundMatches;
     }
 
-
+    /**
+     * Display one automatic match for a job offer
+     * @param jobOfferId
+     * @return a match with one applicant whose skills fulfill all requested job offer skills
+     * @throws MatchedAlreadyException
+     * @throws JobOfferNotFoundException
+     * @throws ApplicantNotFoundException
+     * @throws MatchNotFoundException
+     */
     public Match automaticMatchForOne(int jobOfferId) throws MatchedAlreadyException,
             JobOfferNotFoundException, ApplicantNotFoundException, MatchNotFoundException {
         Match match = new Match();
@@ -117,7 +123,6 @@ public class AutomaticMatchService {
             }
         }
         return match;
-
     }
 }
 

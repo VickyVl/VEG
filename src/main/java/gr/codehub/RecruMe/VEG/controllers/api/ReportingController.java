@@ -1,11 +1,11 @@
 package gr.codehub.RecruMe.VEG.controllers.api;
 
+import gr.codehub.RecruMe.VEG.exceptions.MatchNotFoundException;
+import gr.codehub.RecruMe.VEG.models.Match;
+import gr.codehub.RecruMe.VEG.services.FinalizeMatchService;
 import gr.codehub.RecruMe.VEG.services.ListMatchService;
 import gr.codehub.RecruMe.VEG.services.ReportingApplicantSkillService;
 import gr.codehub.RecruMe.VEG.services.ReportingJobSkillService;
-import gr.codehub.RecruMe.VEG.exceptions.MatchNotFoundException;
-import gr.codehub.RecruMe.VEG.models.Match;
-import gr.codehub.RecruMe.VEG.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +18,7 @@ import java.util.List;
  * - Top 5 most requested skills by job offers
  * - Top 5 most offered jobs by applicants
  * - List of proposed manual and automatic matches
+ * - List of the finalized matches between job offers and applicants (manual or automatic)
  * by displaying all the above via the corresponding HTTP responses as json files on the web.
  */
 
@@ -66,14 +67,13 @@ public class ReportingController {
         return listMatchService.getListOfProposedMatched();
     }
 
-    //    @Autowired
-//    private AutomaticMatchService automaticMatchService;
-//    private ManualMatchService manualMatchService
-//
+    /**
+     * Display a list of the finalized matches between job offers and applicants (manual and automatic)
+     * @return a list of finalized matches
+     */
+
     @GetMapping("listOfFinalizedMatches")
     public List<Match> getListOfFinalizedMatches() throws MatchNotFoundException {
         return finalizeMatchService.getFinalizedMatches();
     }
-}
-//}
 }
