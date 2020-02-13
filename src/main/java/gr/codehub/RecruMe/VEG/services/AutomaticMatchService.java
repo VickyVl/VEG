@@ -13,6 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * AutomaticMatchService implements methods for Matching Services.
+ * Automatic Match returned once all job offer requested skills are fulfilled by the applicant's skills.
+ */
+
 @Service
 public class AutomaticMatchService {
     private Matches matchesRepo;
@@ -22,13 +27,23 @@ public class AutomaticMatchService {
     private JobSkills jobSkills;
 
     @Autowired
-    public AutomaticMatchService(Matches matchRepo, Applicants applicantRepo, JobOffers jobOfferRepo, ApplicantSkills applicantSkills, JobSkills jobSkills) {
+    public AutomaticMatchService(Matches matchRepo, Applicants applicantRepo, JobOffers jobOfferRepo,
+                                 ApplicantSkills applicantSkills, JobSkills jobSkills) {
         this.matchesRepo = matchRepo;
         this.applicantRepo = applicantRepo;
         this.jobOfferRepo = jobOfferRepo;
         this.applicantSkills = applicantSkills;
         this.jobSkills = jobSkills;
     }
+
+    /**
+     * Display an automatic match
+     * @param jobOfferId
+     * @return match if all requested job offer skills are fulfilled by the applicant's skills
+     * @throws MatchedAlreadyException
+     * @throws JobOfferNotFoundException
+     * @throws ApplicantNotFoundException
+     */
 
     public List<Match> automaticMatch(int jobOfferId) throws MatchedAlreadyException,
             JobOfferNotFoundException, ApplicantNotFoundException {
@@ -72,17 +87,5 @@ public class AutomaticMatchService {
         }
         return foundMatches;
     }
-
-//    automaticMatchForOne
-//public Match automaticMatchForOne(int jobOfferId) throws MatchedAlreadyException,
-//        JobOfferNotFoundException, ApplicantNotFoundException {
-//        List<Applicant> applicantList = applicantRepo.findAll().stream().filter(Applicant:: a )
-//        List<Match> matches = automaticMatch(jobOfferId);
-//        for (Match m : matches){
-//            List<Applicant> applicantList = new ArrayList<>();
-//            Applicant applicant = applicantRepo.findById(m.getApplicant().getId());
-//        }
-//
-//        }
 }
 

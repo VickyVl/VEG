@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * ApplicantUpdateController used here to provide the data of all applicant update services
- * (of first name, last name, address, region, education level, activate/inactivate status, skill)
- * displaying them as json files on the web via HTTP responses.
+ * (of first name, last name, address, region, education level, activate/inactivate status, skill, level)
+ * by displaying the above as json files on the web via HTTP responses.
 */
 
 @RestController
@@ -22,8 +22,7 @@ public class ApplicantUpdateController {
     private ApplicantUpdateService applicantUpdateService;
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/applicant/{id}/firstname
-     * updates applicant's firstname
+     * Update applicant's first name
      * @param id
      * @param applicantDto
      * @return updated applicant
@@ -38,8 +37,7 @@ public class ApplicantUpdateController {
     }
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/applicant/{id}/lastname
-     * updates applicant's lastname
+     * Update applicant's last name
      * @param id
      * @param applicantDto
      * @return updated applicant
@@ -54,8 +52,7 @@ public class ApplicantUpdateController {
     }
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/applicant/{id}/address
-     * updates applicant's address
+     * Update applicant's address
      * @param id
      * @param applicantDto
      * @return updated applicant
@@ -70,8 +67,7 @@ public class ApplicantUpdateController {
     }
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/applicant/{id}/region
-     * updates applicant's region
+     * Update applicant's region
      * @param id
      * @param applicantDto
      * @return updated applicant
@@ -86,8 +82,7 @@ public class ApplicantUpdateController {
     }
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/applicant/{id}/educationlevel
-     * updates applicant's educationlevel
+     * Updates applicant's education level
      * @param id
      * @param applicantDto
      * @return updated applicant
@@ -102,8 +97,7 @@ public class ApplicantUpdateController {
     }
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/applicant/{id}/activateStatus
-     * updates applicant's activateStatus
+     * Update applicant's activate status
      * @param id
      * @param applicantDto
      * @return updated applicant
@@ -118,8 +112,7 @@ public class ApplicantUpdateController {
     }
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/applicant/{id}/inactivateStatus
-     * updates applicant's inactivateStatus
+     * Updates applicant's inactivate status
      * @param id
      * @param applicantDto
      * @return updated applicant
@@ -134,8 +127,7 @@ public class ApplicantUpdateController {
     }
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/applicant/{id}/skill
-     * updates applicant's skill
+     * Update applicant's skill
      * @param id
      * @param applicantDto
      * @return updated applicant
@@ -149,11 +141,10 @@ public class ApplicantUpdateController {
         return applicantUpdateService.updateApplicantSkill(id, applicantDto);
     }
     /**
-     * endpoint http://localhost:8080/recrumeVEG/applicant/{id}/level
-     * updates applicant's level
+     * Update applicant's level
      * @param id
      * @param applicantDto
-     * @return
+     * @return updated applicant
      * @throws ApplicantNotFoundException
      * @throws ApplicantUpdateSkillException
      */

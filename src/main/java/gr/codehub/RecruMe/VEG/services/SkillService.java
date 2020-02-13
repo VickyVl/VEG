@@ -13,8 +13,6 @@ import java.util.stream.StreamSupport;
 
 @Service
 public class SkillService {
-
-    @Autowired
     private Skills skillRepo;
 
     @Autowired

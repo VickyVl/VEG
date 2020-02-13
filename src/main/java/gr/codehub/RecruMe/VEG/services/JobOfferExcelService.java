@@ -23,15 +23,28 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * JobOfferExcelService registers all job offers from the file into the database.
+ */
+
 @Service
 public class JobOfferExcelService {
-    @Autowired
     private JobOffers jobOfferRepo;
-    @Autowired
     private Skills skillRepo;
-    @Autowired
     private JobSkills jobSkillRepo;
 
+    @Autowired
+    public JobOfferExcelService(JobOffers jobOfferRepo, Skills skillRepo, JobSkills jobSkillRepo) {
+        this.jobOfferRepo = jobOfferRepo;
+        this.skillRepo = skillRepo;
+        this.jobSkillRepo = jobSkillRepo;
+    }
+
+    /**
+     * Show all job offers excel
+     * @return job offers
+     * @throws IOException
+     */
 
     public List<JobOffer> getJobOfferExcel() throws IOException {
         JobOfferExcel("dataforrecrume.xlsx");

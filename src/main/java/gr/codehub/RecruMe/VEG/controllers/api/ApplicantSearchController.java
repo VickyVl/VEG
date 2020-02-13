@@ -13,7 +13,8 @@ import java.util.List;
 
 /**
  * ApplicantSearchController used here to provide the data of all applicant search services
- * (by id, first name, region) displaying them as json files on the web via HTTP responses.
+ * (by id, first name, region, skill description, level) by
+ * displaying the above as json files on the web via HTTP responses.
  */
 
 @RestController
@@ -23,7 +24,7 @@ public class ApplicantSearchController {
     private ApplicantSearchService applicantSearchService;
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/applicant/{id}
+     * Display an applicant by id
      * @param id
      * @return applicant by id
      * @throws ApplicantNotFoundException
@@ -37,9 +38,9 @@ public class ApplicantSearchController {
     }
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/applicants/name/{firstName}
+     * Display applicants with a particular first name
      * @param firstName
-     * @return list of applicants by first name
+     * @return a list of applicants by first name
      * @throws ApplicantNotFoundException
      */
 
@@ -50,9 +51,9 @@ public class ApplicantSearchController {
     }
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/applicants/region/{region}
+     * Display applicants in a particular region
      * @param region
-     * @return list of applicants by region
+     * @return a list of applicants by region
      * @throws ApplicantNotFoundException
      */
 
@@ -63,20 +64,21 @@ public class ApplicantSearchController {
     }
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/applicants/skill/{description}
+     * Display applicants with a particular skill description
      * @param description
-     * @return list of applicant searched by skill
+     * @return a list of applicants searched by skill
      * @throws ApplicantNotFoundException
      */
+
     @GetMapping("applicants/skill/{description}")
     public List<Applicant> searchApplicantsBySkill(@PathVariable String description)
             throws ApplicantNotFoundException {
         return applicantSearchService.searchBySkill(description);
     }
     /**
-     * endpoint http://localhost:8080/recrumeVEG/applicants/level/{level}
+     * Display applicants with a particular level
      * @param level
-     * @return
+     * @return a list of applicants with this level
      * @throws ApplicantNotFoundException
      */
     @GetMapping("applicants/level/{level}")

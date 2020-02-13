@@ -5,13 +5,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * ApplicantSkills Interface extends JpaRepository, is typed to the domain class and the ID type/primary key,
  * exposing a complete set of methods to manipulate the corresponding entity, i.e. the list of applicant's skills.
  * Provides reporting services by retrieving data of the most offered skills by applicants.
  */
-
-import java.util.List;
 
 @Repository
 public interface ApplicantSkills extends JpaRepository<ApplicantSkill, Integer> {

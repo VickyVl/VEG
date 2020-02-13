@@ -16,20 +16,29 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+/**
+ * JobOfferService implements methods for job offer functionalities (display all, register new job offer
+ * and save the job offer data).
+ */
+
 @Service
 public class JobOfferService {
-
-    @Autowired
     private JobOffers jobOfferRepo;
-    @Autowired
     private Skills skillRepo;
-    @Autowired
     private JobSkills jobSkillRepo;
 
     @Autowired
-    public JobOfferService(JobOffers jobOfferRepo) {
+    public JobOfferService(JobOffers jobOfferRepo, Skills skillRepo, JobSkills jobSkillRepo) {
         this.jobOfferRepo = jobOfferRepo;
+        this.skillRepo = skillRepo;
+        this.jobSkillRepo = jobSkillRepo;
     }
+
+    /**
+     * Register and save job offer data from jobOfferDto
+     * @param jobOfferDto
+     * @return a jobOffer
+     */
 
     public JobOffer save(JobOfferDto jobOfferDto) {
         JobOffer jobOffer = new JobOffer();
@@ -64,6 +73,11 @@ public class JobOfferService {
         jobOffer.setJobSkills(jobOfferSkills);
         return jobOfferRepo.save(jobOffer);
     }
+
+    /**
+     * Display all job offers from Job Offer Repository
+     * @return all job offers
+     */
 
     public List<JobOffer> getAll() {
         return

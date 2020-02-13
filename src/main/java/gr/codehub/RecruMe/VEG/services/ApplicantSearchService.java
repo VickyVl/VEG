@@ -17,7 +17,8 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 /**
- * ApplicantSearchService provides search functionalities for all applicants.
+ * ApplicantSearchService implements methods for search functionalities regarding all applicants.
+ * (by id, first name, region, skill, educational level)
  */
 
 @Service
@@ -35,11 +36,11 @@ public class ApplicantSearchService {
 
     /**
      * Get applicant from Applicant Repository
-     *
      * @param id
      * @return applicant
      * @throws ApplicantNotFoundException
      */
+
     public Applicant getApplicant(int id) throws ApplicantNotFoundException {
 
         try {
@@ -48,16 +49,15 @@ public class ApplicantSearchService {
         } catch (Exception e) {
             throw new ApplicantNotFoundException("Applicant id = " + id + " NOT FOUND");
         }
-
     }
 
     /**
-     * Search applicant by the first name
-     *
+     * Search applicant by first name
      * @param firstName
      * @return applicant
      * @throws ApplicantNotFoundException
      */
+
     public List<Applicant> searchByName(String firstName) throws ApplicantNotFoundException {
         try {
             return
@@ -72,11 +72,11 @@ public class ApplicantSearchService {
 
     /**
      * Search applicant by region
-     *
      * @param region
      * @return applicant
      * @throws ApplicantNotFoundException
      */
+
     public List<Applicant> searchByRegion(String region) throws ApplicantNotFoundException {
         try {
             return
@@ -90,7 +90,7 @@ public class ApplicantSearchService {
     }
 
     /**
-     * searching all applicants by a skill
+     * Search all applicants by a skill
      * @param description of the skill to look for
      * @return a list of applicants that have the same skill as description skill
      * @throws ApplicantNotFoundException
@@ -111,12 +111,14 @@ public class ApplicantSearchService {
             throw new ApplicantNotFoundException("SKILL " + description + " NOT FOUND" + e);
         }
     }
+
     /**
      * Search applicant by level
      * @param level
      * @return applicant
      * @throws ApplicantNotFoundException
      */
+
     public List<Applicant> searchByLevel(String level) throws ApplicantNotFoundException {
         try {
             return

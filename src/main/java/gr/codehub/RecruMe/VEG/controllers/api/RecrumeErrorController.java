@@ -7,8 +7,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * RecrumeErrorController used to ensure software quality, so that the end-user will not see default error pages,
+ * but rather the proper pre-defined HTTP code per call.
+ */
+
 @RestController
 public class RecrumeErrorController implements ErrorController {
+
+    /**
+     * Display specific HTTP code for errors
+     * @param request
+     * @return the proper HTTP code message per call
+     */
 
     @RequestMapping("error")
     @ResponseBody

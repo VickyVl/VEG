@@ -7,6 +7,11 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * ListMatchService implements methods for Matching Services, in order to display a list of the proposed automatic
+ * and manual matches.
+ */
+
 @Service
 public class ListMatchService {
     private Matches matchesRepo;
@@ -15,6 +20,11 @@ public class ListMatchService {
     public ListMatchService(Matches matchesRepo) {
         this.matchesRepo = matchesRepo;
     }
+
+    /**
+     * Display a list of Proposed matches
+     * @return list of proposed matches (automatic and manual)
+     */
 
     public List<String> getListOfProposedMatched() {
         List<Object[]> listOfProposedMatches = matchesRepo.getListOfProposedMatches();

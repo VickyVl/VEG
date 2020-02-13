@@ -18,11 +18,24 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+/**
+ * SkillExcelService registers all skills from the file into the database.
+ */
 
+@Service
 public class SkillExcelService {
-    @Autowired
     private Skills skillRepo;
+
+    @Autowired
+    public SkillExcelService(Skills skillRepo) {
+        this.skillRepo = skillRepo;
+    }
+
+    /**
+     * Show all skills from excel
+     * @return skills
+     * @throws IOException
+     */
 
     public List<Skill> getSkillExcel() throws IOException {
         SkillExcel("dataforrecrume.xlsx");

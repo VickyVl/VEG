@@ -15,28 +15,32 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * ApplicantUpdateService implements methods for updating the applicants' data.
+ * (update first name, last name, address, region, educational level, status, skill).
+ */
+
 @Service
 public class ApplicantUpdateService {
-    @Autowired
     private Skills skillRepo;
-    @Autowired
     private Applicants applicantRepo;
-    @Autowired
     private ApplicantSkills applicantSkillRepo;
 
     @Autowired
-    public ApplicantUpdateService(Applicants applicantUpdateRepo) {
-        this.applicantRepo = applicantUpdateRepo;
+    public ApplicantUpdateService(Skills skillRepo, Applicants applicantRepo, ApplicantSkills applicantSkillRepo) {
+        this.skillRepo = skillRepo;
+        this.applicantRepo = applicantRepo;
+        this.applicantSkillRepo = applicantSkillRepo;
     }
 
     /**
      * Update the first name of an applicant
-     *
      * @param id
      * @param applicantDto
      * @return applicant with updated first name
      * @throws ApplicantNotFoundException
      */
+
     public Applicant updateFirstName(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
         Applicant applicant = applicantRepo.findById(id).get();
         if (applicant == null) {
@@ -49,12 +53,12 @@ public class ApplicantUpdateService {
 
     /**
      * Update the last name of an applicant
-     *
      * @param id
      * @param applicantDto
      * @return applicant with updated last name
      * @throws ApplicantNotFoundException
      */
+
     public Applicant updateLastName(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
         Applicant applicant = applicantRepo.findById(id).get();
         if (applicant == null) {
@@ -67,7 +71,6 @@ public class ApplicantUpdateService {
 
     /**
      * Update the address of an applicant
-     *
      * @param id
      * @param applicantDto
      * @return applicant with updated address
@@ -85,7 +88,6 @@ public class ApplicantUpdateService {
 
     /**
      * Update the region of an applicant
-     *
      * @param id
      * @param applicantDto
      * @return applicant with updated region
@@ -103,12 +105,12 @@ public class ApplicantUpdateService {
 
     /**
      * Update the education level of an applicant
-     *
      * @param id
      * @param applicantDto
      * @return applicant with updated education level
      * @throws ApplicantNotFoundException
      */
+
     public Applicant updateEducationLevel(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
         Applicant applicant = applicantRepo.findById(id).get();
         if (applicant == null) {
@@ -121,7 +123,6 @@ public class ApplicantUpdateService {
 
     /**
      * Change the status of an applicant from inactive to active
-     *
      * @param id
      * @param applicantDto
      * @return applicant with active status
@@ -139,12 +140,12 @@ public class ApplicantUpdateService {
 
     /**
      * Change the status of an applicant from active to inactive
-     *
      * @param id
      * @param applicantDto
      * @return applicant with inactive status
      * @throws ApplicantNotFoundException
      */
+
     public Applicant inactivateStatus(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
         Applicant applicant = applicantRepo.findById(id).get();
         if (applicant == null) {
@@ -157,12 +158,12 @@ public class ApplicantUpdateService {
 
     /**
      * Update the skill of an applicant
-     *
      * @param id
      * @param applicantDto
      * @return applicant with updated skill
      * @throws ApplicantNotFoundException
      */
+
     public Applicant updateApplicantSkill(int id, ApplicantDto applicantDto) throws ApplicantNotFoundException {
         Applicant applicant = applicantRepo.findById(id).get();
         if (applicant == null) {
@@ -184,7 +185,6 @@ public class ApplicantUpdateService {
 
     /**
      * Update the level of an applicant
-     *
      * @param id
      * @param applicantDto
      * @return applicant with updated level
@@ -201,9 +201,9 @@ public class ApplicantUpdateService {
     }
 
     /**
-     * sets applicant's level type (JUNIOR, MID, SENIOR)
+     * Set applicant's enum level type (JUNIOR, MID, SENIOR)
      * @param description of the level
-     * @return a LevelType
+     * @return LevelType
      */
     public LevelType findLevelType(String description){
         LevelType levelType = null;

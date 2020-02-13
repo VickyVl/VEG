@@ -7,15 +7,23 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+/**
+ * ReportingJobSkillService implements methods for Reporting Services regarding job offer requested skills.
+ */
 
-public class JobSkillService {
+@Service
+public class ReportingJobSkillService {
     private JobSkills jobSkillsRepo;
 
     @Autowired
-    public JobSkillService(JobSkills jobSkillsRepo) {
+    public ReportingJobSkillService(JobSkills jobSkillsRepo) {
         this.jobSkillsRepo = jobSkillsRepo;
     }
+
+    /**
+     * Display top 5 most requested skills by job offers
+     * @return a list of top 5 most requested skills.
+     */
 
     public List<String> getTop5MostRequestedSkills(){
         List<Object[]> top5MostRequestedSkills = jobSkillsRepo.getTop5MostRequestedSkills();

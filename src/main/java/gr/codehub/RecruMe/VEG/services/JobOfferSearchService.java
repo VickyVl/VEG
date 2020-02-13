@@ -1,9 +1,9 @@
 package gr.codehub.RecruMe.VEG.services;
 
-import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
 import gr.codehub.RecruMe.VEG.exceptions.JobOfferNotFoundException;
-import gr.codehub.RecruMe.VEG.models.*;
-import gr.codehub.RecruMe.VEG.repositories.ApplicantSkills;
+import gr.codehub.RecruMe.VEG.models.JobOffer;
+import gr.codehub.RecruMe.VEG.models.JobSkill;
+import gr.codehub.RecruMe.VEG.models.Skill;
 import gr.codehub.RecruMe.VEG.repositories.JobOffers;
 import gr.codehub.RecruMe.VEG.repositories.JobSkills;
 import gr.codehub.RecruMe.VEG.repositories.Skills;
@@ -16,13 +16,17 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+/**
+ * JobOfferSearchService implements methods for search functionalities regarding all job offers.
+ * (by id, title of position, region, company, skill).
+ */
+
 @Service
 public class JobOfferSearchService {
 
     private JobOffers jobOfferRepo;
     private Skills skillRepo;
     private JobSkills jobSkillRepo;
-
 
     @Autowired
     public JobOfferSearchService(JobOffers jobOfferRepo,Skills skillRepo,JobSkills jobSkillRepo) {
@@ -32,7 +36,7 @@ public class JobOfferSearchService {
     }
 
     /**
-     * show jobOffer by id
+     * Search jobOffer by id
      * @param id
      * @return joboffer by id
      * @throws JobOfferNotFoundException
@@ -48,7 +52,7 @@ public class JobOfferSearchService {
     }
 
     /**
-     * show jobOffer by titleOfPosition
+     * Search jobOffer by titleOfPosition
      * @param titleOfPosition
      * @return jobOffer by titleOfPosition
      * @throws JobOfferNotFoundException
@@ -66,9 +70,9 @@ public class JobOfferSearchService {
     }
 
     /**
-     * show jobOffer by region
+     * Search jobOffer by region
      * @param region
-     * @return show jobOffer by region
+     * @return jobOffer by region
      * @throws JobOfferNotFoundException
      */
     public List<JobOffer> readByRegion(String region) throws JobOfferNotFoundException {
@@ -84,9 +88,9 @@ public class JobOfferSearchService {
     }
 
     /**
-     * show jobOffer by company
+     * Search jobOffer by company
      * @param company
-     * @return show jobOffer by company
+     * @return jobOffer by company
      * @throws JobOfferNotFoundException
      */
     public List<JobOffer> readByCompany(String company) throws JobOfferNotFoundException {
@@ -102,9 +106,9 @@ public class JobOfferSearchService {
     }
 
     /**
-     * show jobOffers by skill(description)
+     * Search jobOffers by skill(description)
      * @param description
-     * @return show jobOffers by skill(description)
+     * @return jobOffers by skill(description)
      * @throws JobOfferNotFoundException
      */
     public List<JobOffer> searchJobOffersBySkill(String description) throws JobOfferNotFoundException {

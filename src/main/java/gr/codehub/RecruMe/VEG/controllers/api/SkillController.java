@@ -1,7 +1,6 @@
 package gr.codehub.RecruMe.VEG.controllers.api;
 
 import gr.codehub.RecruMe.VEG.dtos.SkillDto;
-import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
 import gr.codehub.RecruMe.VEG.exceptions.SkillNotFoundException;
 import gr.codehub.RecruMe.VEG.models.Skill;
 import gr.codehub.RecruMe.VEG.services.SkillExcelService;
@@ -16,10 +15,11 @@ import java.util.List;
 /**
  * SkillController used here:
  * - to provide the data of all skills
- * - to create a new skill
+ * - to register a new skill
  * - to search skill by id and description
  * - to update the description of a skill
- * displaying the above via the corresponding HTTP responses as json files on the web.
+ * - to display all skills from the excel file
+ * displaying all the above via the corresponding HTTP responses as json files on the web.
  */
 
 @RestController
@@ -31,8 +31,7 @@ public class SkillController {
     private SkillExcelService skillExcelService;
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/applicant
-     * create a new skill
+     * Register a new skill
      * @param skillDto
      * @return new skill
      */
@@ -43,7 +42,7 @@ public class SkillController {
     }
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/applicants
+     * Display all skills from database
      * @return all skills
      */
 
@@ -53,7 +52,7 @@ public class SkillController {
     }
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/skill/{id}
+     * Display a skill with a particular id
      * @param id
      * @return skill by id
      * @throws SkillNotFoundException
@@ -67,7 +66,7 @@ public class SkillController {
     }
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/skill/description/{description}
+     * Display a skill with a particular description
      * @param description
      * @return skill by description
      * @throws SkillNotFoundException
@@ -80,8 +79,7 @@ public class SkillController {
     }
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/skill/{id}/description
-     * updates description of skill
+     * Update description of skill
      * @param id
      * @param skillDto
      * @return updated skill
@@ -96,15 +94,14 @@ public class SkillController {
     }
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/skill/excel
-     * get all skills from excel file
-     * @return skill from excel
-     * @throws SkillNotFoundException
+     * Retrieve all skills from excel file
+     * @return skills from excel
      * @throws IOException
      */
+
     @GetMapping("skill/excel")
     public List<Skill> getSkillExcel()
-            throws SkillNotFoundException, IOException {
+            throws IOException {
         return skillExcelService.getSkillExcel();
     }
 }

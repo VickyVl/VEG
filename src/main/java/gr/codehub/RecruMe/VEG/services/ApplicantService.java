@@ -17,30 +17,30 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+/**
+ * ApplicantService implements methods for applicant functionalities (display all, register new applicant
+ * save applicants' data).
+ */
+
 @Service
 public class ApplicantService {
-
-    @Autowired
     private Applicants applicantRepo;
-
-    @Autowired
-    public ApplicantService(Applicants applicantRepo) {
-        this.applicantRepo = applicantRepo;
-    }
-
-    @Autowired
     private Skills skillRepo;
-
-    @Autowired
     private ApplicantSkills applicantSkillRepo;
 
+    @Autowired
+    public ApplicantService(Applicants applicantRepo, Skills skillRepo, ApplicantSkills applicantSkillRepo) {
+        this.applicantRepo = applicantRepo;
+        this.skillRepo = skillRepo;
+        this.applicantSkillRepo = applicantSkillRepo;
+    }
 
     /**
-     * Make and save a new applicant
-     *
+     * Register and save a new applicant
      * @param applicantDto
-     * @return applicant
+     * @return an applicant
      */
+
     public Applicant save(ApplicantDto applicantDto) {
         Applicant applicant = settingApplicantData(applicantDto);
         return applicantRepo.save(applicant);
@@ -48,9 +48,9 @@ public class ApplicantService {
 
     /**
      * Show all applicants
-     *
-     * @return all applicant
+     * @return all applicants
      */
+
     public List<Applicant> getAll() {
         Applicant applicant = new Applicant();
         return
@@ -60,11 +60,11 @@ public class ApplicantService {
     }
 
     /**
-     * setting/saving applicant's data from applicantDto
-     *
+     * Save applicant's data from applicantDto
      * @param applicantDto
      * @return an applicant
      */
+
     public Applicant settingApplicantData(ApplicantDto applicantDto) {
         Applicant applicant = new Applicant();
         applicant.setFirstName(applicantDto.getFirstName());
@@ -103,13 +103,12 @@ public class ApplicantService {
         return applicantRepo.save(applicant);
     }
 
-
     /**
-     * sets applicant's level type (JUNIOR, MID, SENIOR)
-     *
+     * Set applicant's enum level type (JUNIOR, MID, SENIOR)
      * @param description of the level
-     * @return a LevelType
+     * @return levelType
      */
+
     public LevelType findLevelType(String description) {
         LevelType levelType = null;
 
@@ -124,7 +123,6 @@ public class ApplicantService {
         }
         return levelType;
     }
-
 }
 
 

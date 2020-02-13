@@ -13,7 +13,8 @@ import java.util.List;
 
 /**
  * JobOfferSearchController used here to provide the data of all job offer search services
- * (by id, title of position, region, company) displaying them as json files on the web via HTTP responses.
+ * (by id, title of position, region, company, skill) by
+ * displaying the above as json files on the web via HTTP responses.
  */
 
 @RestController
@@ -24,7 +25,7 @@ public class JobOfferSearchController {
     private JobOfferSearchService jobOfferSearchService;
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/joboffer/{id}
+     * Display a job offer with a particular id
      * @param id
      * @return job offer by id
      * @throws JobOfferNotFoundException
@@ -38,9 +39,9 @@ public class JobOfferSearchController {
     }
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/joboffer/title/{titleOfPosition}
+     * Display job offers with a particular title of position
      * @param titleOfPosition
-     * @return all job offers with the same title of position
+     * @return a list of job offers with the same title of position
      * @throws JobOfferNotFoundException
      */
 
@@ -51,9 +52,9 @@ public class JobOfferSearchController {
     }
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/joboffer/region/{region}
+     * Display job offers in a particular region
      * @param region
-     * @return all job offers in the same region
+     * @return a list of job offers in this region
      * @throws JobOfferNotFoundException
      */
 
@@ -64,9 +65,9 @@ public class JobOfferSearchController {
     }
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/joboffer/region/{company}
+     * Display job offers of a particular company
      * @param company
-     * @return all job offers of the particular company
+     * @return all job offers of this company
      * @throws JobOfferNotFoundException
      */
 
@@ -77,9 +78,9 @@ public class JobOfferSearchController {
     }
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/joboffer/skill/{description}
+     * Display job offers with a particular skill
      * @param description
-     * @return list of job offers of the particular company
+     * @return list of job offers requesting this skill
      * @throws JobOfferNotFoundException
      */
     @GetMapping("joboffer/skill/{description}")

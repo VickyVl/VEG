@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * ManualMatchController used here to provide data of matching services.
+ * The manual match matches an applicant with a job offer.
+ * Display the above via the corresponding HTTP response as json file on the web.
+ */
+
 @RestController
 @RequestMapping("/recrumeVEG/")
 public class ManualMatchController {
@@ -18,8 +24,7 @@ public class ManualMatchController {
     private ManualMatchService ManualMatchService;
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/applicant/{applicantId}/joboffer/{jobofferId}
-     * make the manual match of an applicant with the job offer
+     * Manual match of an applicant with a job offer
      * @param applicantId
      * @param jobofferId
      * @return the manual match of an applicant with the job offer

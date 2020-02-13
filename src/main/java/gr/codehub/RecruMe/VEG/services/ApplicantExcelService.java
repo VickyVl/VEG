@@ -30,18 +30,19 @@ import java.util.Optional;
 
 @Service
 public class ApplicantExcelService {
-    @Autowired
     private Applicants applicantRepo;
-
-    @Autowired
     private Skills skillRepo;
+    private ApplicantSkills applicantSkillRepo;
 
     @Autowired
-    private ApplicantSkills applicantSkillRepo;
+    public ApplicantExcelService(Applicants applicantRepo, Skills skillRepo, ApplicantSkills applicantSkillRepo) {
+        this.applicantRepo = applicantRepo;
+        this.skillRepo = skillRepo;
+        this.applicantSkillRepo = applicantSkillRepo;
+    }
 
     /**
      * Show all applicants from excel
-     *
      * @return applicant
      * @throws IOException
      */
@@ -53,7 +54,6 @@ public class ApplicantExcelService {
 
     /**
      * Read all applicants from excel file
-     *
      * @param excelFileName
      * @throws IOException
      */
@@ -100,16 +100,15 @@ public class ApplicantExcelService {
                 }
             }
             Applicant applicant = setApplicantFromExcel(firstNameCell.getStringCellValue(), lastNameCell.getStringCellValue(), addressCell.getStringCellValue(), regionCell.getStringCellValue(), educationLevelCell.getStringCellValue(), levelCell.getStringCellValue(), applicantSkills);
-
         }
     }
 
     /**
      * sets applicant's level type (JUNIOR, MID, SENIOR)
-     *
      * @param description of the level
      * @return a LevelType
      */
+
     public LevelType findLevelType(String description) {
         LevelType levelType = null;
 

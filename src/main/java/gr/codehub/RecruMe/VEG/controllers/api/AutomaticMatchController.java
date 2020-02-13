@@ -13,6 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * AutomaticMatchController used here to provide the data of a matching service.
+ * The automatic match matches the job offer with the applicant possessing all the requested skills by the job offer.
+ * Display the above via the corresponding HTTP response as json file on the web.
+ */
+
 @RestController
 @RequestMapping("/recrumeVEG/")
 public class AutomaticMatchController {
@@ -20,30 +26,17 @@ public class AutomaticMatchController {
     private AutomaticMatchService automaticMatchService;
 
     /**
-     *
+     * Automatic Match of a job offer with an applicant
      * @param jobofferId
-     * @return a list of match applicants with a job offer
+     * @return an automatic match of a job offer with an applicant whose skills fulfill all requested job skills
      * @throws MatchedAlreadyException
      * @throws JobOfferNotFoundException
      * @throws ApplicantNotFoundException
      */
+
     @GetMapping("auto/applicants/{jobofferId}")
     public List<Match> getMatch(@PathVariable int jobofferId)
             throws MatchedAlreadyException, JobOfferNotFoundException, ApplicantNotFoundException {
         return automaticMatchService.automaticMatch(jobofferId);
     }
-
-//    /**
-//     *
-//     * @param jobofferId
-//     * @return a list of match applicants with a job offer
-//     * @throws MatchedAlreadyException
-//     * @throws JobOfferNotFoundException
-//     * @throws ApplicantNotFoundException
-//     */
-//    @GetMapping("auto/applicants/{jobofferId}")
-//    public Match getOneMatch(@PathVariable int jobofferId)
-//            throws MatchedAlreadyException, JobOfferNotFoundException, ApplicantNotFoundException {
-//        return automaticMatchService.automaticMatchForOne(jobofferId);
-//    }
 }

@@ -1,6 +1,5 @@
 package gr.codehub.RecruMe.VEG.repositories;
 
-import gr.codehub.RecruMe.VEG.models.JobSkill;
 import gr.codehub.RecruMe.VEG.models.Match;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

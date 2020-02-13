@@ -1,10 +1,7 @@
 package gr.codehub.RecruMe.VEG.controllers.api;
 
 import gr.codehub.RecruMe.VEG.dtos.JobOfferDto;
-import gr.codehub.RecruMe.VEG.exceptions.JobOfferNotFoundException;
-import gr.codehub.RecruMe.VEG.exceptions.SkillNotFoundException;
 import gr.codehub.RecruMe.VEG.models.JobOffer;
-import gr.codehub.RecruMe.VEG.models.Skill;
 import gr.codehub.RecruMe.VEG.services.JobOfferExcelService;
 import gr.codehub.RecruMe.VEG.services.JobOfferService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +13,8 @@ import java.util.List;
 /**
  * JobOfferController used here:
  * - to provide the data of all job offers
- * - to create a new job offer
+ * - to register a new job offer
+ * - to display all job offers from the excel file
  * displaying the above via the corresponding HTTP responses as json files on the web.
  */
 
@@ -29,7 +27,7 @@ public class JobOfferController {
     private JobOfferExcelService jobOfferExcelService;
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/joboffers
+     * Display all job offers from database
      * @return all job offers
      */
 
@@ -39,8 +37,7 @@ public class JobOfferController {
     }
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/joboffer
-     * create / insert new job offer
+     * Register a new job offer
      * @param jobOfferDto
      * @return the new job offer
      */
@@ -51,15 +48,14 @@ public class JobOfferController {
     }
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/joboffer/excel
-     * get all job offers from excel file
-     * @return job offer from excel
-     * @throws JobOfferNotFoundException
+     * Retrieve all job offers from excel file
+     * @return job offers from excel
      * @throws IOException
      */
+
     @GetMapping("joboffer/excel")
     public List<JobOffer> getJobOfferExcel()
-            throws JobOfferNotFoundException, IOException {
+            throws IOException {
         return jobOfferExcelService.getJobOfferExcel();
     }
 }

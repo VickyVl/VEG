@@ -1,10 +1,7 @@
 package gr.codehub.RecruMe.VEG.controllers.api;
 
 import gr.codehub.RecruMe.VEG.dtos.ApplicantDto;
-import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
-import gr.codehub.RecruMe.VEG.exceptions.JobOfferNotFoundException;
 import gr.codehub.RecruMe.VEG.models.Applicant;
-import gr.codehub.RecruMe.VEG.models.JobOffer;
 import gr.codehub.RecruMe.VEG.services.ApplicantExcelService;
 import gr.codehub.RecruMe.VEG.services.ApplicantService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +13,9 @@ import java.util.List;
 /**
  * ApplicantController used here:
  * - to provide the data of all applicants
- * - to create a new applicant
- * displaying the above via the corresponding HTTP responses as json files on the web.
+ * - to register a new applicant
+ * - to display all applicants from the excel file
+ * displaying all the above via the corresponding HTTP responses as json files on the web.
  */
 
 @RestController
@@ -31,7 +29,7 @@ public class ApplicantController {
     private ApplicantExcelService applicantExcelService;
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/applicants
+     * Display all applicants from database
      * @return all applicants
      */
 
@@ -41,8 +39,7 @@ public class ApplicantController {
     }
 
     /**
-     * endpoint http://localhost:8080/recrumeVEG/applicant
-     * create a new applicant
+     * register a new applicant
      * @param applicantDto
      * @return new applicant
      */
@@ -53,15 +50,14 @@ public class ApplicantController {
     }
 
     /**
-     *endpoint http://localhost:8080/recrumeVEG/applicant/excel
-     * get all applicants from excel file
-     * @return applicant from excel
-     * @throws JobOfferNotFoundException
+     * Retrieve all applicants from excel file
+     * @return applicants from excel
      * @throws IOException
      */
+
     @GetMapping("applicant/excel")
     public List<Applicant> getApplicantExcel()
-            throws JobOfferNotFoundException, IOException {
+            throws IOException {
         return applicantExcelService.getApplicantExcel();
     }
 }

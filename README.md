@@ -44,7 +44,7 @@ RecrumeVEG API was created using:
 
 - Java 11
 - Microsoft SQL Server Express Edition, as underlying database vendor
-- Postman, as third party tool, in order to perform the calls
+- Postman and Swagger UI, as third party tools, in order to perform the calls
  
 ## Running the application locally
 

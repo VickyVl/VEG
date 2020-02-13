@@ -1,18 +1,16 @@
 package gr.codehub.RecruMe.VEG.controllers.api;
 
 import gr.codehub.RecruMe.VEG.dtos.JobOfferDto;
-import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
 import gr.codehub.RecruMe.VEG.exceptions.JobOfferNotFoundException;
 import gr.codehub.RecruMe.VEG.models.JobOffer;
-import gr.codehub.RecruMe.VEG.services.JobOfferService;
 import gr.codehub.RecruMe.VEG.services.JobOfferUpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * JobOfferUpdateController used here to provide the data of all job offer update services
- * (title of position, activate/inactivate status, region, education level, company)
- * displaying them as json files on the web via HTTP responses.
+ * (title of position, activate/inactivate status, region, education level, company) by
+ * displaying the above as json files on the web via HTTP responses.
  */
 
 @RestController
