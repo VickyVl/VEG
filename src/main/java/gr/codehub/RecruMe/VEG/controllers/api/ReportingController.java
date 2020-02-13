@@ -1,5 +1,7 @@
 package gr.codehub.RecruMe.VEG.controllers.api;
 
+import gr.codehub.RecruMe.VEG.exceptions.MatchNotFoundException;
+import gr.codehub.RecruMe.VEG.models.Match;
 import gr.codehub.RecruMe.VEG.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,9 @@ import java.util.List;
 public class ReportingController {
     @Autowired
     private JobSkillService jobSkillService;
+
+    @Autowired
+    private FinalizeMatchService finalizeMatchService;
 
     @GetMapping("top5MostRequestedSkills")
     public List<String> getTop5MostRequestedSkills() {
@@ -34,13 +39,14 @@ public class ReportingController {
     public List<String> getListOfProposedMatches() {
         return listMatchService.getListOfProposedMatched();
     }
-}
-//    @Autowired
+
+    //    @Autowired
 //    private AutomaticMatchService automaticMatchService;
 //    private ManualMatchService manualMatchService
 //
-//    @GetMapping("listOfFinalizedMatches")
-//    public List<String> getListOfFinalizedMatches(){
-//        return listMatchService.getListOfProposedMatched();
-//    }
+    @GetMapping("listOfFinalizedMatches")
+    public List<Match> getListOfFinalizedMatches() throws MatchNotFoundException {
+        return finalizeMatchService.getFinalizedMatches();
+    }
+}
 //}

@@ -8,6 +8,9 @@ import gr.codehub.RecruMe.VEG.repositories.Matches;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class FinalizeMatchService {
     @Autowired
@@ -20,6 +23,14 @@ public class FinalizeMatchService {
             match.setType(MatchType.FINALIZED);
             matchRepo.save(match);
             return match;
+        } catch (Exception e) {
+            throw new MatchNotFoundException("MATCH NOT FOUNT");
+        }
+    }
+
+    public List<Match> getFinalizedMatches() throws MatchNotFoundException {
+        try {
+           return matchRepo.getListOfFinalizedMatches();
         }catch (Exception e) {
             throw new MatchNotFoundException("MATCH NOT FOUNT");
         }
