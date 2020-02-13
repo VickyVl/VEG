@@ -1,5 +1,6 @@
 package gr.codehub.RecruMe.VEG.services;
 
+import gr.codehub.RecruMe.VEG.EnumTypes.MatchType;
 import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
 import gr.codehub.RecruMe.VEG.exceptions.JobOfferNotFoundException;
 import gr.codehub.RecruMe.VEG.exceptions.MatchedAlreadyException;
@@ -64,6 +65,7 @@ public class AutomaticMatchService {
                 jobOfferRepo.save(foundJobOffer);
                 jobOffer.setId(jobOfferId);
                 match.setJobOffer(jobOffer);
+                match.setType(MatchType.AUTOMATIC);
                 match = matchesRepo.save(match);
                 foundMatches.add(match);
             }
@@ -71,39 +73,16 @@ public class AutomaticMatchService {
         return foundMatches;
     }
 
-    public Match automaticMatchForOne(int jobOfferId) throws MatchedAlreadyException,
-            JobOfferNotFoundException, ApplicantNotFoundException {
-        Match match = new Match();
-        List<JobSkill> jobSkillsFound = jobSkills.findByJobOfferId(jobOfferId);
-        List<Skill> jobOfferSkills = new ArrayList<>();
-        for (JobSkill js : jobSkillsFound) {
-            jobOfferSkills.add(js.getSkill());
-        }
-        List<Applicant> applicants = applicantRepo.findAll();
-        List<ApplicantSkill> applicantSkillsList = applicantSkills.findAll();
-        for (Applicant app : applicants) {
-            List<Skill> applicantSkills = new ArrayList<>();
-            for (ApplicantSkill as : app.getApplicantSkills()) {
-                applicantSkills.add(as.getSkill());
-            }
-            if (applicantSkills.containsAll(jobOfferSkills)) {
-                match = new Match();
-                app.setActive(false);
-                applicantRepo.save(app);
-                match.setApplicant(app);
-                JobOffer jobOffer = new JobOffer();
-                Optional<JobOffer> foundJobOfferOptional = jobOfferRepo.findById(jobOfferId);
-                JobOffer foundJobOffer = foundJobOfferOptional.get();
-                foundJobOffer.setActive(false);
-                jobOfferRepo.save(foundJobOffer);
-                jobOffer.setId(jobOfferId);
-                match.setJobOffer(jobOffer);
-                match = matchesRepo.save(match);
-            }
-            if (match != null)
-                return match;
-        }
-        return match;
-    }
+//    automaticMatchForOne
+//public Match automaticMatchForOne(int jobOfferId) throws MatchedAlreadyException,
+//        JobOfferNotFoundException, ApplicantNotFoundException {
+//        List<Applicant> applicantList = applicantRepo.findAll().stream().filter(Applicant:: a )
+//        List<Match> matches = automaticMatch(jobOfferId);
+//        for (Match m : matches){
+//            List<Applicant> applicantList = new ArrayList<>();
+//            Applicant applicant = applicantRepo.findById(m.getApplicant().getId());
+//        }
+//
+//        }
 }
 

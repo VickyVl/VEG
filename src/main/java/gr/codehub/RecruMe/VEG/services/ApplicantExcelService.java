@@ -1,5 +1,6 @@
 package gr.codehub.RecruMe.VEG.services;
 
+import gr.codehub.RecruMe.VEG.EnumTypes.LevelType;
 import gr.codehub.RecruMe.VEG.models.Applicant;
 import gr.codehub.RecruMe.VEG.models.ApplicantSkill;
 import gr.codehub.RecruMe.VEG.models.Skill;
@@ -83,7 +84,19 @@ public class ApplicantExcelService {
                 Skill foundSkill = skillRepo.findFirstByDescription(value);
                 applicantSkills.add(foundSkill);
             }
+            
+            LevelType levelType = null;
 
+            if (levelCell.getStringCellValue().equalsIgnoreCase("Junior")){
+                levelType = LevelType.JUNIOR;
+            }
+            if (levelCell.getStringCellValue().equalsIgnoreCase("Mid")){
+                levelType = LevelType.MID;
+            }
+            if (levelCell.getStringCellValue().equalsIgnoreCase("Senior")){
+                levelType = LevelType.SENIOR;
+            }
+            
 
             Applicant applicant = new Applicant(
                     firstNameCell.getStringCellValue(),
@@ -92,7 +105,10 @@ public class ApplicantExcelService {
                     regionCell.getStringCellValue(),
                     educationLevelCell.getStringCellValue(),
                     levelCell.getStringCellValue());
+
+            applicant.setLevelType(levelType);
             applicant = applicantRepo.save(applicant);
+
 
             for (int i=0; i<applicantSkills.size(); i++){
                 ApplicantSkill applicantSkill = new ApplicantSkill();

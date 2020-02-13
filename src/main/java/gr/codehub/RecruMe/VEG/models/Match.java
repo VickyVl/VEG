@@ -1,6 +1,7 @@
 package gr.codehub.RecruMe.VEG.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import gr.codehub.RecruMe.VEG.EnumTypes.MatchType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

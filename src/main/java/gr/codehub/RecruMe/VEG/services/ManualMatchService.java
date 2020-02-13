@@ -6,7 +6,7 @@ import gr.codehub.RecruMe.VEG.exceptions.MatchedAlreadyException;
 import gr.codehub.RecruMe.VEG.models.Applicant;
 import gr.codehub.RecruMe.VEG.models.JobOffer;
 import gr.codehub.RecruMe.VEG.models.Match;
-import gr.codehub.RecruMe.VEG.models.MatchType;
+import gr.codehub.RecruMe.VEG.EnumTypes.MatchType;
 import gr.codehub.RecruMe.VEG.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
