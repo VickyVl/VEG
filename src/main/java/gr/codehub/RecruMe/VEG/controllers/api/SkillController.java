@@ -104,4 +104,16 @@ public class SkillController {
             throws IOException {
         return skillExcelService.getSkillExcel();
     }
+
+    /**
+     * Delete a skill by description
+     * @param description
+     * @return String message that skill deleted
+     * @throws SkillNotFoundException
+     */
+    @DeleteMapping("skill/delete/{description}")
+    public String deleteSkillByDescription(@PathVariable String description)
+        throws SkillNotFoundException{
+        return skillService.deleteByDescription(description);
+    }
 }
