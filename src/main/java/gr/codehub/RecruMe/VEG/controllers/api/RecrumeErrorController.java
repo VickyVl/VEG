@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 
 @RestController
+@RequestMapping("/recrumeVEG/")
 public class RecrumeErrorController implements ErrorController {
 
     /**
