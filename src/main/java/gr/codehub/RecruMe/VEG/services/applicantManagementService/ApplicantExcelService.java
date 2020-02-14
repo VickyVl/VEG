@@ -1,6 +1,6 @@
-package gr.codehub.RecruMe.VEG.services;
+package gr.codehub.RecruMe.VEG.services.applicantManagementService;
 
-import gr.codehub.RecruMe.VEG.EnumTypes.LevelType;
+import gr.codehub.RecruMe.VEG.enumType.LevelType;
 import gr.codehub.RecruMe.VEG.models.Applicant;
 import gr.codehub.RecruMe.VEG.models.ApplicantSkill;
 import gr.codehub.RecruMe.VEG.models.Skill;

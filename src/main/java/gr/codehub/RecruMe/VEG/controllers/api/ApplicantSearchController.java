@@ -2,7 +2,7 @@ package gr.codehub.RecruMe.VEG.controllers.api;
 
 import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
 import gr.codehub.RecruMe.VEG.models.Applicant;
-import gr.codehub.RecruMe.VEG.services.ApplicantSearchService;
+import gr.codehub.RecruMe.VEG.services.applicantManagementService.ApplicantSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

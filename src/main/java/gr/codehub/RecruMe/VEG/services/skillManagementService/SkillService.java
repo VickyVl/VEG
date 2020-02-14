@@ -1,4 +1,4 @@
-package gr.codehub.RecruMe.VEG.services;
+package gr.codehub.RecruMe.VEG.services.skillManagementService;
 
 import gr.codehub.RecruMe.VEG.dtos.SkillDto;
 import gr.codehub.RecruMe.VEG.exceptions.SkillNotFoundException;

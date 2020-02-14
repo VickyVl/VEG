@@ -1,7 +1,7 @@
 package gr.codehub.RecruMe.VEG.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import gr.codehub.RecruMe.VEG.EnumTypes.LevelType;
+import gr.codehub.RecruMe.VEG.enumType.LevelType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

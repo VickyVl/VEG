@@ -2,8 +2,8 @@ package gr.codehub.RecruMe.VEG.controllers.api;
 
 import gr.codehub.RecruMe.VEG.dtos.ApplicantDto;
 import gr.codehub.RecruMe.VEG.models.Applicant;
-import gr.codehub.RecruMe.VEG.services.ApplicantExcelService;
-import gr.codehub.RecruMe.VEG.services.ApplicantService;
+import gr.codehub.RecruMe.VEG.services.applicantManagementService.ApplicantExcelService;
+import gr.codehub.RecruMe.VEG.services.applicantManagementService.ApplicantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,4 +1,4 @@
-package gr.codehub.RecruMe.VEG.services;
+package gr.codehub.RecruMe.VEG.services.applicantManagementService;
 
 import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
 import gr.codehub.RecruMe.VEG.models.Applicant;

@@ -2,8 +2,8 @@ package gr.codehub.RecruMe.VEG.controllers.api;
 
 import gr.codehub.RecruMe.VEG.dtos.JobOfferDto;
 import gr.codehub.RecruMe.VEG.models.JobOffer;
-import gr.codehub.RecruMe.VEG.services.JobOfferExcelService;
-import gr.codehub.RecruMe.VEG.services.JobOfferService;
+import gr.codehub.RecruMe.VEG.services.jobOfferManagementService.JobOfferExcelService;
+import gr.codehub.RecruMe.VEG.services.jobOfferManagementService.JobOfferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

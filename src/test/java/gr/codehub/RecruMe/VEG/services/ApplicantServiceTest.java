@@ -1,6 +1,6 @@
 package gr.codehub.RecruMe.VEG.services;
 
-import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
+import gr.codehub.RecruMe.VEG.services.applicantManagementService.ApplicantService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

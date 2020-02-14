@@ -2,7 +2,7 @@ package gr.codehub.RecruMe.VEG.controllers.api;
 
 import gr.codehub.RecruMe.VEG.exceptions.MatchNotFoundException;
 import gr.codehub.RecruMe.VEG.models.Match;
-import gr.codehub.RecruMe.VEG.services.FinalizeMatchService;
+import gr.codehub.RecruMe.VEG.services.matchManagementService.FinalizeMatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;

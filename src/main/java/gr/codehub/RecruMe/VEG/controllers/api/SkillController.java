@@ -3,8 +3,8 @@ package gr.codehub.RecruMe.VEG.controllers.api;
 import gr.codehub.RecruMe.VEG.dtos.SkillDto;
 import gr.codehub.RecruMe.VEG.exceptions.SkillNotFoundException;
 import gr.codehub.RecruMe.VEG.models.Skill;
-import gr.codehub.RecruMe.VEG.services.SkillExcelService;
-import gr.codehub.RecruMe.VEG.services.SkillService;
+import gr.codehub.RecruMe.VEG.services.skillManagementService.SkillExcelService;
+import gr.codehub.RecruMe.VEG.services.skillManagementService.SkillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +19,7 @@ import java.util.List;
  * - to search skill by id and description
  * - to update the description of a skill
  * - to display all skills from the excel file
+ * - to delete one skill
  * displaying all the above via the corresponding HTTP responses as json files on the web.
  */
 

@@ -4,7 +4,7 @@ import gr.codehub.RecruMe.VEG.dtos.ApplicantDto;
 import gr.codehub.RecruMe.VEG.exceptions.ApplicantNotFoundException;
 import gr.codehub.RecruMe.VEG.exceptions.ApplicantUpdateSkillException;
 import gr.codehub.RecruMe.VEG.models.Applicant;
-import gr.codehub.RecruMe.VEG.services.ApplicantUpdateService;
+import gr.codehub.RecruMe.VEG.services.applicantManagementService.ApplicantUpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

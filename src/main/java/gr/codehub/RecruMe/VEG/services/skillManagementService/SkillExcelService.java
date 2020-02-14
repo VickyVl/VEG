@@ -1,4 +1,4 @@
-package gr.codehub.RecruMe.VEG.services;
+package gr.codehub.RecruMe.VEG.services.skillManagementService;
 
 import gr.codehub.RecruMe.VEG.models.Skill;
 import gr.codehub.RecruMe.VEG.repositories.Skills;

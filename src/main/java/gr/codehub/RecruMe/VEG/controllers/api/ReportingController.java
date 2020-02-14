@@ -2,10 +2,10 @@ package gr.codehub.RecruMe.VEG.controllers.api;
 
 import gr.codehub.RecruMe.VEG.exceptions.MatchNotFoundException;
 import gr.codehub.RecruMe.VEG.models.Match;
-import gr.codehub.RecruMe.VEG.services.FinalizeMatchService;
-import gr.codehub.RecruMe.VEG.services.ListMatchService;
-import gr.codehub.RecruMe.VEG.services.ReportingApplicantSkillService;
-import gr.codehub.RecruMe.VEG.services.ReportingJobSkillService;
+import gr.codehub.RecruMe.VEG.services.matchManagementService.FinalizeMatchService;
+import gr.codehub.RecruMe.VEG.services.reportingManagementService.ReportingListMatchService;
+import gr.codehub.RecruMe.VEG.services.reportingManagementService.ReportingApplicantSkillService;
+import gr.codehub.RecruMe.VEG.services.reportingManagementService.ReportingJobSkillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,7 +55,7 @@ public class ReportingController {
     }
 
     @Autowired
-    private ListMatchService listMatchService;
+    private ReportingListMatchService reportingListMatchService;
 
     /**
      * Display a list of the proposed matches (manual and automatic)
@@ -64,7 +64,7 @@ public class ReportingController {
 
     @GetMapping("listOfProposedMatches")
     public List<String> getListOfProposedMatches() {
-        return listMatchService.getListOfProposedMatched();
+        return reportingListMatchService.getListOfProposedMatched();
     }
 
     /**

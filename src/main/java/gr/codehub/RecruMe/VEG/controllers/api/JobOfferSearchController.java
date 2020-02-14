@@ -2,7 +2,7 @@ package gr.codehub.RecruMe.VEG.controllers.api;
 
 import gr.codehub.RecruMe.VEG.exceptions.JobOfferNotFoundException;
 import gr.codehub.RecruMe.VEG.models.JobOffer;
-import gr.codehub.RecruMe.VEG.services.JobOfferSearchService;
+import gr.codehub.RecruMe.VEG.services.jobOfferManagementService.JobOfferSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

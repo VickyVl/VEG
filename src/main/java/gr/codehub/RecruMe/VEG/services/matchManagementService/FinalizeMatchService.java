@@ -1,6 +1,6 @@
-package gr.codehub.RecruMe.VEG.services;
+package gr.codehub.RecruMe.VEG.services.matchManagementService;
 
-import gr.codehub.RecruMe.VEG.EnumTypes.MatchType;
+import gr.codehub.RecruMe.VEG.enumType.MatchType;
 import gr.codehub.RecruMe.VEG.exceptions.MatchNotFoundException;
 import gr.codehub.RecruMe.VEG.models.Match;
 import gr.codehub.RecruMe.VEG.repositories.Matches;

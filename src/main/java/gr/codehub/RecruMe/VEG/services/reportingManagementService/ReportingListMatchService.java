@@ -1,4 +1,4 @@
-package gr.codehub.RecruMe.VEG.services;
+package gr.codehub.RecruMe.VEG.services.reportingManagementService;
 
 import gr.codehub.RecruMe.VEG.repositories.Matches;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +13,11 @@ import java.util.List;
  */
 
 @Service
-public class ListMatchService {
+public class ReportingListMatchService {
     private Matches matchesRepo;
 
     @Autowired
-    public ListMatchService(Matches matchesRepo) {
+    public ReportingListMatchService(Matches matchesRepo) {
         this.matchesRepo = matchesRepo;
     }
 

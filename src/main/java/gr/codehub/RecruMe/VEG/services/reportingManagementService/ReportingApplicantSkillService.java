@@ -1,4 +1,4 @@
-package gr.codehub.RecruMe.VEG.services;
+package gr.codehub.RecruMe.VEG.services.reportingManagementService;
 
 import gr.codehub.RecruMe.VEG.repositories.ApplicantSkills;
 import org.springframework.beans.factory.annotation.Autowired;

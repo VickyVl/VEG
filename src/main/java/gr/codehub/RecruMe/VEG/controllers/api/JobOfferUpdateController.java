@@ -3,7 +3,7 @@ package gr.codehub.RecruMe.VEG.controllers.api;
 import gr.codehub.RecruMe.VEG.dtos.JobOfferDto;
 import gr.codehub.RecruMe.VEG.exceptions.JobOfferNotFoundException;
 import gr.codehub.RecruMe.VEG.models.JobOffer;
-import gr.codehub.RecruMe.VEG.services.JobOfferUpdateService;
+import gr.codehub.RecruMe.VEG.services.jobOfferManagementService.JobOfferUpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,5 +1,6 @@
 package gr.codehub.RecruMe.VEG.services;
 
+import gr.codehub.RecruMe.VEG.services.jobOfferManagementService.JobOfferService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

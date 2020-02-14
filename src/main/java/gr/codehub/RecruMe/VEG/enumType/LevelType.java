@@ -1,4 +1,4 @@
-package gr.codehub.RecruMe.VEG.EnumTypes;
+package gr.codehub.RecruMe.VEG.enumType;
 
 /**
  * Enumerated type for education level consists of a set of named values/collection of constants with
